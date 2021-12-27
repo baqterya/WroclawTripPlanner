@@ -3,8 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_map.xml" value="0.13020833333333334" />
+        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13020833333333334" />
       </map>
     </option>
   </component>
