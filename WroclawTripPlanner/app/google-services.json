@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "278782507094",
+    "project_id": "wroclawtripplanner-87290",
+    "storage_bucket": "wroclawtripplanner-87290.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278782507094:android:f9b8b9b8377f246f5123f7",
+        "android_client_info": {
+          "package_name": "com.baqterya.wroclawtripplanner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278782507094-sg2ljkj0dfjs3elr09sc14q18tibot1j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.baqterya.wroclawtripplanner",
+            "certificate_hash": "f0706a6984ee819398a5d1b3267047c9fbf26d36"
+          }
+        },
+        {
+          "client_id": "278782507094-lkho9l4ka35ah1gnnbaarl3b7blcuadh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNXAkT-Zg-NY4md_kespycX7fV_ff8KQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278782507094-lkho9l4ka35ah1gnnbaarl3b7blcuadh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
