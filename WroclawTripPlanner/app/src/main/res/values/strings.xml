@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WroclawTripPlanner</string>
+    <string name="your_trips">Your Trips</string>
+    <string name="your_places">Your Places</string>
+    <string name="saved_trips">Saved Trips</string>
+    <string name="saved_places">Saved Places</string>
 </resources>

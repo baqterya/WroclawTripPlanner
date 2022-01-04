@@ -19,11 +19,63 @@
         android:id="@+id/bottom_app_bar_main_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/design_default_color_primary"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/your_trips"
+                android:textColor="@color/design_default_color_on_primary"
+                app:drawableTopCompat="@drawable/ic_trip" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/your_places"
+                android:textColor="@color/design_default_color_on_primary"
+                app:drawableTopCompat="@drawable/ic_place" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/saved_trips"
+                android:textColor="@color/design_default_color_on_primary"
+                app:drawableTopCompat="@drawable/ic_trip" />
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/saved_places"
+                android:textColor="@color/design_default_color_on_primary"
+                app:drawableTopCompat="@drawable/ic_place" />
+        </LinearLayout>
+
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/bottom_app_bar_main_activity"/>
+        android:clickable="true"
+        android:src="@drawable/ic_explore"
+        android:contentDescription=""
+        android:focusable="true"
+        app:layout_anchor="@id/bottom_app_bar_main_activity" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
