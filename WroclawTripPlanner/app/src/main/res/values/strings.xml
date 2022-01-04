@@ -4,4 +4,5 @@
     <string name="your_places">Your Places</string>
     <string name="saved_trips">Saved Trips</string>
     <string name="saved_places">Saved Places</string>
+    <string name="explore_add_fab_description">Explore/Add Floating Action Button</string>
 </resources>

@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/top_toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/top_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <fragment
         android:id="@+id/main_fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -30,6 +43,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/text_view_your_trips"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -39,6 +53,7 @@
                 app:drawableTopCompat="@drawable/ic_trip" />
 
             <TextView
+                android:id="@+id/text_view_your_places"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -48,6 +63,7 @@
                 app:drawableTopCompat="@drawable/ic_place" />
 
             <TextView
+                android:id="@+id/text_view_saved_trips"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -56,8 +72,8 @@
                 android:textColor="@color/design_default_color_on_primary"
                 app:drawableTopCompat="@drawable/ic_trip" />
 
-
             <TextView
+                android:id="@+id/text_view_saved_places"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -65,6 +81,7 @@
                 android:text="@string/saved_places"
                 android:textColor="@color/design_default_color_on_primary"
                 app:drawableTopCompat="@drawable/ic_place" />
+
         </LinearLayout>
 
     </com.google.android.material.bottomappbar.BottomAppBar>
@@ -73,8 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:src="@drawable/ic_explore"
-        android:contentDescription=""
+        android:src="@drawable/ic_add"
+        android:contentDescription="@string/explore_add_fab_description"
         android:focusable="true"
         app:layout_anchor="@id/bottom_app_bar_main_activity" />
 
