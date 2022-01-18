@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "278782507094-sg2ljkj0dfjs3elr09sc14q18tibot1j.apps.googleusercontent.com",
+          "client_id": "278782507094-2h5p9mr6hc4o2iktq3n8psl6fek52fvf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.baqterya.wroclawtripplanner",
-            "certificate_hash": "f0706a6984ee819398a5d1b3267047c9fbf26d36"
+            "certificate_hash": "96d7af94a7d8084c60266537e8d86c829f19d663"
           }
         },
         {

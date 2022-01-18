@@ -1,8 +1,25 @@
 <resources>
+    <string name="twitter_consumer_key" translatable="false">GP2WUOjFSiVswwUGBazy07O1x</string>
+    <string name="twitter_consumer_secret" translatable="false">Ix399Tszhphn2ben5NFFaXxdEQK46RqRJwMb8BpabNlu7lYfVR</string>
     <string name="app_name">WroclawTripPlanner</string>
     <string name="your_trips">Your Trips</string>
     <string name="your_places">Your Places</string>
     <string name="saved_trips">Saved Trips</string>
     <string name="saved_places">Saved Places</string>
     <string name="explore_add_fab_description">Explore/Add Floating Action Button</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_screen_prompt">WELCOME TO\nWROCLAW TRIP PLANNER</string>
+    <string name="hint_enter_email">enter email</string>
+    <string name="hint_enter_password">enter password</string>
+    <string name="button_login">login</string>
+    <string name="register_prompt">Don\'t have an account?</string>
+    <string name="login_prompt">Already have an account?</string>
+    <string name="sign_in_prompt">Sign in!</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="sign_in_with_twitter">SIGN IN WITH TWITTER</string>
+    <string name="content_desc_twitter_logo">Twitter logo</string>
+    <string name="register_screen_prompt">REGISTER WITH EMAIL</string>
+    <string name="hint_enter_username">enter username</string>
+    <string name="button_register">REGISTER</string>
+    <string name="sign_up_prompt">Sign up!</string>
 </resources>

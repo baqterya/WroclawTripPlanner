@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login_nav.xml"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.baqterya.wroclawtripplanner.view.fragment.login.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_registerWithEmailFragment"
+            app:destination="@id/registerWithEmailFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_loginWithEmailFragment"
+            app:destination="@id/loginWithEmailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerWithEmailFragment"
+        android:name="com.baqterya.wroclawtripplanner.view.fragment.login.RegisterWithEmailFragment"
+        android:label="fragment_register_with_email"
+        tools:layout="@layout/fragment_register_with_email" >
+        <action
+            android:id="@+id/action_registerWithEmailFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginWithEmailFragment"
+        android:name="com.baqterya.wroclawtripplanner.view.fragment.login.LoginWithEmailFragment"
+        android:label="fragment_login_with_email"
+        tools:layout="@layout/fragment_login_with_email" >
+        <action
+            android:id="@+id/action_loginWithEmailFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+</navigation>
