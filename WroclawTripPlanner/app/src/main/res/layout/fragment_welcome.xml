@@ -98,6 +98,7 @@
         android:contentDescription="@string/content_desc_twitter_logo" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_email_sign_up"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"

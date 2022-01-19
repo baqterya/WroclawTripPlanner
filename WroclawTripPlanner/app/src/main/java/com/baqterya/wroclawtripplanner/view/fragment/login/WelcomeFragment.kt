@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.baqterya.wroclawtripplanner.databinding.FragmentWelcomeBinding
 import com.baqterya.wroclawtripplanner.model.User
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
@@ -33,6 +34,16 @@ class WelcomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonEmailSignUp.setOnClickListener {
+            val action = WelcomeFragmentDirections.actionWelcomeFragmentToRegisterWithEmailFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.linearLayoutLoginPrompt.setOnClickListener {
+            val action = WelcomeFragmentDirections.actionWelcomeFragmentToLoginWithEmailFragment()
+            findNavController().navigate(action)
+        }
 
         binding.buttonTwitterSignIn.setOnClickListener {
             val provider = OAuthProvider.newBuilder("twitter.com")
