@@ -6,18 +6,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.login.WelcomeFragment">
 
+    <FrameLayout
+        android:id="@+id/title_screen_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:src="@drawable/img_wroclaw_photo"
+            android:contentDescription="@string/content_desc_title_image" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/fade_gradient_bottom"/>
+
+    </FrameLayout>
+
     <TextView
         android:id="@+id/text_view_title_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="30dp"
         android:text="@string/welcome_screen_prompt"
         android:textAlignment="center"
-        android:textSize="21sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_screen_image"
         />
 
 
@@ -46,12 +68,10 @@
             android:padding="5dp"
             android:textStyle="bold"
             android:text="@string/sign_in_prompt"
-            android:textColor="#FF0000"
+            android:textColor="@color/md_theme_dark_tertiary"
             />
 
     </LinearLayout>
-
-<!--        android:text="@string/sign_up"-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_twitter_sign_in"
@@ -60,7 +80,8 @@
         android:layout_marginBottom="14dp"
         android:layout_marginHorizontal="35dp"
         android:text="@string/sign_in_with_twitter"
-        android:backgroundTint="#00acee"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/fui_bgTwitter"
         app:layout_constraintBottom_toTopOf="@id/linear_layout_login_prompt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -70,7 +91,7 @@
         android:layout_height="wrap_content"
         android:elevation="10dp"
         android:layout_marginStart="17dp"
-        android:src="@drawable/ic_twitter_logo"
+        android:src="@drawable/fui_ic_twitter_bird_white_24dp"
         app:layout_constraintStart_toStartOf="@id/button_twitter_sign_in"
         app:layout_constraintTop_toTopOf="@id/button_twitter_sign_in"
         app:layout_constraintBottom_toBottomOf="@id/button_twitter_sign_in"
