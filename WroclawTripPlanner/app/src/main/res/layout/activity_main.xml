@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:backgroundTint="@color/design_default_color_primary"
+        android:backgroundTint="@color/md_theme_dark_primary"
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp">
 
@@ -91,6 +91,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:src="@drawable/ic_add"
+        android:backgroundTint="@color/md_theme_light_tertiary"
         android:contentDescription="@string/explore_add_fab_description"
         android:focusable="true"
         app:layout_anchor="@id/bottom_app_bar_main_activity" />

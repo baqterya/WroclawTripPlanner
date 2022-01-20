@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -55,6 +56,13 @@ class RegisterWithEmailFragment : Fragment() {
             if (TextUtils.isEmpty(binding.editTextEmailRegister.text.toString().trim { it <= ' ' })) {
                 Toast.makeText(requireContext(), "Please enter an email.", Toast.LENGTH_SHORT).show()
                 binding.editTextEmailRegister.requestFocus()
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(binding.editTextEmailRegister, InputMethodManager.SHOW_IMPLICIT)
+                return@setOnClickListener
+            }
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(binding.editTextEmailRegister.text.toString()).matches()) {
+                Toast.makeText(requireContext(), "Please enter a valid email.", Toast.LENGTH_SHORT).show()
                 val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(binding.editTextEmailRegister, InputMethodManager.SHOW_IMPLICIT)
                 return@setOnClickListener
