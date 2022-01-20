@@ -92,6 +92,8 @@ class RegisterWithEmailFragment : Fragment() {
                         createUser(email, password, username)
                     } else {
                         Toast.makeText(requireContext(), "This username is taken", Toast.LENGTH_SHORT).show()
+                        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.showSoftInput(binding.editTextUsernameRegister, InputMethodManager.SHOW_IMPLICIT)
                     }
                 }
         }

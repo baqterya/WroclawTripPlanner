@@ -15,19 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WroclawTripPlanner">
         <activity
-            android:name=".view.activity.TwitterActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.LoginActivity"
             android:exported="false" />
-        <!--
-             The API key for Google Maps-based APIs is defined as a string resource.
-             (See the file "res/values/google_maps_api.xml").
-             Note that the API key is linked to the encryption key used to sign the APK.
-             You need a different API key for each encryption key, including the release key that is used to
-             sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
