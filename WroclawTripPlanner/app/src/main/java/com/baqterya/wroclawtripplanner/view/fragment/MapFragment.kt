@@ -1,11 +1,15 @@
 package com.baqterya.wroclawtripplanner.view.fragment
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import com.baqterya.wroclawtripplanner.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -17,6 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapFragment : Fragment() {
 
+    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         /**
          * Manipulates the map once available.
@@ -30,6 +35,9 @@ class MapFragment : Fragment() {
         val wro = LatLng(51.1, 17.02)
         googleMap.addMarker(MarkerOptions().position(wro).title("Marker in Sydney"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(wro))
+
+        googleMap.isMyLocationEnabled = true
+        googleMap.uiSettings.isMyLocationButtonEnabled = true
     }
 
     override fun onCreateView(
