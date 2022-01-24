@@ -21,8 +21,6 @@ class LoginWithEmailFragment : Fragment() {
     private var _binding: FragmentLoginWithEmailBinding? = null
         private val binding get() = _binding!!
 
-    val db = Firebase.firestore
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {

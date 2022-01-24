@@ -54,7 +54,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.4.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:29.0.0')
@@ -76,6 +75,10 @@ dependencies {
 
     // Permission manager
     implementation 'com.karumi:dexter:6.2.3'
+
+    // Map libraries
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    implementation 'com.google.android.libraries.places:places:2.5.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
