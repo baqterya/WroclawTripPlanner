@@ -3,8 +3,10 @@ package com.baqterya.wroclawtripplanner.view.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -28,6 +30,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
+
 }

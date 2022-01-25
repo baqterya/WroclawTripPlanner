@@ -1,6 +1,7 @@
 package com.baqterya.wroclawtripplanner.view.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.location.Location
 import androidx.fragment.app.Fragment
@@ -10,9 +11,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.Toast
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentMapBinding
+import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -21,6 +26,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.util.*
 
 
 class MapFragment : Fragment() {
@@ -28,7 +38,6 @@ class MapFragment : Fragment() {
         private val binding get() = _binding!!
 
     private lateinit var map: GoogleMap
-    private lateinit var mapView: View
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var lastKnownLocation: Location
     private lateinit var locationCallback: LocationCallback
@@ -37,8 +46,21 @@ class MapFragment : Fragment() {
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
-        googleMap.isMyLocationEnabled = true
-        googleMap.uiSettings.isMyLocationButtonEnabled = true
+        map.isMyLocationEnabled = true
+        map.uiSettings.isMyLocationButtonEnabled = true
+        map.uiSettings.isCompassEnabled = false
+        map.isBuildingsEnabled = true
+        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.map_style))
+        locationButtonSettings()
+
+
+        val latLngBounds = LatLngBounds(
+            LatLng(51.047, 16.936),
+            LatLng(51.143, 17.1)
+        )
+        map.setLatLngBoundsForCameraTarget(latLngBounds)
+        map.setMinZoomPreference(MIN_ZOOM)
+        map.setMaxZoomPreference(MAX_ZOOM)
 
         val locationRequest = createLocationRequest()
         val builder = LocationSettingsRequest.Builder()
@@ -71,6 +93,14 @@ class MapFragment : Fragment() {
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        requireActivity().findViewById<FloatingActionButton>(R.id.fab_add_pin_show_map)
+            .setOnClickListener {
+                addPlace()
+            }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -131,8 +161,22 @@ class MapFragment : Fragment() {
         return locationRequest
     }
 
+    private fun locationButtonSettings() {
+        val myLocationButton = requireView().findViewById<View>(R.id.map).findViewById<ImageView>(2)
+        val buttonParams = myLocationButton.layoutParams as RelativeLayout.LayoutParams
+        buttonParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0)
+        buttonParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE)
+        buttonParams.setMargins(0, 0, 30, 170)
+    }
+
+    private fun addPlace() {
+
+    }
+
     companion object {
         private const val TAG = "MAP_FRAGMENT"
+        private const val MAX_ZOOM: Float = 25F
         private const val DEFAULT_ZOOM: Float = 18F
+        private const val MIN_ZOOM: Float = 14F
     }
 }
