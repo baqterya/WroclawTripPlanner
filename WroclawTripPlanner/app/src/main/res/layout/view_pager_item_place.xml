@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/text_view_place_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NAME PLACEHOLDER"
+        android:layout_marginTop="15dp"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/text_view_place_owner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="created by: "
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/text_view_place_name"
+        app:layout_constraintTop_toBottomOf="@id/text_view_place_name"/>
+
+    <TextView
+        android:id="@+id/text_view_place_description"
+        android:layout_width="325dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing\n elit, sed do eiusmod tempor incididunt ut labore\n et dolore magna aliqua. Ut enim ad minim \nveniam, quis nostrud exercitation ullamco laboris\n nisi ut aliquip ex ea commodo consequat.\n Duis aute irure dolor in reprehenderit in\n voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,\n sunt in culpa qui officia deserunt mollit anim id est laborum."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_place_owner" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

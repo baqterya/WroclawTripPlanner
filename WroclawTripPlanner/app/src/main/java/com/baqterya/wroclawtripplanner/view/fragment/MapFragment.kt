@@ -55,7 +55,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private val db = Firebase.firestore
     private val user = Firebase.auth.currentUser!!
 
-
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
@@ -89,6 +88,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     exception.startResolutionForResult(requireActivity(), 1000)
                 }
             }
+
+        map.setOnMarkerClickListener {
+            openPlaceBrowserDrawer()
+            false
+        }
     }
 
     override fun onCreateView(
@@ -132,34 +136,47 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         fusedLocationProviderClient.lastLocation
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    lastKnownLocation = task.result
-                    if (lastKnownLocation != null) {
-                        map.moveCamera(
-                            CameraUpdateFactory.newLatLngZoom(
-                                LatLng(lastKnownLocation.latitude, lastKnownLocation.longitude),
-                                DEFAULT_ZOOM
-                            )
-                        )
-                    } else {
-                        val locationRequest = LocationRequest.create()
-                        locationRequest.interval = 10000
-                        locationRequest.fastestInterval = 5000
-                        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-                        locationCallback = object: LocationCallback() {
-                            override fun onLocationResult(locationResult: LocationResult?) {
-                                super.onLocationResult(locationResult)
-                                if (locationResult == null) {
-                                    return
-                                }
-                                lastKnownLocation = locationResult.lastLocation
-                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                    if (task.result != null) {
+                        lastKnownLocation = task.result
+                        if (lastKnownLocation != null) {
+                            map.moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(
                                     LatLng(lastKnownLocation.latitude, lastKnownLocation.longitude),
                                     DEFAULT_ZOOM
-                                ))
-                                fusedLocationProviderClient.removeLocationUpdates(locationCallback)
+                                )
+                            )
+                        } else {
+                            val locationRequest = LocationRequest.create()
+                            locationRequest.interval = 10000
+                            locationRequest.fastestInterval = 5000
+                            locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+                            locationCallback = object : LocationCallback() {
+                                override fun onLocationResult(locationResult: LocationResult?) {
+                                    super.onLocationResult(locationResult)
+                                    if (locationResult == null) {
+                                        return
+                                    }
+                                    lastKnownLocation = locationResult.lastLocation
+                                    map.moveCamera(
+                                        CameraUpdateFactory.newLatLngZoom(
+                                            LatLng(
+                                                lastKnownLocation.latitude,
+                                                lastKnownLocation.longitude
+                                            ),
+                                            DEFAULT_ZOOM
+                                        )
+                                    )
+                                    fusedLocationProviderClient.removeLocationUpdates(
+                                        locationCallback
+                                    )
+                                }
                             }
+                            fusedLocationProviderClient.requestLocationUpdates(
+                                locationRequest,
+                                locationCallback,
+                                null
+                            )
                         }
-                        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
                     }
                 } else {
                     Toast.makeText(requireContext(), "Unable to get your last location", Toast.LENGTH_SHORT).show()
@@ -221,6 +238,32 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 }
             }
 
+    }
+
+    private fun openPlaceBrowserDrawer() {
+        val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
+        val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
+        val tasks = arrayListOf<Task<QuerySnapshot>>()
+        for (bound in bounds) {
+            val query = db.collection("places")
+                .orderBy("placeGeoHash")
+                .startAt(bound.startHash)
+                .endAt(bound.endHash)
+            tasks.add(query.get())
+        }
+
+        Tasks.whenAllComplete(tasks)
+            .addOnCompleteListener {
+                val places = arrayListOf<Place>()
+                for (task in tasks) {
+                    val snapshot = task.result
+                    for (document in snapshot) {
+                        places.add(document.toObject(Place::class.java))
+                    }
+                    val bottomSheet = PlaceBottomSheetFragment(places)
+                    bottomSheet.show(childFragmentManager, PlaceBottomSheetFragment.TAG)
+                }
+            }
     }
 
     private fun refreshMapMarkers() {
