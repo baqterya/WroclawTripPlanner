@@ -16,9 +16,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentMapBinding
 import com.baqterya.wroclawtripplanner.model.Place
+import com.baqterya.wroclawtripplanner.utils.PlaceViewPagerAdapter
 import com.firebase.geofire.GeoFireUtils
 import com.firebase.geofire.GeoLocation
 import com.google.android.gms.common.api.ResolvableApiException
@@ -31,6 +33,8 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QuerySnapshot
@@ -38,6 +42,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
+@Suppress("DEPRECATION")
 class MapFragment : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentMapBinding? = null
         private val binding get() = _binding!!
@@ -84,8 +89,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 }
             }
 
-        map.setOnMarkerClickListener {
-            openPlaceBrowserDrawer()
+        map.setOnMarkerClickListener { marker : Marker ->
+            openPlaceBrowserDrawer(marker)
             false
         }
     }
@@ -168,54 +173,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     )
                 }
             }
-            /*.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    if (task.result != null) {
-                        lastKnownLocation = task.result
-                        if (lastKnownLocation != null) {
-                            map.moveCamera(
-                                CameraUpdateFactory.newLatLngZoom(
-                                    LatLng(lastKnownLocation.latitude, lastKnownLocation.longitude),
-                                    DEFAULT_ZOOM
-                                )
-                            )
-                        } else {
-                            val locationRequest = LocationRequest.create()
-                            locationRequest.interval = 10000
-                            locationRequest.fastestInterval = 5000
-                            locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-                            locationCallback = object : LocationCallback() {
-                                override fun onLocationResult(locationResult: LocationResult?) {
-                                    super.onLocationResult(locationResult)
-                                    if (locationResult == null) {
-                                        return
-                                    }
-                                    lastKnownLocation = locationResult.lastLocation
-                                    map.moveCamera(
-                                        CameraUpdateFactory.newLatLngZoom(
-                                            LatLng(
-                                                lastKnownLocation.latitude,
-                                                lastKnownLocation.longitude
-                                            ),
-                                            DEFAULT_ZOOM
-                                        )
-                                    )
-                                    fusedLocationProviderClient.removeLocationUpdates(
-                                        locationCallback
-                                    )
-                                }
-                            }
-                            fusedLocationProviderClient.requestLocationUpdates(
-                                locationRequest,
-                                locationCallback,
-                                null
-                            )
-                        }
-                    }
-                } else {
-                    Toast.makeText(requireContext(), "Unable to get your last location", Toast.LENGTH_SHORT).show()
-                }
-            }*/
             .addOnFailureListener { exception ->
                 Log.e(TAG, "getDeviceLocation error occurred: ", exception)
             }
@@ -273,8 +230,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
-    private fun openPlaceBrowserDrawer() {
-        val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
+    private fun openPlaceBrowserDrawer(marker: Marker) {
+        val location = GeoLocation(marker.position.latitude, marker.position.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
         val tasks = arrayListOf<Task<QuerySnapshot>>()
         for (bound in bounds) {
@@ -288,14 +245,25 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {
                 val places = arrayListOf<Place>()
+                var idx = 0
                 for (task in tasks) {
                     val snapshot = task.result
                     for (document in snapshot) {
-                        places.add(document.toObject(Place::class.java))
+                        val place = document.toObject(Place::class.java)
+                        places.add(place)
+                        if (place.placeLatitude == marker.position.latitude && place.placeLongitude == marker.position.longitude) {
+                            idx = places.indexOf(place)
+                        }
                     }
-                    val bottomSheet = PlaceBottomSheetFragment(places)
-                    bottomSheet.show(childFragmentManager, PlaceBottomSheetFragment.TAG)
                 }
+                val bottomSheet = BottomSheetDialog(requireContext())
+                bottomSheet.setContentView(R.layout.fragment_place_bottom_sheet)
+                val adapter = PlaceViewPagerAdapter(places)
+                val viewPager = bottomSheet.findViewById<ViewPager2>(R.id.view_pager_2_places)!!
+                viewPager.adapter = adapter
+                viewPager.currentItem = idx
+                bottomSheet.behavior.maxHeight = binding.root.height * 2/3
+                bottomSheet.show()
             }
     }
 
