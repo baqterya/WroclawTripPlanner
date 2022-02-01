@@ -13,15 +13,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentMapBinding
 import com.baqterya.wroclawtripplanner.model.Place
-import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.firebase.geofire.GeoFireUtils
 import com.firebase.geofire.GeoLocation
 import com.google.android.gms.common.api.ResolvableApiException
@@ -34,13 +31,11 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.util.*
 
 
 class MapFragment : Fragment(), OnMapReadyCallback {
@@ -53,7 +48,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var locationCallback: LocationCallback
 
     private val db = Firebase.firestore
-    private val user = Firebase.auth.currentUser!!
+    private val user = Firebase.auth.currentUser
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
@@ -134,7 +129,46 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun getDeviceLocation() {
         fusedLocationProviderClient.lastLocation
-            .addOnCompleteListener { task ->
+            .addOnSuccessListener { location : Location? ->
+                if (location != null) {
+                    lastKnownLocation = location
+                    map.moveCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            LatLng(lastKnownLocation.latitude, lastKnownLocation.longitude),
+                            DEFAULT_ZOOM
+                        )
+                    )
+                } else {
+                    val locationRequest = createLocationRequest()
+                    locationCallback = object : LocationCallback() {
+                        override fun onLocationResult(locationResult: LocationResult?) {
+                            super.onLocationResult(locationResult)
+                            if (locationResult == null) {
+                                return
+                            }
+                            lastKnownLocation = locationResult.lastLocation
+                            map.moveCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                    LatLng(
+                                        lastKnownLocation.latitude,
+                                        lastKnownLocation.longitude
+                                    ),
+                                    DEFAULT_ZOOM
+                                )
+                            )
+                            fusedLocationProviderClient.removeLocationUpdates(
+                                locationCallback
+                            )
+                        }
+                    }
+                    fusedLocationProviderClient.requestLocationUpdates(
+                        locationRequest,
+                        locationCallback,
+                        null
+                    )
+                }
+            }
+            /*.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     if (task.result != null) {
                         lastKnownLocation = task.result
@@ -181,7 +215,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 } else {
                     Toast.makeText(requireContext(), "Unable to get your last location", Toast.LENGTH_SHORT).show()
                 }
-            }
+            }*/
             .addOnFailureListener { exception ->
                 Log.e(TAG, "getDeviceLocation error occurred: ", exception)
             }
@@ -210,7 +244,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             map.cameraPosition.target.longitude
         ))
 
-        db.collection("users").whereEqualTo("userId", user.uid)
+        db.collection("users").whereEqualTo("userId", user?.uid)
             .get()
             .addOnSuccessListener {
                 for (user in it) {
@@ -237,7 +271,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     )
                 }
             }
-
     }
 
     private fun openPlaceBrowserDrawer() {
