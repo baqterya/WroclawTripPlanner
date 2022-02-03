@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SwitchStyle" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorControlActivated">@color/md_theme_light_secondary</item>
+        <item name="colorSwitchThumbNormal">@color/md_theme_dark_secondary</item>
+        <item name="android:colorForeground">@color/md_theme_dark_background</item>
+    </style>
+
+</resources>

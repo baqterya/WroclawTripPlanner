@@ -21,7 +21,8 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
     override fun onBindViewHolder(holder: PlaceViewPagerViewHolder, position: Int) {
         val currentPlace = places[position]
         holder.binding.textViewPlaceName.text = currentPlace.placeName
-        holder.binding.textViewPlaceOwner.text = currentPlace.placeOwnerName
+        holder.binding.textViewPlaceOwner.text = "created by: ${currentPlace.placeOwnerName}"
+        holder.binding.textViewPlaceDescription.text = currentPlace.placeDescription
     }
 
     override fun getItemCount(): Int {

@@ -33,4 +33,7 @@
     <string name="retry">RETRY</string>
     <string name="login_screen_prompt">LOGIN WITH EMAIL</string>
     <string name="log_in">LOG IN</string>
+    <string name="place_description_placeholder">DESCRIPTION PLACEHOLDER</string>
+    <string name="created_by_placeholder">created by:</string>
+    <string name="place_name_placeholder">NAME PLACEHOLDER</string>
 </resources>

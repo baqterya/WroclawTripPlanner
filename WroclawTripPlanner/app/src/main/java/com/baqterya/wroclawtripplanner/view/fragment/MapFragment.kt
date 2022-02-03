@@ -9,14 +9,16 @@ import android.location.Location
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentMapBinding
 import com.baqterya.wroclawtripplanner.model.Place
@@ -33,9 +35,9 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -64,7 +66,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map.isBuildingsEnabled = true
         map.setMapStyle(MapStyleOptions.loadRawResourceStyle(requireContext(), R.raw.map_style))
         locationButtonSettings()
-
 
         val latLngBounds = LatLngBounds(
             LatLng(51.047, 16.936),
@@ -120,7 +121,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         super.onActivityCreated(savedInstanceState)
         requireActivity().findViewById<FloatingActionButton>(R.id.fab_add_pin_show_map)
             .setOnClickListener {
-                addPlace()
+                showAddPlaceDialog()
             }
     }
 
@@ -195,25 +196,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         buttonParams.setMargins(0, 0, 30, 170)
     }
 
-    private fun addPlace() {
-        val hash = GeoFireUtils.getGeoHashForLocation(GeoLocation(
-            map.cameraPosition.target.latitude,
-            map.cameraPosition.target.longitude
-        ))
-
+    private fun addPlaceToFirestore(newPlace: Place) {
         db.collection("users").whereEqualTo("userId", user?.uid)
             .get()
             .addOnSuccessListener {
                 for (user in it) {
-                    val newPlace = Place(
-                        placeName = "testPlace",
-                        placeGeoHash = hash,
-                        placeLatitude = map.cameraPosition.target.latitude,
-                        placeLongitude = map.cameraPosition.target.longitude,
-                        placeDescription = "test description",
-                        placeOwnerId = user["userId"] as String,
-                        placeOwnerName = user["userName"] as String
-                    )
+                    newPlace.placeOwnerId = user["userId"] as String
+                    newPlace.placeOwnerName = user["userName"] as String
                     db.collection("places")
                         .add(newPlace)
                         .addOnSuccessListener { place ->
@@ -237,6 +226,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         for (bound in bounds) {
             val query = db.collection("places")
                 .orderBy("placeGeoHash")
+                .whereEqualTo("placeIsPrivate", false)
                 .startAt(bound.startHash)
                 .endAt(bound.endHash)
             tasks.add(query.get())
@@ -275,6 +265,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         for (bound in bounds) {
             val query = db.collection("places")
                 .orderBy("placeGeoHash")
+                .whereEqualTo("placeIsPrivate", false)
                 .startAt(bound.startHash)
                 .endAt(bound.endHash)
             tasks.add(query.get())
@@ -307,6 +298,43 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             draw(Canvas(bitmap))
             BitmapDescriptorFactory.fromBitmap(bitmap)
         }
+    }
+
+    private fun showAddPlaceDialog() {
+        val dialog = MaterialDialog(requireContext())
+            .noAutoDismiss()
+            .customView(R.layout.dialog_add_place)
+
+        dialog.findViewById<Button>(R.id.button_add_place).setOnClickListener {
+            val placeName = dialog.findViewById<EditText>(R.id.edit_text_add_place_name).text.toString()
+            val placeDescription = dialog.findViewById<EditText>(R.id.edit_text_add_place_description).text.toString()
+            val placeIsPrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_add_place_is_private).isChecked
+
+            if (inputCheck(placeName) && inputCheck(placeDescription)) {
+                val hash = GeoFireUtils.getGeoHashForLocation(GeoLocation(
+                    map.cameraPosition.target.latitude,
+                    map.cameraPosition.target.longitude
+                ))
+
+                val newPlace = Place(
+                    placeName = placeName,
+                    placeGeoHash = hash,
+                    placeLatitude = map.cameraPosition.target.latitude,
+                    placeLongitude = map.cameraPosition.target.longitude,
+                    placeDescription = placeDescription,
+                    placeIsPrivate = placeIsPrivate
+                )
+                addPlaceToFirestore(newPlace)
+                dialog.dismiss()
+            } else {
+                Toast.makeText(requireContext(), "Please fill all fields.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        dialog.show()
+    }
+
+    private fun inputCheck(name: String): Boolean {
+        return !(TextUtils.isEmpty(name))
     }
 
     companion object {
