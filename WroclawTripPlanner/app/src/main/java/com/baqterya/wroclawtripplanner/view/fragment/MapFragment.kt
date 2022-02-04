@@ -252,6 +252,22 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 val viewPager = bottomSheet.findViewById<ViewPager2>(R.id.view_pager_2_places)!!
                 viewPager.adapter = adapter
                 viewPager.currentItem = idx
+                viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                    override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int
+                    ) {
+                        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                places[position].placeLatitude!!,
+                                places[position].placeLongitude!!
+                            ),
+                            DEFAULT_ZOOM
+                        ))
+                    }
+                })
                 bottomSheet.behavior.maxHeight = binding.root.height * 2/3
                 bottomSheet.show()
             }
