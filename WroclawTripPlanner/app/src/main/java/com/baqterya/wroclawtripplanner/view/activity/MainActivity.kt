@@ -12,7 +12,6 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var toolbar: MaterialToolbar
 
     private val user = Firebase.auth.currentUser
 
@@ -20,9 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        toolbar = binding.topToolbar
-        setSupportActionBar(toolbar)
 
         if (user == null) {
             val intent = Intent(this, LoginActivity::class.java)
