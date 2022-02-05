@@ -16,6 +16,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.core.view.children
+import androidx.core.view.forEach
+import androidx.core.view.iterator
 import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -36,6 +39,8 @@ import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.google.firebase.auth.ktx.auth
@@ -114,6 +119,13 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
         binding.buttonFindPlaces.setOnClickListener {
             refreshMapMarkers()
+        }
+
+        for (chip in binding.chipGroupMapFilters.iterator()) {
+            if (chip.id != R.id.chip_open_tags)
+                chip.setOnClickListener {
+                    refreshMapMarkers(category = (it as Chip).text.toString())
+                }
         }
     }
 
@@ -273,18 +285,28 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
-    private fun refreshMapMarkers() {
+    private fun refreshMapMarkers(category: String? = null) {
         map.clear()
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
         val tasks = arrayListOf<Task<QuerySnapshot>>()
         for (bound in bounds) {
-            val query = db.collection("places")
-                .orderBy("placeGeoHash")
-                .whereEqualTo("placeIsPrivate", false)
-                .startAt(bound.startHash)
-                .endAt(bound.endHash)
-            tasks.add(query.get())
+            if (category == null) {
+                val query = db.collection("places")
+                    .orderBy("placeGeoHash")
+                    .whereEqualTo("placeIsPrivate", false)
+                    .startAt(bound.startHash)
+                    .endAt(bound.endHash)
+                tasks.add(query.get())
+            } else {
+                val query = db.collection("places")
+                    .orderBy("placeGeoHash")
+                    .whereEqualTo("placeIsPrivate", false)
+                    .whereArrayContains("placeCategories", category)
+                    .startAt(bound.startHash)
+                    .endAt(bound.endHash)
+                tasks.add(query.get())
+            }
         }
 
         Tasks.whenAllComplete(tasks)
@@ -321,25 +343,41 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             .noAutoDismiss()
             .customView(R.layout.dialog_add_place)
 
+        val newPlace = Place(
+            placeLatitude = map.cameraPosition.target.latitude,
+            placeLongitude = map.cameraPosition.target.longitude,
+        )
+
+        val dialogChips = dialog.findViewById<ChipGroup>(R.id.chip_group_place_category_picker)
+
+        for (dialogChip in dialogChips.iterator()) {
+            dialog.findViewById<Chip>(dialogChip.id).setOnCheckedChangeListener { chip, isChecked ->
+                if (isChecked) {
+                    newPlace.placeCategories.add(chip.text.toString())
+                } else {
+                    newPlace.placeCategories.remove(chip.text.toString())
+                }
+            }
+        }
+
         dialog.findViewById<Button>(R.id.button_add_place).setOnClickListener {
             val placeName = dialog.findViewById<EditText>(R.id.edit_text_add_place_name).text.toString()
             val placeDescription = dialog.findViewById<EditText>(R.id.edit_text_add_place_description).text.toString()
             val placeIsPrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_add_place_is_private).isChecked
 
-            if (inputCheck(placeName) && inputCheck(placeDescription)) {
+            val isCategoryPicked = dialogChips.checkedChipIds.isNotEmpty()
+
+            if (inputCheck(placeName) && inputCheck(placeDescription) && isCategoryPicked) {
                 val hash = GeoFireUtils.getGeoHashForLocation(GeoLocation(
                     map.cameraPosition.target.latitude,
                     map.cameraPosition.target.longitude
                 ))
 
-                val newPlace = Place(
-                    placeName = placeName,
-                    placeGeoHash = hash,
-                    placeLatitude = map.cameraPosition.target.latitude,
-                    placeLongitude = map.cameraPosition.target.longitude,
-                    placeDescription = placeDescription,
-                    placeIsPrivate = placeIsPrivate
-                )
+                newPlace.placeName = placeName
+                newPlace.placeGeoHash = hash
+                newPlace.placeDescription = placeDescription
+                newPlace.placeIsPrivate = placeIsPrivate
+
                 addPlaceToFirestore(newPlace)
                 dialog.dismiss()
             } else {

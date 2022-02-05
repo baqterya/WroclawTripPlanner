@@ -3,6 +3,7 @@ package com.baqterya.wroclawtripplanner.view.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.ActivityMainBinding
 import com.google.android.material.appbar.MaterialToolbar

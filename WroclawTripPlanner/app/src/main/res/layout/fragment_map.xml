@@ -13,6 +13,67 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.MapFragment" />
 
+    <HorizontalScrollView
+        android:id="@+id/scroll_view_chips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:paddingStart="9dp"
+        android:paddingEnd="9dp">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_map_filters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="14dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_search_culture"
+                style="@style/MyAssistChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_culture"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_search_food_drink"
+                style="@style/MyAssistChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_food_and_drink" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_search_leisure"
+                style="@style/MyAssistChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_leisure"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_search_shopping"
+                style="@style/MyAssistChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_shopping"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_search_services"
+                style="@style/MyAssistChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/category_services"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_open_tags"
+                style="@style/MyAssistChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_tags"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
     <Button
         android:id="@+id/button_find_places"
         android:layout_width="wrap_content"
@@ -20,8 +81,9 @@
         android:layout_marginTop="17dp"
         android:backgroundTint="#15000000"
         android:textColor="#000000"
-        android:text="Find new places!"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"/>
+        android:text="@string/find_new_places"
+        app:rippleColor="@color/md_theme_light_secondary"
+        android:layout_below="@id/scroll_view_chips"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

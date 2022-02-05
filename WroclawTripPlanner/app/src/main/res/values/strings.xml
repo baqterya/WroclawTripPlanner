@@ -38,4 +38,15 @@
     <string name="your_places">Your Places</string>
     <string name="your_trips">Your Trips</string>
     <string name="find_new_places">Find new places!</string>
+    <string name="create_new_place_prompt">Create a new Place:</string>
+    <string name="private_switch">Private</string>
+    <string name="place_name_hint">place name</string>
+    <string name="place_description_hint">place description</string>
+    <string name="add">ADD</string>
+    <string name="category_food_and_drink">food and drink</string>
+    <string name="category_shopping">shopping</string>
+    <string name="category_services">services</string>
+    <string name="category_leisure">leisure</string>
+    <string name="category_culture">culture</string>
+    <string name="open_tags">more +</string>
 </resources>
