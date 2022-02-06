@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyFilterChipStyle" parent="Widget.Material3.Chip.Filter">
+        <item name="minWidth">100dp</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="chipIconEnabled">false</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+</resources>

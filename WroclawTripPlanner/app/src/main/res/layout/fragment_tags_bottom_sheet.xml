@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="14dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_culture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:checkable="false"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/culture_category_prompt"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="23sp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_tags_culture"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="10dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_museum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_museum"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_library"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_library"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_art_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_art_gallery"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_opera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_opera"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_theater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_theater"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_musical_theater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_musical_theater"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_philharmonic_hall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_philharmonic_hall"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_monument"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_monument"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_temple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_temple"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_historic_building"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_historic_building"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_food_and_drinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:checkable="false"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/food_and_drinks_prompt"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:textSize="23sp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_tags_food_and_drink"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_vegetarian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_vegetarian"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_vegan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_vegan"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_restaurant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_restaurant"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_bar"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_coffee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_coffee"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_bistro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_bistro"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_italian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_italian"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_indian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_indian"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_chinese"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_chinese"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_polish"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_polish"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_japanese"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_japanese"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_vietnamese"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_vietnamese"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_thai"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_thai"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_georgian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_georgian"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_pizza"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_pizza"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_burger"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_burger"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_kebab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_kebab"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_pasta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_pasta"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_curry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_curry"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_leisure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:checkable="false"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/leisure_prompt"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:textSize="23sp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_tags_leisure"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_park"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_park"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_gym"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_gym"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_movie_theater"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_movie_theater"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_spa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_spa"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_zoo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_zoo"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_swimming_pool"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_swimming_pool"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_playground"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_playground"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_amusement_park"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_amusement_park"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_for_children"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_for_children"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_board_games"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_board_games"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_nightlife"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_nightlife"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_sports_field"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_sports_field"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_stadium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_stadium"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_escape_room"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_escape_room"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_hanging_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_hanging_out"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_shopping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:checkable="false"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/shopping_prompt"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:textSize="23sp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_tags_shopping"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_groceries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_groceries"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_shopping_mall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_shopping_mall"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_electronics"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_electronics"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_apparel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_apparel"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_sporting_equipment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_sporting_equipment"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_home"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_garden"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_garden"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_convenience_store"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_convenience_store"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_beauty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_beauty"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_drug_store"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_pharmacy"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_services"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:checkable="false"
+                app:cardCornerRadius="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/services_prompt"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:textSize="23sp"/>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group_tags_services"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_hotel"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_hospital"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_hospital"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_tram_bus_stop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_tram_bus_stop"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_bike_rental"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_bike_rental"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_car_rental"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="60dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_car_rental"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_parking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_parking"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_gas_station"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_gas_station"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_car_wash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_car_wash"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_electric_vehicle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_electric_vehicle"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_atm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minWidth="70dp"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_atm"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_mail_and_shipping"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_mail_and_shipping"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_dry_cleaning"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_dry_cleaning"/>
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

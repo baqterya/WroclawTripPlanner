@@ -43,10 +43,24 @@
     <string name="place_name_hint">place name</string>
     <string name="place_description_hint">place description</string>
     <string name="add">ADD</string>
-    <string name="category_food_and_drink">food and drink</string>
-    <string name="category_shopping">shopping</string>
-    <string name="category_services">services</string>
-    <string name="category_leisure">leisure</string>
-    <string name="category_culture">culture</string>
     <string name="open_tags">more +</string>
+    <string name="categories_prompt">Categories:</string>
+    <string name="culture_category_prompt">Culture:</string>
+    <string name="food_and_drinks_prompt">Food and Drinks:</string>
+    <string name="leisure_prompt">Leisure:</string>
+    <string name="services_prompt">Services:</string>
+    <string name="tag_hotel">hotel</string>
+    <string name="tag_hospital">hospital</string>
+    <string name="tag_tram_bus_stop">tram/bus stop</string>
+    <string name="tag_car_rental">car rental</string>
+    <string name="tag_parking">parking</string>
+    <string name="tag_gas_station">gas station</string>
+    <string name="tag_atm">ATM</string>
+    <string name="tag_mail_and_shipping">mail and shipping</string>
+    <string name="tag_car_wash">car wash</string>
+    <string name="tag_dry_cleaning">dry cleaning</string>
+    <string name="tag_electric_vehicle">electric vehicle</string>
+    <string name="tag_bike_rental">bike rental</string>
+
+
 </resources>

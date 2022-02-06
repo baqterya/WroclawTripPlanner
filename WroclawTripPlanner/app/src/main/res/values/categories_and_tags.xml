@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  categories  -->
+    <string name="category_food_and_drink">food and drink</string>
+    <string name="category_shopping">shopping</string>
+    <string name="category_services">services</string>
+    <string name="category_leisure">leisure</string>
+    <string name="category_culture">culture</string>
+
+    <!--  tags  -->
+    <!--  culture  -->
+    <string name="tag_museum">museum</string>
+    <string name="tag_library">library</string>
+    <string name="tag_art_gallery">art gallery</string>
+    <string name="tag_opera">opera</string>
+    <string name="tag_theater">theater</string>
+    <string name="tag_musical_theater">musical theater</string>
+    <string name="tag_monument">monument</string>
+    <string name="tag_temple">temple</string>
+    <string name="tag_historic_building">historic building</string>
+    <!-- food and drinks -->
+    <string name="tag_restaurant">restaurant</string>
+    <string name="tag_bar">bar</string>
+    <string name="tag_coffee">coffee</string>
+    <string name="tag_bistro">bistro</string>
+    <string name="tag_italian">italian</string>
+    <string name="tag_indian">indian</string>
+    <string name="tag_chinese">chinese</string>
+    <string name="tag_polish">polish</string>
+    <string name="tag_japanese">japanese</string>
+    <string name="tag_pizza">pizza</string>
+    <string name="tag_burger">burger</string>
+    <string name="tag_kebab">kebab</string>
+    <string name="tag_vietnamese">vietnamese</string>
+    <string name="tag_thai">thai</string>
+    <string name="tag_georgian">georgian</string>
+    <string name="tag_pasta">pasta</string>
+    <string name="tag_curry">curry</string>
+    <string name="tag_vegetarian">vegetarian</string>
+    <string name="tag_vegan">vegan</string>
+    <!--  leisure  -->
+    <string name="tag_park">park</string>
+    <string name="tag_gym">gym</string>
+    <string name="tag_movie_theater">movie theater</string>
+    <string name="tag_philharmonic_hall">philharmonic hall</string>
+    <string name="tag_swimming_pool">swimming pool</string>
+    <string name="tag_spa">spa</string>
+    <string name="tag_zoo">zoo</string>
+    <string name="tag_playground">playground</string>
+    <string name="tag_amusement_park">amusement park</string>
+    <string name="tag_for_children">for children</string>
+    <string name="tag_board_games">board games</string>
+    <string name="tag_nightlife">nightlife</string>
+    <string name="tag_sports_field">sports field</string>
+    <string name="tag_stadium">stadium</string>
+    <string name="tag_escape_room">escape room</string>
+    <string name="tag_hanging_out">hanging out</string>
+    <string name="shopping_prompt">Shopping:</string>
+    <!--  shopping  -->
+    <string name="tag_groceries">groceries</string>
+    <string name="tag_shopping_mall">shopping mall</string>
+    <string name="tag_electronics">electronics</string>
+    <string name="tag_apparel">apparel</string>
+    <string name="tag_sporting_equipment">sporting equipment</string>
+    <string name="tag_home">home</string>
+    <string name="tag_garden">garden</string>
+    <string name="tag_convenience_store">convenience store</string>
+    <string name="tag_beauty">beauty</string>
+    <string name="tag_pharmacy">pharmacy</string>
+    <!--  services  -->
+</resources>
