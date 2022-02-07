@@ -40,6 +40,8 @@
             android:id="@+id/text_view_place_description"
             android:layout_width="325dp"
             android:layout_height="wrap_content"
+            android:minHeight="150dp"
+            android:textAlignment="center"
             android:text="@string/place_description_placeholder" />
 
     </ScrollView>

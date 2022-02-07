@@ -648,6 +648,7 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_tags_proceed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:icon="@drawable/ic_arrow_right"
@@ -655,6 +656,6 @@
         android:layout_marginBottom="14dp"
         android:scaleX="1.5"
         android:layout_gravity="bottom|end"
-        android:backgroundTint="#8C006875"/>
+        android:backgroundTint="@color/md_theme_light_tertiary"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

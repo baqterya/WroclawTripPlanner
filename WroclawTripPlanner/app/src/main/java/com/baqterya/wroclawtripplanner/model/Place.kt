@@ -10,7 +10,7 @@ data class Place(
     var placeOwnerId: String? = null,
     var placeOwnerName: String? = null,
     var placeCategories: ArrayList<String> = arrayListOf(),
-    var placeTagList: ArrayList<String> = arrayListOf(),
+    var placeTagList: ArrayList<Tag> = arrayListOf(),
     var placeLikes: Int = 0,
     var placeIsPrivate: Boolean = false,
 )

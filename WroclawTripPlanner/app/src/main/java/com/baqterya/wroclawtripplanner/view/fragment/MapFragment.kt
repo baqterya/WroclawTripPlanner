@@ -1,23 +1,16 @@
 package com.baqterya.wroclawtripplanner.view.fragment
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.location.Location
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.content.ContextCompat
-import androidx.core.view.children
-import androidx.core.view.forEach
 import androidx.core.view.iterator
 import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.MaterialDialog
@@ -25,7 +18,13 @@ import com.afollestad.materialdialogs.customview.customView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentMapBinding
 import com.baqterya.wroclawtripplanner.model.Place
-import com.baqterya.wroclawtripplanner.utils.PlaceViewPagerAdapter
+import com.baqterya.wroclawtripplanner.model.Tag
+import com.baqterya.wroclawtripplanner.utils.bitmapDescriptorFromVector
+import com.baqterya.wroclawtripplanner.utils.createLocationRequest
+import com.baqterya.wroclawtripplanner.utils.inputCheck
+import com.baqterya.wroclawtripplanner.view.fragment.wrappers.PlaceBottomSheetWrapper
+import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
+import com.baqterya.wroclawtripplanner.viewmodel.PlaceViewModel
 import com.firebase.geofire.GeoFireUtils
 import com.firebase.geofire.GeoLocation
 import com.google.android.gms.common.api.ResolvableApiException
@@ -36,15 +35,11 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
-import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -59,8 +54,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var lastKnownLocation: Location
     private lateinit var locationCallback: LocationCallback
 
-    private val db = Firebase.firestore
-    private val user = Firebase.auth.currentUser
+    private val placeViewModel = PlaceViewModel()
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
@@ -197,14 +191,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
-    private fun createLocationRequest(): LocationRequest {
-        val locationRequest = LocationRequest.create()
-        locationRequest.interval = 10000
-        locationRequest.fastestInterval = 5000
-        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        return locationRequest
-    }
-
     @SuppressLint("ResourceType")
     private fun locationButtonSettings() {
         val myLocationButton = requireView().findViewById<View>(R.id.map).findViewById<ImageView>(2)
@@ -214,107 +200,21 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         buttonParams.setMargins(0, 0, 30, 170)
     }
 
-    private fun addPlaceToFirestore(newPlace: Place) {
-        db.collection("users").whereEqualTo("userId", user?.uid)
-            .get()
-            .addOnSuccessListener {
-                for (user in it) {
-                    newPlace.placeOwnerId = user["userId"] as String
-                    newPlace.placeOwnerName = user["userName"] as String
-                    db.collection("places")
-                        .add(newPlace)
-                        .addOnSuccessListener { place ->
-                            db.collection("places").document(place.id)
-                                .update("placeId", place.id)
-                        }
-                    map.addMarker(
-                        MarkerOptions()
-                            .title(newPlace.placeName)
-                            .position(LatLng(newPlace.placeLatitude!!, newPlace.placeLongitude!!))
-                            .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
-                    )
-                }
-            }
-    }
-
-    private fun openPlaceBrowserDrawer(marker: Marker) {
-        val location = GeoLocation(marker.position.latitude, marker.position.longitude)
-        val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
-        val tasks = arrayListOf<Task<QuerySnapshot>>()
-        for (bound in bounds) {
-            val query = db.collection("places")
-                .orderBy("placeGeoHash")
-                .whereEqualTo("placeIsPrivate", false)
-                .startAt(bound.startHash)
-                .endAt(bound.endHash)
-            tasks.add(query.get())
-        }
-
-        Tasks.whenAllComplete(tasks)
-            .addOnCompleteListener {
-                val places = arrayListOf<Place>()
-                var idx = 0
-                for (task in tasks) {
-                    val snapshot = task.result
-                    for (document in snapshot) {
-                        val place = document.toObject(Place::class.java)
-                        places.add(place)
-                        if (place.placeLatitude == marker.position.latitude && place.placeLongitude == marker.position.longitude) {
-                            idx = places.indexOf(place)
-                        }
-                    }
-                }
-                val bottomSheet = BottomSheetDialog(requireContext())
-                bottomSheet.setContentView(R.layout.fragment_place_bottom_sheet)
-                val adapter = PlaceViewPagerAdapter(places)
-                val viewPager = bottomSheet.findViewById<ViewPager2>(R.id.view_pager_2_places)!!
-                viewPager.adapter = adapter
-                viewPager.currentItem = idx
-                viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-                    override fun onPageScrolled(
-                        position: Int,
-                        positionOffset: Float,
-                        positionOffsetPixels: Int
-                    ) {
-                        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                            LatLng(
-                                places[position].placeLatitude!!,
-                                places[position].placeLongitude!!
-                            ),
-                            DEFAULT_ZOOM
-                        ))
-                    }
-                })
-                bottomSheet.behavior.peekHeight = this.requireView().height
-
-                bottomSheet.show()
-            }
+    private fun addPlace(newPlace: Place) {
+        placeViewModel.addPlaceToFirestore(newPlace)
+        map.addMarker(
+            MarkerOptions()
+                .title(newPlace.placeName)
+                .position(LatLng(newPlace.placeLatitude!!, newPlace.placeLongitude!!))
+                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
+        )
     }
 
     private fun refreshMapMarkers(category: String? = null) {
         map.clear()
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
-        val tasks = arrayListOf<Task<QuerySnapshot>>()
-        for (bound in bounds) {
-            if (category == null) {
-                val query = db.collection("places")
-                    .orderBy("placeGeoHash")
-                    .whereEqualTo("placeIsPrivate", false)
-                    .startAt(bound.startHash)
-                    .endAt(bound.endHash)
-                tasks.add(query.get())
-            } else {
-                val query = db.collection("places")
-                    .orderBy("placeGeoHash")
-                    .whereEqualTo("placeIsPrivate", false)
-                    .whereArrayContains("placeCategories", category)
-                    .startAt(bound.startHash)
-                    .endAt(bound.endHash)
-                tasks.add(query.get())
-            }
-        }
+        val tasks = placeViewModel.createFindPlacesTask(bounds, category)
 
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {
@@ -334,15 +234,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     }
                 }
             }
-    }
-
-    private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
-        return ContextCompat.getDrawable(context, vectorResId)?.run {
-            setBounds(0, 0, intrinsicWidth, intrinsicHeight)
-            val bitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888)
-            draw(Canvas(bitmap))
-            BitmapDescriptorFactory.fromBitmap(bitmap)
-        }
     }
 
     private fun showAddPlaceDialog() {
@@ -385,7 +276,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 newPlace.placeDescription = placeDescription
                 newPlace.placeIsPrivate = placeIsPrivate
 
-                addPlaceToFirestore(newPlace)
+                addPlace(newPlace)
                 dialog.dismiss()
             } else {
                 Toast.makeText(requireContext(), "Please fill all fields.", Toast.LENGTH_SHORT).show()
@@ -394,17 +285,82 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         dialog.show()
     }
 
-    private fun openTagSelectorSheet() {
-        val bottomSheet = BottomSheetDialog(requireContext())
-        bottomSheet.setContentView(R.layout.fragment_tags_bottom_sheet)
-        bottomSheet.behavior.peekHeight = this.requireView().height
-        bottomSheet.behavior.isDraggable = false
-        bottomSheet.show()
+    private fun openPlaceBrowserDrawer(marker: Marker) {
+        val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
+        val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
+        val tasks = placeViewModel.createFindPlacesTask(bounds)
+
+        Tasks.whenAllComplete(tasks)
+            .addOnCompleteListener {
+                val places = arrayListOf<Place>()
+                var idx = 0
+                for (task in tasks) {
+                    val snapshot = task.result
+                    for (document in snapshot) {
+                        val place = document.toObject(Place::class.java)
+                        places.add(place)
+                        if (place.placeLatitude == marker.position.latitude && place.placeLongitude == marker.position.longitude) {
+                            idx = places.indexOf(place)
+                        }
+                    }
+                }
+                val bottomSheetWrapper = PlaceBottomSheetWrapper(requireView(), places, idx)
+                bottomSheetWrapper.createPlaceBottomSheet()
+                bottomSheetWrapper.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                    override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int
+                    ) {
+                        super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                places[position].placeLatitude!!,
+                                places[position].placeLongitude!!
+                            ),
+                            DEFAULT_ZOOM
+                        ))
+                    }
+                })
+                bottomSheetWrapper.placeBottomSheet.show()
+            }
     }
 
-    private fun inputCheck(name: String): Boolean {
-        return !(TextUtils.isEmpty(name))
+    private fun openTagSelectorSheet() {
+        val tagsBottomSheetWrapper = TagsBottomSheetWrapper(requireView())
+        tagsBottomSheetWrapper.createTagBottomSheet()
+        tagsBottomSheetWrapper.tagsBottomSheet.setOnDismissListener {
+            val tags = tagsBottomSheetWrapper.selectedTags
+            findMarkersByTags(tags)
+        }
     }
+
+    private fun findMarkersByTags(tags: ArrayList<Tag>) {
+        map.clear()
+        val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
+        val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
+        val tasks = placeViewModel.createFindPlacesByTagTask(bounds, tags)
+
+        Tasks.whenAllComplete(tasks)
+            .addOnCompleteListener {
+                for (task in tasks) {
+                    val snapshot = task.result
+                    for (document in snapshot) {
+                        val latLng = LatLng(
+                            document["placeLatitude"] as Double,
+                            document["placeLongitude"] as Double
+                        )
+
+                        map.addMarker(
+                            MarkerOptions()
+                                .title(document["placeName"] as String).position(latLng)
+                                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
+                        )
+                    }
+                }
+            }
+    }
+
 
     companion object {
         private const val TAG = "MAP_FRAGMENT"
