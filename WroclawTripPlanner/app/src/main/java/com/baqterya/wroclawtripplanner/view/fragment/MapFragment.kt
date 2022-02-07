@@ -84,6 +84,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val builder = LocationSettingsRequest.Builder()
             .addLocationRequest(locationRequest)
 
+
         val settingsClient = LocationServices.getSettingsClient(requireActivity())
         settingsClient.checkLocationSettings(builder.build())
             .addOnSuccessListener {
@@ -122,10 +123,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
 
         for (chip in binding.chipGroupMapFilters.iterator()) {
-            if (chip.id != R.id.chip_open_tags)
+            if (chip.id != R.id.chip_open_tags) {
                 chip.setOnClickListener {
                     refreshMapMarkers(category = (it as Chip).text.toString())
                 }
+            } else {
+                chip.setOnClickListener {
+                    openTagSelectorSheet()
+                }
+            }
         }
     }
 
@@ -280,7 +286,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         ))
                     }
                 })
-                bottomSheet.behavior.maxHeight = binding.root.height * 2/3
+                bottomSheet.behavior.peekHeight = this.requireView().height
+
                 bottomSheet.show()
             }
     }
@@ -385,6 +392,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
         }
         dialog.show()
+    }
+
+    private fun openTagSelectorSheet() {
+        val bottomSheet = BottomSheetDialog(requireContext())
+        bottomSheet.setContentView(R.layout.fragment_tags_bottom_sheet)
+        bottomSheet.behavior.peekHeight = this.requireView().height
+        bottomSheet.behavior.isDraggable = false
+        bottomSheet.show()
     }
 
     private fun inputCheck(name: String): Boolean {

@@ -529,6 +529,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="12dp"
+                android:minHeight="327dp"
                 android:clickable="false"
                 android:focusable="false"
                 android:checkable="false"
@@ -645,5 +646,15 @@
 
 
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_arrow_right"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="14dp"
+        android:scaleX="1.5"
+        android:layout_gravity="bottom|end"
+        android:backgroundTint="#8C006875"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
