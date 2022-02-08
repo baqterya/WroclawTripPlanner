@@ -36,20 +36,36 @@ class PlaceViewModel {
             .get()
             .addOnSuccessListener {
                 val placeToUpdate = it.toObject(Place().javaClass)!!
-                val placeTagListToUpdate = placeToUpdate.placeTagList
-                for (newTag in tagList) {
-                    for (oldTag in placeTagListToUpdate) {
-                        if (newTag.tagName == oldTag.tagName) {
-                            oldTag.tagCounter++
-                            break
+                var placeTagListToUpdate = placeToUpdate.placeTagList
+                if (placeTagListToUpdate.isEmpty()) {
+                    placeTagListToUpdate = tagList
+                } else {
+                    for (newTag in tagList) {
+                        if (user != null) {
+                            newTag.tagAddedByUserIds.add(user.uid)
+                            for (idx in 0 until placeTagListToUpdate.size) {
+                                val oldTag = placeTagListToUpdate[idx]
+                                if (newTag.tagName == oldTag.tagName) {
+                                    if (user.uid !in oldTag.tagAddedByUserIds) {
+                                        oldTag.tagCounter++
+                                        oldTag.tagAddedByUserIds.add(user.uid)
+                                    }
+                                    break
+                                } else {
+                                    placeTagListToUpdate.add(newTag)
+                                }
+                            }
                         }
-                        placeTagListToUpdate.add(newTag)
                     }
                 }
                 db.collection("places").document(place.placeId!!)
                     .update("placeTagList", placeTagListToUpdate)
             }
     }
+
+//    fun getPlaceTagsByUser(place: Place): ArrayList<Tag> {
+//
+//    }
 
     fun createFindPlacesTask(bounds: List<GeoQueryBounds>, category: String? = null) : ArrayList<Task<QuerySnapshot>> {
         val tasks = arrayListOf<Task<QuerySnapshot>>()

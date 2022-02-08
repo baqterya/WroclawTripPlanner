@@ -68,4 +68,16 @@
     <string name="tag_beauty">beauty</string>
     <string name="tag_pharmacy">pharmacy</string>
     <!--  services  -->
+    <string name="tag_hotel">hotel</string>
+    <string name="tag_hospital">hospital</string>
+    <string name="tag_tram_bus_stop">tram/bus stop</string>
+    <string name="tag_car_rental">car rental</string>
+    <string name="tag_parking">parking</string>
+    <string name="tag_gas_station">gas station</string>
+    <string name="tag_atm">ATM</string>
+    <string name="tag_mail_and_shipping">mail and shipping</string>
+    <string name="tag_car_wash">car wash</string>
+    <string name="tag_dry_cleaning">dry cleaning</string>
+    <string name="tag_electric_vehicle">electric vehicle</string>
+    <string name="tag_bike_rental">bike rental</string>
 </resources>

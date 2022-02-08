@@ -3,12 +3,23 @@ package com.baqterya.wroclawtripplanner.utils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.get
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
+import com.baqterya.wroclawtripplanner.model.Tag
+import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
+import com.baqterya.wroclawtripplanner.viewmodel.PlaceViewModel
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import kotlin.math.max
 
 class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>(){
+    private val placeViewModel = PlaceViewModel()
+
     class PlaceViewPagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ViewPagerItemPlaceBinding.bind(itemView)
     }
@@ -23,10 +34,62 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
         holder.binding.textViewPlaceName.text = currentPlace.placeName
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
         holder.binding.textViewPlaceOwner.text = String.format(ownerString, currentPlace.placeOwnerName)
+
+        val categoryString = StringBuilder()
+        for (category in currentPlace.placeCategories) {
+            categoryString.append(category.plus("   "))
+        }
+        holder.binding.textViewPlaceCategory.text = categoryString.toString()
+
+        val placeTags = findMaxUsedTags(currentPlace.placeTagList)
+        fillTagChips(placeTags, holder.binding.chipGroupPlaceTopTags)
+
+        holder.binding.buttonAddTagsToPlace.setOnClickListener {
+            openTagsSelectorSheet(holder.itemView, currentPlace, holder.binding.chipGroupPlaceTopTags)
+        }
+
         holder.binding.textViewPlaceDescription.text = currentPlace.placeDescription
     }
 
     override fun getItemCount(): Int {
         return places.size
+    }
+
+    private fun findMaxUsedTags(tags: ArrayList<Tag>): ArrayList<Tag> {
+        val topTenTags = arrayListOf<Tag>()
+
+        while (topTenTags.size < 10) {
+            if (tags.isEmpty()) return topTenTags
+
+            val maxTag = tags.maxWithOrNull(Comparator.comparingInt { it.tagCounter })
+            tags.remove(maxTag)
+            if (maxTag != null) {
+                topTenTags.add(maxTag)
+            }
+        }
+        return topTenTags
+    }
+
+    private fun fillTagChips(topTenTags: ArrayList<Tag>, chipGroup: ChipGroup) {
+        for (tag in topTenTags) {
+            val idx = topTenTags.indexOf(tag)
+            val tagString = tag.tagName.plus(" ").plus(tag.tagCounter)
+            (chipGroup[idx] as Chip).text = tagString
+            (chipGroup[idx] as Chip).isVisible = true
+        }
+    }
+
+    private fun openTagsSelectorSheet(view: View, currentPlace: Place, chipGroup: ChipGroup) {
+        val tagsBottomSheetWrapper = TagsBottomSheetWrapper(view)
+        tagsBottomSheetWrapper.createTagBottomSheet(addingTags = true)
+        tagsBottomSheetWrapper.fabTagsProceed.setOnClickListener {
+            val tags = tagsBottomSheetWrapper.selectedTags
+            tagsBottomSheetWrapper.tagsBottomSheet.dismiss()
+            if (tags.isEmpty()) return@setOnClickListener
+
+            placeViewModel.addTagsToPlace(currentPlace, tags)
+            val placeTags = findMaxUsedTags(currentPlace.placeTagList)
+            fillTagChips(placeTags, chipGroup)
+        }
     }
 }

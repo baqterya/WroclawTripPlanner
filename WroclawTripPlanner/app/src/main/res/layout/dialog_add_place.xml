@@ -1,157 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="400dp"
-    android:layout_margin="40dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    android:layout_margin="40dp">
 
-    <TextView
-        android:id="@+id/text_view_create_place_prompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/create_new_place_prompt"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_add_place_is_private"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/private_switch"
-        app:switchMinWidth="55dp"
-        app:layout_constraintTop_toTopOf="@id/text_view_create_place_prompt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_add_place_name"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        android:minWidth="200dp"
-        android:hint="@string/place_name_hint"
-        app:layout_constraintTop_toBottomOf="@id/switch_add_place_is_private"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_add_place_name"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_view_create_place_prompt"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:textSize="16sp" />
+            android:layout_marginTop="10dp"
+            android:text="@string/create_new_place_prompt"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <ScrollView
-        android:id="@+id/scroll_view_description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintTop_toBottomOf="@id/text_input_layout_add_place_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_add_place_is_private"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/private_switch"
+            app:switchMinWidth="55dp"
+            app:layout_constraintTop_toTopOf="@id/text_view_create_place_prompt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_input_layout_add_place_description"
+            android:id="@+id/text_input_layout_add_place_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/place_description_hint">
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:minWidth="200dp"
+            android:hint="@string/place_name_hint"
+            app:layout_constraintTop_toBottomOf="@id/switch_add_place_is_private"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_text_add_place_description"
+                android:id="@+id/edit_text_add_place_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
+                android:inputType="text"
                 android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    </ScrollView>
+        <ScrollView
+            android:id="@+id/scroll_view_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_add_place_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
-    <TextView
-        android:id="@+id/text_view_categories_prompt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/categories_prompt"
-        android:textSize="18sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="27dp"
-        app:layout_constraintTop_toBottomOf="@id/scroll_view_description"
-        app:layout_constraintStart_toStartOf="parent"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_input_layout_add_place_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/place_description_hint">
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group_place_category_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        app:layout_constraintTop_toBottomOf="@id/text_view_categories_prompt">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_text_add_place_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_category_culture"
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/text_view_categories_prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="96dp"
-            android:layoutDirection="rtl"
-            style="@style/Widget.Material3.Chip.Filter"
-            android:text="@string/category_culture"/>
+            android:text="@string/categories_prompt"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="27dp"
+            app:layout_constraintTop_toBottomOf="@id/scroll_view_description"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_category_food_drink"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_place_category_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintTop_toBottomOf="@id/text_view_categories_prompt">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_category_culture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="96dp"
+                android:layoutDirection="rtl"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:text="@string/category_culture"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_category_food_drink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="140dp"
+                android:layoutDirection="rtl"
+                android:gravity="center"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:text="@string/category_food_and_drink" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_category_services"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="106dp"
+                android:layoutDirection="rtl"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:text="@string/category_services"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_category_shopping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="106dp"
+                android:layoutDirection="rtl"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:text="@string/category_shopping"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_category_leisure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="96dp"
+                android:layoutDirection="rtl"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:text="@string/category_leisure"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <Button
+            android:id="@+id/button_add_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="140dp"
-            android:layoutDirection="rtl"
-            android:gravity="center"
-            style="@style/Widget.Material3.Chip.Filter"
-            android:text="@string/category_food_and_drink" />
+            android:layout_marginTop="40dp"
+            android:text="@string/add"
+            app:layout_constraintTop_toBottomOf="@id/chip_group_place_category_picker"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_category_services"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="106dp"
-            android:layoutDirection="rtl"
-            style="@style/Widget.Material3.Chip.Filter"
-            android:text="@string/category_services"/>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_category_shopping"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="106dp"
-            android:layoutDirection="rtl"
-            style="@style/Widget.Material3.Chip.Filter"
-            android:text="@string/category_shopping"/>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_category_leisure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="96dp"
-            android:layoutDirection="rtl"
-            style="@style/Widget.Material3.Chip.Filter"
-            android:text="@string/category_leisure"/>
-
-    </com.google.android.material.chip.ChipGroup>
-
-    <Button
-        android:id="@+id/button_add_place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="70dp"
-        android:text="@string/add"
-        app:layout_constraintTop_toBottomOf="@id/chip_group_place_category_picker"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

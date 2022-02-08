@@ -329,9 +329,10 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private fun openTagSelectorSheet() {
         val tagsBottomSheetWrapper = TagsBottomSheetWrapper(requireView())
         tagsBottomSheetWrapper.createTagBottomSheet()
-        tagsBottomSheetWrapper.tagsBottomSheet.setOnDismissListener {
+        tagsBottomSheetWrapper.fabTagsProceed.setOnClickListener {
             val tags = tagsBottomSheetWrapper.selectedTags
-            findMarkersByTags(tags)
+            tagsBottomSheetWrapper.tagsBottomSheet.dismiss()
+            if (tags.isNotEmpty()) findMarkersByTags(tags)
         }
     }
 

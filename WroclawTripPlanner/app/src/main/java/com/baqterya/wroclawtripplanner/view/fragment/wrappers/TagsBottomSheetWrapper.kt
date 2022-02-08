@@ -14,25 +14,24 @@ import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
 class TagsBottomSheetWrapper(private val view: View) {
-    private lateinit var fabTagsProceed: ExtendedFloatingActionButton
-    private lateinit var chipGroups: ArrayList<ChipGroup>
+    lateinit var fabTagsProceed: ExtendedFloatingActionButton
     lateinit var tagsBottomSheet: BottomSheetDialog
+    private lateinit var chipGroups: ArrayList<ChipGroup>
     val selectedTags = arrayListOf<Tag>()
 
     fun createTagBottomSheet(addingTags: Boolean = false) {
         tagsBottomSheet = BottomSheetDialog(view.context)
         tagsBottomSheet.setContentView(R.layout.fragment_tags_bottom_sheet)
-        tagsBottomSheet.behavior.peekHeight = view.height
+
+        tagsBottomSheet.behavior.peekHeight = view.rootView.height
         tagsBottomSheet.behavior.isDraggable = false
 
         fabTagsProceed = tagsBottomSheet.findViewById(R.id.fab_tags_proceed)!!
-        fabTagsProceed.setOnClickListener {
-            tagsBottomSheet.hide()
-        }
 
         if (addingTags) {
             val addIcon = ContextCompat.getDrawable(view.context, R.drawable.ic_add)
             fabTagsProceed.icon = addIcon
+            fabTagsProceed.scaleX = 1F
         }
 
         chipGroups = arrayListOf(
