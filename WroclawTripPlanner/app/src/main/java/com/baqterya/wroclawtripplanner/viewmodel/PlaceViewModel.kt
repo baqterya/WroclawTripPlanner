@@ -1,6 +1,5 @@
 package com.baqterya.wroclawtripplanner.viewmodel
 
-import androidx.core.view.contains
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
@@ -14,7 +13,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.lang.Exception
 
 class PlaceViewModel {
     private val db = Firebase.firestore

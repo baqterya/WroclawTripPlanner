@@ -2,19 +2,18 @@ package com.baqterya.wroclawtripplanner.view.fragment.login
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.baqterya.wroclawtripplanner.databinding.FragmentRegisterWithEmailBinding
 import com.baqterya.wroclawtripplanner.model.User
 import com.baqterya.wroclawtripplanner.utils.PasswordStrength
