@@ -14,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.lang.Exception
 
 class PlaceViewModel {
     private val db = Firebase.firestore
@@ -53,36 +54,45 @@ class PlaceViewModel {
                         placeTagListToUpdate = tagsToAdd
                     } else {
                         for (newTag in tagsToAdd) {
-                                newTag.tagAddedByUserIds.add(user.uid)
-                                for (idx in 0 until placeTagListToUpdate.size) {
-                                    val oldTag = placeTagListToUpdate[idx]
-                                    if (newTag.tagName == oldTag.tagName) {
-                                        if (user.uid !in oldTag.tagAddedByUserIds) {
-                                            oldTag.tagCounter++
-                                            oldTag.tagAddedByUserIds.add(user.uid)
-                                        }
-                                        break
-                                    } else {
-                                        placeTagListToUpdate.add(newTag)
+                            var notFound = true
+                            for (oldTag in placeTagListToUpdate) {
+                                if (newTag.tagName == oldTag.tagName) {
+                                    if (user.uid !in oldTag.tagAddedByUserIds) {
+                                        oldTag.tagCounter++
+                                        oldTag.tagAddedByUserIds.add(user.uid)
                                     }
+                                    notFound = false
+                                    break
                                 }
+                            }
+                            if (notFound) {
+                                placeTagListToUpdate.add(newTag)
+                            }
                         }
                         for (tagToRemove in tagsToRemove) {
-                            for (idx in 0 until placeTagListToUpdate.size) {
-                                val oldTag = placeTagListToUpdate[idx]
-                                if (tagToRemove.tagName == oldTag.tagName) {
+                            val itr = placeTagListToUpdate.iterator()
+                            while (itr.hasNext()) {
+                                val oldTag = itr.next()
+                                if (oldTag.tagName == tagToRemove.tagName) {
                                     oldTag.tagAddedByUserIds.remove(user.uid)
                                     if (oldTag.tagAddedByUserIds.isEmpty())
-                                        placeTagListToUpdate.remove(oldTag)
+                                        itr.remove()
                                 }
                             }
                         }
                     }
-                    for (tag in placeTagListToUpdate) {
-                        val idx = placeTagListToUpdate.indexOf(tag)
-                        val tagString = tag.tagName.plus(" ").plus(tag.tagCounter)
-                        (chipGroup[idx] as Chip).text = tagString
-                        (chipGroup[idx] as Chip).isVisible = true
+                    for (chip in chipGroup) {
+                        val idx = chipGroup.indexOfChild(chip)
+                        try {
+                            val tag = placeTagListToUpdate[idx]
+                            val tagString = tag.tagName.plus(" ").plus(tag.tagCounter)
+                            (chipGroup[idx] as Chip).text = tagString
+                            (chipGroup[idx] as Chip).isVisible = true
+                        } catch (e: Exception) {
+                            (chipGroup[idx] as Chip).text = ""
+                            (chipGroup[idx] as Chip).isVisible = false
+                        }
+
                     }
                     db.collection("places").document(place.placeId!!)
                         .update("placeTagList", placeTagListToUpdate)
