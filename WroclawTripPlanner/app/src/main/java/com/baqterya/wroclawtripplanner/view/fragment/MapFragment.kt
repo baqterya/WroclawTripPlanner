@@ -331,32 +331,48 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         tagsBottomSheetWrapper.createTagBottomSheet()
         tagsBottomSheetWrapper.fabTagsProceed.setOnClickListener {
             val tags = tagsBottomSheetWrapper.selectedTags
+            val tagStrings = arrayListOf<String>()
+            for (tag in tags) {
+                tagStrings.add(tag.tagName!!)
+            }
             tagsBottomSheetWrapper.tagsBottomSheet.dismiss()
-            if (tags.isNotEmpty()) findMarkersByTags(tags)
+            if (tags.isNotEmpty()) findMarkersByTags(tagStrings)
         }
     }
 
-    private fun findMarkersByTags(tags: ArrayList<Tag>) {
+    private fun findMarkersByTags(tags: ArrayList<String>) {
         map.clear()
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
-        val tasks = placeViewModel.createFindPlacesByTagTask(bounds, tags)
+        val tasks = placeViewModel.createFindPlacesByTagTask(bounds)
 
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {
                 for (task in tasks) {
                     val snapshot = task.result
                     for (document in snapshot) {
-                        val latLng = LatLng(
-                            document["placeLatitude"] as Double,
-                            document["placeLongitude"] as Double
-                        )
+                        val place = document.toObject(Place().javaClass)
+                        val placeTags  = arrayListOf<String>()
+                        for (tag in place.placeTagList) {
+                            placeTags.add(tag.tagName!!)
+                        }
+                        if (placeTags.containsAll(tags)) {
+                            val latLng = LatLng(
+                                document["placeLatitude"] as Double,
+                                document["placeLongitude"] as Double
+                            )
 
-                        map.addMarker(
-                            MarkerOptions()
-                                .title(document["placeName"] as String).position(latLng)
-                                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
-                        )
+                            map.addMarker(
+                                MarkerOptions()
+                                    .title(document["placeName"] as String).position(latLng)
+                                    .icon(
+                                        bitmapDescriptorFromVector(
+                                            requireContext(),
+                                            R.drawable.ic_map_pin
+                                        )
+                                    )
+                            )
+                        }
                     }
                 }
             }

@@ -1,13 +1,12 @@
 package com.baqterya.wroclawtripplanner.view.fragment.wrappers
 
 import android.view.View
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
-import androidx.core.view.children
 import androidx.core.view.iterator
 import com.baqterya.wroclawtripplanner.R
+import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
+import com.baqterya.wroclawtripplanner.viewmodel.PlaceViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -18,6 +17,7 @@ class TagsBottomSheetWrapper(private val view: View) {
     lateinit var tagsBottomSheet: BottomSheetDialog
     private lateinit var chipGroups: ArrayList<ChipGroup>
     val selectedTags = arrayListOf<Tag>()
+    val tagsToRemove = arrayListOf<Tag>()
 
     fun createTagBottomSheet(addingTags: Boolean = false) {
         tagsBottomSheet = BottomSheetDialog(view.context)
@@ -29,7 +29,7 @@ class TagsBottomSheetWrapper(private val view: View) {
         fabTagsProceed = tagsBottomSheet.findViewById(R.id.fab_tags_proceed)!!
 
         if (addingTags) {
-            val addIcon = ContextCompat.getDrawable(view.context, R.drawable.ic_add)
+            val addIcon = ContextCompat.getDrawable(view.context, R.drawable.ic_save)
             fabTagsProceed.icon = addIcon
             fabTagsProceed.scaleX = 1F
         }
@@ -43,12 +43,15 @@ class TagsBottomSheetWrapper(private val view: View) {
         )
         for (chipGroup in chipGroups.iterator()) {
             for (chip in chipGroup) {
-                (chip as Chip).setOnCheckedChangeListener { _, checked ->
+                (chip as Chip).setOnClickListener {
+                    val checked = chip.isChecked
                     val tag = Tag(chip.text.toString(), 1)
                     if (checked) {
                         selectedTags.add(tag)
+                        tagsToRemove.remove(tag)
                     } else {
                         selectedTags.remove(tag)
+                        tagsToRemove.add(tag)
                         if (selectedTags.size < 10) {
                             enableChips()
                         }
@@ -60,6 +63,11 @@ class TagsBottomSheetWrapper(private val view: View) {
             }
         }
         tagsBottomSheet.show()
+    }
+
+    fun checkUserTags(currentPlace: Place) {
+        val placeViewModel = PlaceViewModel()
+        placeViewModel.checkUserTags(currentPlace, chipGroups)
     }
 
     private fun disableChips() {

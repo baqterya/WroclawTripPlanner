@@ -3,7 +3,6 @@ package com.baqterya.wroclawtripplanner.utils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -15,7 +14,6 @@ import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWra
 import com.baqterya.wroclawtripplanner.viewmodel.PlaceViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import kotlin.math.max
 
 class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>(){
     private val placeViewModel = PlaceViewModel()
@@ -82,14 +80,14 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
     private fun openTagsSelectorSheet(view: View, currentPlace: Place, chipGroup: ChipGroup) {
         val tagsBottomSheetWrapper = TagsBottomSheetWrapper(view)
         tagsBottomSheetWrapper.createTagBottomSheet(addingTags = true)
+        tagsBottomSheetWrapper.checkUserTags(currentPlace)
         tagsBottomSheetWrapper.fabTagsProceed.setOnClickListener {
             val tags = tagsBottomSheetWrapper.selectedTags
+            val tagsToRemove= tagsBottomSheetWrapper.tagsToRemove
             tagsBottomSheetWrapper.tagsBottomSheet.dismiss()
-            if (tags.isEmpty()) return@setOnClickListener
+            if (tags.isEmpty() && tagsToRemove.isEmpty()) return@setOnClickListener
 
-            placeViewModel.addTagsToPlace(currentPlace, tags)
-            val placeTags = findMaxUsedTags(currentPlace.placeTagList)
-            fillTagChips(placeTags, chipGroup)
+            placeViewModel.updatePlaceTags(currentPlace, tags, tagsToRemove, chipGroup)
         }
     }
 }
