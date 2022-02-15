@@ -1,6 +1,7 @@
 package com.baqterya.wroclawtripplanner.view.fragment.wrappers
 
 import android.view.View
+import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
@@ -20,6 +21,15 @@ class PlaceBottomSheetWrapper(private val view: View, private val places: ArrayL
         viewPager2 = placeBottomSheet.findViewById(R.id.view_pager_2_places)!!
         viewPager2.adapter = adapter
         viewPager2.currentItem = clickedItemIndex
+//        viewPager2.apply {
+//            clipToPadding = false
+//            clipChildren = false
+//            offscreenPageLimit = 2
+//        }
+//        val offsetPx = 30
+//        viewPager2.setPadding(offsetPx, 0, offsetPx, 0)
+//        val marginPageTransformer = MarginPageTransformer(10)
+//        viewPager2.setPageTransformer(marginPageTransformer)
     }
 
 }
