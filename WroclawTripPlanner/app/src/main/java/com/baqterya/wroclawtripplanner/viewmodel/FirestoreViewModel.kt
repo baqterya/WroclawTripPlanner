@@ -1,5 +1,6 @@
 package com.baqterya.wroclawtripplanner.viewmodel
 
+import android.widget.EditText
 import android.widget.ImageButton
 import androidx.core.view.get
 import androidx.core.view.isVisible
@@ -194,5 +195,33 @@ class FirestoreViewModel {
         return tasks
     }
 
+    fun changeUsername(newUserName: String) {
+        if (user != null) {
+            db.collection("users").document(user.uid)
+                .update("userName", newUserName)
+            db.collection("places")
+                .whereEqualTo("placeOwnerId", user.uid)
+                .get()
+                .addOnSuccessListener {
+                    for (place in it) {
+                        place.reference.update("placeOwnerName", newUserName)
+                    }
+                }
+        }
+    }
+
+    fun fillUsername(editText: EditText) {
+        if (user != null) {
+            db.collection("users").document(user.uid)
+                .get()
+                .addOnSuccessListener {
+                    editText.setText(it["userName"] as String)
+                }
+        }
+    }
+
+    fun userLogout() {
+        Firebase.auth.signOut()
+    }
 
 }
