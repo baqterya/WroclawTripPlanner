@@ -208,6 +208,8 @@
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/seed"
+        android:textColor="@color/md_theme_dark_onPrimary"
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="50dp"
         android:text="@string/add_place_to_a_trip"
