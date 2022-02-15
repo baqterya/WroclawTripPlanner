@@ -12,12 +12,12 @@ import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
-import com.baqterya.wroclawtripplanner.viewmodel.PlaceViewModel
+import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
 class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>(){
-    private val placeViewModel = PlaceViewModel()
+    private val firestoreViewModel = FirestoreViewModel()
 
     class PlaceViewPagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ViewPagerItemPlaceBinding.bind(itemView)
@@ -34,7 +34,7 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
         holder.binding.textViewPlaceOwner.text = String.format(ownerString, currentPlace.placeOwnerName)
 
-        placeViewModel.isPlaceFav(currentPlace, holder.binding.imageButtonAddPlaceToFav)
+        firestoreViewModel.isPlaceFav(currentPlace, holder.binding.imageButtonAddPlaceToFav)
         holder.binding.imageButtonAddPlaceToFav.setOnClickListener {
             updatePlaceIsFav(currentPlace, it as ImageButton)
         }
@@ -84,7 +84,7 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
     }
 
     private fun updatePlaceIsFav(currentPlace: Place, imageButton: ImageButton) {
-        placeViewModel.updatePlaceIsFav(currentPlace, imageButton)
+        firestoreViewModel.updatePlaceIsFav(currentPlace, imageButton)
     }
 
     private fun openTagsSelectorSheet(view: View, currentPlace: Place, chipGroup: ChipGroup) {
@@ -97,7 +97,7 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
             tagsBottomSheetWrapper.tagsBottomSheet.dismiss()
             if (tags.isEmpty() && tagsToRemove.isEmpty()) return@setOnClickListener
 
-            placeViewModel.updatePlaceTags(currentPlace, tags, tagsToRemove, chipGroup)
+            firestoreViewModel.updatePlaceTags(currentPlace, tags, tagsToRemove, chipGroup)
         }
     }
 }

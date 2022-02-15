@@ -6,7 +6,7 @@ import androidx.core.view.iterator
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
-import com.baqterya.wroclawtripplanner.viewmodel.PlaceViewModel
+import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -66,7 +66,7 @@ class TagsBottomSheetWrapper(private val view: View) {
     }
 
     fun checkUserTags(currentPlace: Place) {
-        val placeViewModel = PlaceViewModel()
+        val placeViewModel = FirestoreViewModel()
         placeViewModel.checkUserTags(currentPlace, chipGroups)
     }
 

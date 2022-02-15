@@ -18,7 +18,7 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PlaceViewModel {
+class FirestoreViewModel {
     private val db = Firebase.firestore
     private val user = Firebase.auth.currentUser
 

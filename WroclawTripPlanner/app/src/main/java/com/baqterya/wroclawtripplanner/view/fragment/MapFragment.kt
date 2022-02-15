@@ -22,7 +22,7 @@ import com.baqterya.wroclawtripplanner.utils.createLocationRequest
 import com.baqterya.wroclawtripplanner.utils.inputCheck
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.PlaceBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
-import com.baqterya.wroclawtripplanner.viewmodel.PlaceViewModel
+import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.geofire.GeoFireUtils
 import com.firebase.geofire.GeoLocation
 import com.google.android.gms.common.api.ResolvableApiException
@@ -46,7 +46,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var lastKnownLocation: Location
     private lateinit var locationCallback: LocationCallback
 
-    private val placeViewModel = PlaceViewModel()
+    private val firestoreViewModel = FirestoreViewModel()
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
@@ -197,7 +197,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun addPlace(newPlace: Place) {
-        placeViewModel.addPlaceToFirestore(newPlace)
+        firestoreViewModel.addPlaceToFirestore(newPlace)
         map.addMarker(
             MarkerOptions()
                 .title(newPlace.placeName)
@@ -210,7 +210,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map.clear()
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
-        val tasks = placeViewModel.createFindPlacesTask(bounds, category)
+        val tasks = firestoreViewModel.createFindPlacesTask(bounds, category)
 
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {
@@ -284,7 +284,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private fun openPlaceBrowserDrawer(marker: Marker) {
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
-        val tasks = placeViewModel.createFindPlacesTask(bounds)
+        val tasks = firestoreViewModel.createFindPlacesTask(bounds)
 
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {
@@ -340,7 +340,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map.clear()
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
-        val tasks = placeViewModel.createFindPlacesByTagTask(bounds)
+        val tasks = firestoreViewModel.createFindPlacesByTagTask(bounds)
 
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {
