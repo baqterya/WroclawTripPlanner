@@ -5,6 +5,19 @@
     android:paddingTop="15dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageButton
+        android:id="@+id/image_button_add_place_to_fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_favourite_border"
+        android:backgroundTint="@color/fui_transparent"
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        app:layout_constraintTop_toTopOf="@id/text_view_place_name"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_place_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/add_place_to_favourites" />
+
     <TextView
         android:id="@+id/text_view_place_name"
         android:layout_width="wrap_content"

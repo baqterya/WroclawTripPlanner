@@ -52,6 +52,7 @@
     <string name="category_placeholder">category: %s</string>
     <string name="tags_prompt">Tags:</string>
     <string name="add_a_tag">add a tag +</string>
+    <string name="add_place_to_favourites">Add place to favourites</string>
 
 
 </resources>

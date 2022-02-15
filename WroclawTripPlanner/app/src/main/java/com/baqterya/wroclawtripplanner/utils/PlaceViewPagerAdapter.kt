@@ -3,6 +3,7 @@ package com.baqterya.wroclawtripplanner.utils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -32,6 +33,11 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
         holder.binding.textViewPlaceName.text = currentPlace.placeName
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
         holder.binding.textViewPlaceOwner.text = String.format(ownerString, currentPlace.placeOwnerName)
+
+        placeViewModel.isPlaceFav(currentPlace, holder.binding.imageButtonAddPlaceToFav)
+        holder.binding.imageButtonAddPlaceToFav.setOnClickListener {
+            updatePlaceIsFav(currentPlace, it as ImageButton)
+        }
 
         val categoryString = StringBuilder()
         for (category in currentPlace.placeCategories) {
@@ -75,6 +81,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
             (chipGroup[idx] as Chip).text = tagString
             (chipGroup[idx] as Chip).isVisible = true
         }
+    }
+
+    private fun updatePlaceIsFav(currentPlace: Place, imageButton: ImageButton) {
+        placeViewModel.updatePlaceIsFav(currentPlace, imageButton)
     }
 
     private fun openTagsSelectorSheet(view: View, currentPlace: Place, chipGroup: ChipGroup) {

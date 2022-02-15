@@ -1,15 +1,19 @@
 package com.baqterya.wroclawtripplanner.viewmodel
 
+import android.widget.ImageButton
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
+import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
+import com.baqterya.wroclawtripplanner.model.User
 import com.firebase.geofire.GeoQueryBounds
 import com.google.android.gms.tasks.Task
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -142,6 +146,42 @@ class PlaceViewModel {
         return tasks
     }
 
+    fun isPlaceFav(currentPlace: Place, favButton: ImageButton) {
+        if (user != null) {
+            db.collection("users").document(user.uid)
+                .get()
+                .addOnSuccessListener {
+                    val firestoreUser = it.toObject(User().javaClass)!!
+                    if (currentPlace.placeId in firestoreUser.userFavPlaces) {
+                        favButton.setImageResource(R.drawable.ic_favourite)
+                        favButton.scaleX = 1.3F
+                        favButton.scaleY = 1.3F
+                    }
+                }
+        }
+    }
+
+    fun updatePlaceIsFav(currentPlace: Place, favButton: ImageButton) {
+        if (user != null) {
+            favButton.scaleX = 1.3F
+            favButton.scaleY = 1.3F
+            db.collection("users").document(user.uid)
+                .get()
+                .addOnSuccessListener {
+                    val firestoreUser = it.toObject(User().javaClass)!!
+                    if (currentPlace.placeId in firestoreUser.userFavPlaces) {
+                        db.collection("users").document(user.uid)
+                            .update("userFavPlaces", FieldValue.arrayRemove(currentPlace.placeId))
+                        favButton.setImageResource(R.drawable.ic_favourite_border)
+                    } else {
+                        db.collection("users").document(user.uid)
+                            .update("userFavPlaces", FieldValue.arrayUnion(currentPlace.placeId))
+                        favButton.setImageResource(R.drawable.ic_favourite)
+                    }
+                }
+        }
+    }
+
     fun createFindPlacesByTagTask(bounds: List<GeoQueryBounds>) : ArrayList<Task<QuerySnapshot>> {
         val tasks = arrayListOf<Task<QuerySnapshot>>()
         for (bound in bounds) {
@@ -153,4 +193,6 @@ class PlaceViewModel {
         }
         return tasks
     }
+
+
 }
