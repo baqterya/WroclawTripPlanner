@@ -156,8 +156,8 @@ class FirestoreViewModel {
                     val firestoreUser = it.toObject(User().javaClass)!!
                     if (currentPlace.placeId in firestoreUser.userFavPlaces) {
                         favButton.setImageResource(R.drawable.ic_favourite)
-                        favButton.scaleX = 1.3F
-                        favButton.scaleY = 1.3F
+                        favButton.scaleX = 1.1F
+                        favButton.scaleY = 1.1F
                     }
                 }
         }
@@ -165,8 +165,8 @@ class FirestoreViewModel {
 
     fun updatePlaceIsFav(currentPlace: Place, favButton: ImageButton, favCounter: TextView) {
         if (user != null) {
-            favButton.scaleX = 1.3F
-            favButton.scaleY = 1.3F
+            favButton.scaleX = 1.1F
+            favButton.scaleY = 1.1F
             db.collection("users").document(user.uid)
                 .get()
                 .addOnSuccessListener {
