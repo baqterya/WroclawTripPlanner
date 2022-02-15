@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
@@ -35,8 +36,9 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
         holder.binding.textViewPlaceOwner.text = String.format(ownerString, currentPlace.placeOwnerName)
 
         firestoreViewModel.isPlaceFav(currentPlace, holder.binding.imageButtonAddPlaceToFav)
+        firestoreViewModel.updateLikes(currentPlace, holder.binding.textViewLikeCounter)
         holder.binding.imageButtonAddPlaceToFav.setOnClickListener {
-            updatePlaceIsFav(currentPlace, it as ImageButton)
+            updatePlaceIsFav(currentPlace, it as ImageButton, holder.binding.textViewLikeCounter)
         }
 
         val categoryString = StringBuilder()
@@ -83,8 +85,8 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
         }
     }
 
-    private fun updatePlaceIsFav(currentPlace: Place, imageButton: ImageButton) {
-        firestoreViewModel.updatePlaceIsFav(currentPlace, imageButton)
+    private fun updatePlaceIsFav(currentPlace: Place, imageButton: ImageButton, textView: TextView) {
+        firestoreViewModel.updatePlaceIsFav(currentPlace, imageButton, textView)
     }
 
     private fun openTagsSelectorSheet(view: View, currentPlace: Place, chipGroup: ChipGroup) {

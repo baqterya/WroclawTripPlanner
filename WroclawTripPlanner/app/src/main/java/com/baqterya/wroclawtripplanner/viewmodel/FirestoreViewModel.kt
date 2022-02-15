@@ -2,6 +2,7 @@ package com.baqterya.wroclawtripplanner.viewmodel
 
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
@@ -162,7 +163,7 @@ class FirestoreViewModel {
         }
     }
 
-    fun updatePlaceIsFav(currentPlace: Place, favButton: ImageButton) {
+    fun updatePlaceIsFav(currentPlace: Place, favButton: ImageButton, favCounter: TextView) {
         if (user != null) {
             favButton.scaleX = 1.3F
             favButton.scaleY = 1.3F
@@ -171,16 +172,31 @@ class FirestoreViewModel {
                 .addOnSuccessListener {
                     val firestoreUser = it.toObject(User().javaClass)!!
                     if (currentPlace.placeId in firestoreUser.userFavPlaces) {
+                        db.collection("places").document(currentPlace.placeId!!)
+                            .update("placeLikes", FieldValue.increment(-1))
                         db.collection("users").document(user.uid)
                             .update("userFavPlaces", FieldValue.arrayRemove(currentPlace.placeId))
+                        updateLikes(currentPlace, favCounter)
                         favButton.setImageResource(R.drawable.ic_favourite_border)
                     } else {
+                        db.collection("places").document(currentPlace.placeId!!)
+                        .update("placeLikes", FieldValue.increment(1))
                         db.collection("users").document(user.uid)
                             .update("userFavPlaces", FieldValue.arrayUnion(currentPlace.placeId))
+                        updateLikes(currentPlace, favCounter)
                         favButton.setImageResource(R.drawable.ic_favourite)
                     }
                 }
         }
+    }
+
+    fun updateLikes(currentPlace: Place, favCounter: TextView) {
+        db.collection("places").document(currentPlace.placeId!!)
+            .get()
+            .addOnSuccessListener {
+                val likes = it["placeLikes"] as Long
+                favCounter.text = likes.toString()
+            }
     }
 
     fun createFindPlacesByTagTask(bounds: List<GeoQueryBounds>) : ArrayList<Task<QuerySnapshot>> {
