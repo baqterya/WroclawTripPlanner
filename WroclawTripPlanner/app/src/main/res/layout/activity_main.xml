@@ -28,6 +28,16 @@
         tools:ignore="FragmentTagUsage" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar_second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:backgroundTint="@color/md_theme_dark_primary"
+        android:visibility="invisible"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"/>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar_main_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,7 +96,7 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add_pin_show_map"
+        android:id="@+id/fab_add_pin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -95,5 +105,17 @@
         android:contentDescription="@string/explore_add_fab_description"
         android:focusable="true"
         app:layout_anchor="@id/bottom_app_bar_main_activity" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_show_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_explore"
+        android:backgroundTint="@color/md_theme_light_tertiary"
+        android:contentDescription="@string/explore_add_fab_description"
+        android:focusable="true"
+        app:layout_anchor="@id/bottom_app_bar_second"
+        android:visibility="invisible" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
