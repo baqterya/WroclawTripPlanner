@@ -36,7 +36,7 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
         holder.binding.textViewPlaceOwner.text = String.format(ownerString, currentPlace.placeOwnerName)
 
         firestoreViewModel.isPlaceFav(currentPlace, holder.binding.imageButtonAddPlaceToFav)
-        firestoreViewModel.updateLikes(currentPlace, holder.binding.textViewLikeCounter)
+        firestoreViewModel.updateLikesCounter(currentPlace, holder.binding.textViewLikeCounter)
         holder.binding.imageButtonAddPlaceToFav.setOnClickListener {
             updatePlaceIsFav(currentPlace, it as ImageButton, holder.binding.textViewLikeCounter)
         }

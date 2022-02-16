@@ -9,7 +9,6 @@ import androidx.core.view.iterator
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
-import com.baqterya.wroclawtripplanner.model.User
 import com.firebase.geofire.GeoQueryBounds
 import com.google.android.gms.tasks.Task
 import com.google.android.material.chip.Chip
@@ -150,16 +149,11 @@ class FirestoreViewModel {
 
     fun isPlaceFav(currentPlace: Place, favButton: ImageButton) {
         if (user != null) {
-            db.collection("users").document(user.uid)
-                .get()
-                .addOnSuccessListener {
-                    val firestoreUser = it.toObject(User().javaClass)!!
-                    if (currentPlace.placeId in firestoreUser.userFavPlaces) {
-                        favButton.setImageResource(R.drawable.ic_favourite)
-                        favButton.scaleX = 1.1F
-                        favButton.scaleY = 1.1F
-                    }
-                }
+            if (user.uid in currentPlace.placeFavUsersId) {
+                favButton.setImageResource(R.drawable.ic_favourite)
+                favButton.scaleX = 1.1F
+                favButton.scaleY = 1.1F
+            }
         }
     }
 
@@ -167,30 +161,31 @@ class FirestoreViewModel {
         if (user != null) {
             favButton.scaleX = 1.1F
             favButton.scaleY = 1.1F
-            db.collection("users").document(user.uid)
-                .get()
-                .addOnSuccessListener {
-                    val firestoreUser = it.toObject(User().javaClass)!!
-                    if (currentPlace.placeId in firestoreUser.userFavPlaces) {
-                        db.collection("places").document(currentPlace.placeId!!)
-                            .update("placeLikes", FieldValue.increment(-1))
-                        db.collection("users").document(user.uid)
-                            .update("userFavPlaces", FieldValue.arrayRemove(currentPlace.placeId))
-                        updateLikes(currentPlace, favCounter)
-                        favButton.setImageResource(R.drawable.ic_favourite_border)
-                    } else {
-                        db.collection("places").document(currentPlace.placeId!!)
-                        .update("placeLikes", FieldValue.increment(1))
-                        db.collection("users").document(user.uid)
-                            .update("userFavPlaces", FieldValue.arrayUnion(currentPlace.placeId))
-                        updateLikes(currentPlace, favCounter)
-                        favButton.setImageResource(R.drawable.ic_favourite)
+            if (user.uid in currentPlace.placeFavUsersId) {
+                currentPlace.placeFavUsersId.remove(user.uid)
+                db.collection("places").document(currentPlace.placeId!!)
+                    .update("placeLikes", FieldValue.increment(-1))
+                db.collection("places").document(currentPlace.placeId!!)
+                    .update("placeFavUsersId", FieldValue.arrayRemove(user.uid))
+                    .addOnSuccessListener {
+                        updateLikesCounter(currentPlace, favCounter)
                     }
-                }
+                favButton.setImageResource(R.drawable.ic_favourite_border)
+            } else {
+                currentPlace.placeFavUsersId.add(user.uid)
+                db.collection("places").document(currentPlace.placeId!!)
+                .update("placeLikes", FieldValue.increment(1))
+                db.collection("places").document(currentPlace.placeId!!)
+                    .update("placeFavUsersId", FieldValue.arrayUnion(user.uid))
+                    .addOnSuccessListener {
+                        updateLikesCounter(currentPlace, favCounter)
+                    }
+                favButton.setImageResource(R.drawable.ic_favourite)
+            }
         }
     }
 
-    fun updateLikes(currentPlace: Place, favCounter: TextView) {
+    fun updateLikesCounter(currentPlace: Place, favCounter: TextView) {
         db.collection("places").document(currentPlace.placeId!!)
             .get()
             .addOnSuccessListener {
@@ -238,6 +233,13 @@ class FirestoreViewModel {
 
     fun userLogout() {
         Firebase.auth.signOut()
+    }
+
+    fun getFavouritesTasks() : ArrayList<Task<QuerySnapshot>>  {
+        val tasks = arrayListOf<Task<QuerySnapshot>>()
+        val favPlacesQuery = db.collection("places")
+
+        return tasks
     }
 
 }
