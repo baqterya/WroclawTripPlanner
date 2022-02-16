@@ -13,6 +13,14 @@
         <action
             android:id="@+id/action_mapFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mapFragment_to_listFavouritesFragment"
+            app:destination="@id/listFavouritesFragment" />
+        <argument
+            android:name="latLng"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -21,6 +29,15 @@
         tools:layout="@layout/fragment_settings" >
         <action
             android:id="@+id/action_settingsFragment_to_mapFragment"
+            app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFavouritesFragment"
+        android:name="com.baqterya.wroclawtripplanner.view.fragment.ListFavouritesFragment"
+        android:label="fragment_list_favourites"
+        tools:layout="@layout/fragment_list_favourites" >
+        <action
+            android:id="@+id/action_listFavouritesFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
     </fragment>
 </navigation>

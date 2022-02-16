@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -47,6 +48,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var locationCallback: LocationCallback
 
     private val firestoreViewModel = FirestoreViewModel()
+    private val args by navArgs<MapFragmentArgs>()
 
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
@@ -74,7 +76,30 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val settingsClient = LocationServices.getSettingsClient(requireActivity())
         settingsClient.checkLocationSettings(builder.build())
             .addOnSuccessListener {
-                getDeviceLocation()
+                val latLng = args.latLng
+                if (latLng == null) {
+                    getDeviceLocation()
+                } else {
+                    val latLngList = latLng.split(",")
+                    val lat = latLngList[0].toDouble()
+                    val lng = latLngList[1].toDouble()
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                            LatLng(lat, lng),
+                            DEFAULT_ZOOM
+                    ))
+                    refreshMapMarkers()
+                }
+//                val bundle = this.arguments
+//                if (bundle != null) {
+//                    val latLng = bundle.getDoubleArray("latLng")!!
+//                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(
+//                            LatLng(latLng[0], latLng[1]),
+//                            DEFAULT_ZOOM
+//                        ))
+//                    refreshMapMarkers()
+//                } else {
+//
+//                }
             }
             .addOnFailureListener { exception ->
                 if (exception is ResolvableApiException) {

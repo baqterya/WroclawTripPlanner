@@ -1,15 +1,19 @@
 package com.baqterya.wroclawtripplanner.viewmodel
 
+import android.app.Activity
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
+import androidx.fragment.app.FragmentActivity
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
+import com.baqterya.wroclawtripplanner.model.Trip
 import com.firebase.geofire.GeoQueryBounds
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -235,11 +239,33 @@ class FirestoreViewModel {
         Firebase.auth.signOut()
     }
 
-    fun getFavouritesTasks() : ArrayList<Task<QuerySnapshot>>  {
-        val tasks = arrayListOf<Task<QuerySnapshot>>()
-        val favPlacesQuery = db.collection("places")
+    fun getFavouritesRecyclerOptions(activity: FragmentActivity) : ArrayList<Any>  {
+        val options = arrayListOf<Any>()
+        if (user != null) {
+            val favPlacesQuery = db.collection("places")
+                .whereArrayContains("placeFavUsersId", user.uid)
+                .whereEqualTo("placeIsPrivate", false)
+                .orderBy("placeLikes")
+                .orderBy("placeName")
+            val favPlacesOptions = FirestoreRecyclerOptions.Builder<Place>()
+                .setQuery(favPlacesQuery, Place::class.java)
+                .setLifecycleOwner(activity)
+                .build()
 
-        return tasks
+            val favTripsQuery = db.collection("trips")
+                .whereArrayContains("placeFavUsersId", user.uid)
+                .whereEqualTo("placeIsPrivate", false)
+                .orderBy("placeLikes")
+                .orderBy("placeName")
+            val favTripsOptions = FirestoreRecyclerOptions.Builder<Trip>()
+                .setQuery(favTripsQuery, Trip::class.java)
+                .setLifecycleOwner(activity)
+                .build()
+
+            options.add(favPlacesOptions)
+            options.add(favTripsOptions)
+        }
+        return options
     }
 
 }
