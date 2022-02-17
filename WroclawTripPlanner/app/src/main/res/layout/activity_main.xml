@@ -73,7 +73,7 @@
                 app:drawableTopCompat="@drawable/ic_favourite" />
 
             <TextView
-                android:id="@+id/text_view_user_places"
+                android:id="@+id/text_view_user_places_and_trips"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -83,12 +83,12 @@
                 app:drawableTopCompat="@drawable/ic_place" />
 
             <TextView
-                android:id="@+id/text_view_user_trips"
+                android:id="@+id/text_view_top_trips"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/your_trips"
+                android:text="@string/top_trips"
                 android:textColor="@color/design_default_color_on_primary"
                 app:drawableTopCompat="@drawable/ic_trip" />
 

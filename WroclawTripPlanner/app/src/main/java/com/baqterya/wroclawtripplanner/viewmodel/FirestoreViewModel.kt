@@ -238,8 +238,8 @@ class FirestoreViewModel {
         Firebase.auth.signOut()
     }
 
-    fun getFavouritesRecyclerOptions(activity: FragmentActivity) : ArrayList<Any>  {
-        val options = arrayListOf<Any>()
+    fun getFavouritesRecyclerOptions(activity: FragmentActivity) : Pair<FirestoreRecyclerOptions<Place>, FirestoreRecyclerOptions<Trip>>?  {
+        var options: Pair<FirestoreRecyclerOptions<Place>, FirestoreRecyclerOptions<Trip>>? = null
         if (user != null) {
             val favPlacesQuery = db.collection("places")
                 .whereArrayContains("placeFavUsersId", user.uid)
@@ -261,8 +261,7 @@ class FirestoreViewModel {
                 .setLifecycleOwner(activity)
                 .build()
 
-            options.add(favPlacesOptions)
-            options.add(favTripsOptions)
+            options = Pair(favPlacesOptions, favTripsOptions)
         }
         return options
     }

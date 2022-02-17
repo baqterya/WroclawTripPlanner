@@ -35,8 +35,8 @@
     <string name="settings">Settings</string>
     <string name="log_out">LOG OUT</string>
     <string name="favourites">Favourites</string>
-    <string name="your_places">Your Places</string>
-    <string name="your_trips">Your Trips</string>
+    <string name="your_places">Places &amp; Trips</string>
+    <string name="top_trips">Top Trips</string>
     <string name="find_new_places">Find new places!</string>
     <string name="create_new_place_prompt">Create a new Place:</string>
     <string name="private_switch">Private</string>
