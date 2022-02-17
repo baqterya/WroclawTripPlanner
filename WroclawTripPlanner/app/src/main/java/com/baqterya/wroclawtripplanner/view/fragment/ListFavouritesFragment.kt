@@ -1,14 +1,12 @@
 package com.baqterya.wroclawtripplanner.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.baqterya.wroclawtripplanner.R
+import androidx.fragment.app.Fragment
 import com.baqterya.wroclawtripplanner.databinding.FragmentListFavouritesBinding
 import com.baqterya.wroclawtripplanner.utils.FavouritesViewPagerAdapter
-import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 
 class ListFavouritesFragment : Fragment() {
     private var _binding: FragmentListFavouritesBinding? = null

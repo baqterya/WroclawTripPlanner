@@ -1,6 +1,5 @@
 package com.baqterya.wroclawtripplanner.viewmodel
 
-import android.app.Activity
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView

@@ -6,10 +6,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.utils.PlaceViewPagerAdapter
-import com.baqterya.wroclawtripplanner.view.activity.MainActivity
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.firestore.Query
 
 class PlaceBottomSheetWrapper(private val view: View, private val places: ArrayList<Place>, private val clickedItemIndex: Int) {
     lateinit var viewPager2: ViewPager2

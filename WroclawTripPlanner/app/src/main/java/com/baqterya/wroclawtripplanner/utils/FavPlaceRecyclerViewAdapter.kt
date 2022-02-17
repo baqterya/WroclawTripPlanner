@@ -1,6 +1,5 @@
 package com.baqterya.wroclawtripplanner.utils
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,7 @@ import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.RecyclerViewItemPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
-import com.baqterya.wroclawtripplanner.view.fragment.ListFavouritesFragment
 import com.baqterya.wroclawtripplanner.view.fragment.ListFavouritesFragmentDirections
-import com.baqterya.wroclawtripplanner.view.fragment.MapFragment
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
