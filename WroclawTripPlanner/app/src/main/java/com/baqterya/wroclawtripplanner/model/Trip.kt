@@ -7,6 +7,5 @@ data class Trip(
     var tripOwnerId: String? = null,
     var tripOwnerName: String? = null,
     var tripPlaceIdList: ArrayList<String> = arrayListOf(),
-    var tripTagList: ArrayList<String> = arrayListOf(),
     var tripLikes: Int = 0,
 )
