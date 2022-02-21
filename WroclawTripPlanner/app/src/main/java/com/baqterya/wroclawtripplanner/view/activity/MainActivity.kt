@@ -41,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         binding.fabShowMap.setOnClickListener {
             navController.navigate(R.id.mapFragment)
         }
+        binding.textViewUserPlacesAndTrips.setOnClickListener {
+            navController.navigate(R.id.listPlacesTripsFragment)
+        }
     }
 
     fun swapFabVisibility(mode: String) {

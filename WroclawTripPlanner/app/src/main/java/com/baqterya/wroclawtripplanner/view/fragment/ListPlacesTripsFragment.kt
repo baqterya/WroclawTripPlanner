@@ -1,31 +1,33 @@
 package com.baqterya.wroclawtripplanner.view.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.baqterya.wroclawtripplanner.databinding.FragmentListFavouritesBinding
-import com.baqterya.wroclawtripplanner.utils.FavouritesViewPagerAdapter
+import com.baqterya.wroclawtripplanner.R
+import com.baqterya.wroclawtripplanner.databinding.FragmentListPlacesTripsBinding
+import com.baqterya.wroclawtripplanner.utils.UsersPlacesTripsViewPagerAdapter
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 
-class ListFavouritesFragment : Fragment() {
-    private var _binding: FragmentListFavouritesBinding? = null
+class ListPlacesTripsFragment : Fragment() {
+    private var _binding: FragmentListPlacesTripsBinding? = null
         private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListFavouritesBinding.inflate(inflater, container, false)
+        _binding = FragmentListPlacesTripsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewPager2 = binding.viewPager2Favourites
-        val adapter = FavouritesViewPagerAdapter(requireActivity())
+
+        val viewPager2 = binding.viewPager2UserPlacesTrips
+        val adapter = UsersPlacesTripsViewPagerAdapter(requireActivity())
         viewPager2.adapter = adapter
 
         viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
@@ -36,20 +38,20 @@ class ListFavouritesFragment : Fragment() {
             ) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 if (position == 0) {
-                    binding.fabToFavPlaces.visibility = View.INVISIBLE
-                    binding.fabToFavTrips.visibility = View.VISIBLE
+                    binding.fabToUserPlaces.visibility = View.INVISIBLE
+                    binding.fabToUserTrips.visibility = View.VISIBLE
                 } else {
-                    binding.fabToFavPlaces.visibility = View.VISIBLE
-                    binding.fabToFavTrips.visibility = View.INVISIBLE
+                    binding.fabToUserPlaces.visibility = View.VISIBLE
+                    binding.fabToUserTrips.visibility = View.INVISIBLE
                 }
             }
         })
 
-        binding.fabToFavTrips.setOnClickListener {
+        binding.fabToUserTrips.setOnClickListener {
             viewPager2.currentItem = 1
         }
 
-        binding.fabToFavPlaces.setOnClickListener {
+        binding.fabToUserPlaces.setOnClickListener {
             viewPager2.currentItem = 0
         }
 

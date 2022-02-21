@@ -7,10 +7,15 @@
         <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_map.xml" value="0.13020833333333334" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.32592592592592595" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_arrow_page.xml" value="0.292" />
+        <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_arrow_right.xml" value="0.3755" />
+        <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_edit_place.xml" value="0.3755" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_explore.xml" value="0.22" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_favourite.xml" value="0.167" />
+        <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_favourite_border.xml" value="0.3755" />
+        <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_logout.xml" value="0.3755" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_map_pin.xml" value="0.49444444444444446" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_place.xml" value="0.32592592592592595" />
+        <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_save.xml" value="0.3755" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_settings.xml" value="0.257" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_trip.xml" value="0.32592592592592595" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_twitter_login.xml" value="0.5615384615384615" />
@@ -24,6 +29,7 @@
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_add_place.xml" value="0.33" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_twitter_username_taken.xml" value="0.5" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_list_favourites.xml" value="0.25" />
+        <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_list_places_trips.xml" value="0.5541666666666667" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_login.xml" value="0.5541666666666667" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_login_with_email.xml" value="0.3307291666666667" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_map.xml" value="0.33" />
@@ -34,8 +40,10 @@
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_tags_bottom_sheet.xml" value="0.1" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_welcome.xml" value="0.33" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/recycler_view_item_place.xml" value="0.5" />
+        <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/recycler_view_item_user_place.xml" value="0.5541666666666667" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/view_pager_item_list_favourites.xml" value="0.5" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/view_pager_item_place.xml" value="0.33" />
+        <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/view_pager_item_user_places_trips.xml" value="0.5541666666666667" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5541666666666667" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/menu/top_bar_menu.xml" value="0.33" />
       </map>

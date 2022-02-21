@@ -60,6 +60,10 @@
     <string name="add_place_to_a_trip">ADD PLACE TO A TRIP</string>
     <string name="fav_list_prompt">YOUR FAVOURITE %s</string>
     <string name="switch_to_fav_places_fab">switch to fav places fab</string>
+    <string name="switch_to_user_places_fab">switch to user places fab</string>
+    <string name="users_list_prompt">YOUR %s</string>
+    <string name="edit_place">edit place</string>
+    <string name="place_likes_prompt">likes: %s</string>
 
 
 </resources>

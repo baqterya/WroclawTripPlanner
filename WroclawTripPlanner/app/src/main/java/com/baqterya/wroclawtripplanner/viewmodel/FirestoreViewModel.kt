@@ -252,10 +252,35 @@ class FirestoreViewModel {
                 .build()
 
             val favTripsQuery = db.collection("trips")
-                .whereArrayContains("placeFavUsersId", user.uid)
-                .whereEqualTo("placeIsPrivate", false)
+                .whereArrayContains("tripFavUsersId", user.uid)
+                .orderBy("tripLikes")
+                .orderBy("tripName")
+            val favTripsOptions = FirestoreRecyclerOptions.Builder<Trip>()
+                .setQuery(favTripsQuery, Trip::class.java)
+                .setLifecycleOwner(activity)
+                .build()
+
+            options = Pair(favPlacesOptions, favTripsOptions)
+        }
+        return options
+    }
+
+    fun getUsersPlacesTripsRecyclerOptions(activity: FragmentActivity): Pair<FirestoreRecyclerOptions<Place>, FirestoreRecyclerOptions<Trip>>? {
+        var options: Pair<FirestoreRecyclerOptions<Place>, FirestoreRecyclerOptions<Trip>>? = null
+        if (user != null) {
+            val favPlacesQuery = db.collection("places")
+                .whereEqualTo("placeOwnerId", user.uid)
                 .orderBy("placeLikes")
                 .orderBy("placeName")
+            val favPlacesOptions = FirestoreRecyclerOptions.Builder<Place>()
+                .setQuery(favPlacesQuery, Place::class.java)
+                .setLifecycleOwner(activity)
+                .build()
+
+            val favTripsQuery = db.collection("trips")
+                .whereEqualTo("tripOwnerId", user.uid)
+                .orderBy("tripLikes")
+                .orderBy("tripName")
             val favTripsOptions = FirestoreRecyclerOptions.Builder<Trip>()
                 .setQuery(favTripsQuery, Trip::class.java)
                 .setLifecycleOwner(activity)

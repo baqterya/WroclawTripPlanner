@@ -6,10 +6,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:id="@+id/text_view_fav_list"
+        android:id="@+id/text_view_user_places_trips_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/fav_list_prompt"
+        android:text="@string/users_list_prompt"
         android:textColor="@color/md_theme_light_onSecondary"
         android:layout_marginTop="10dp"
         android:textSize="22sp"
@@ -18,13 +18,13 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_favourites"
+        android:id="@+id/recycler_view_user_places_trips"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
-        tools:listitem="@layout/recycler_view_item_place"
-        app:layout_constraintTop_toBottomOf="@id/text_view_fav_list"
+        tools:listitem="@layout/recycler_view_item_user_place"
+        app:layout_constraintTop_toBottomOf="@id/text_view_user_places_trips_list"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

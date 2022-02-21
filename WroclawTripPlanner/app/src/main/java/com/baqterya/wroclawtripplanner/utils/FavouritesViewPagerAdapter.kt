@@ -7,10 +7,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemListFavouritesBinding
-import com.baqterya.wroclawtripplanner.model.Place
-import com.baqterya.wroclawtripplanner.model.Trip
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class FavouritesViewPagerAdapter(private val activity: FragmentActivity) : RecyclerView.Adapter<FavouritesViewPagerAdapter.FavouritesViewPagerViewHolder>(){
     private val firestoreViewModel = FirestoreViewModel()
@@ -26,7 +23,6 @@ class FavouritesViewPagerAdapter(private val activity: FragmentActivity) : Recyc
         return FavouritesViewPagerViewHolder(view)
     }
 
-    @Suppress("Unchecked cast")
     override fun onBindViewHolder(holder: FavouritesViewPagerViewHolder, position: Int) {
 
         var favType = ""
