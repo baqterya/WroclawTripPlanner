@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.baqterya.wroclawtripplanner.databinding.FragmentListFavouritesBinding
 import com.baqterya.wroclawtripplanner.utils.FavouritesViewPagerAdapter
+import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 
 class ListFavouritesFragment : Fragment() {
     private var _binding: FragmentListFavouritesBinding? = null
@@ -25,9 +26,8 @@ class ListFavouritesFragment : Fragment() {
         val viewPager2 = binding.viewPager2Favourites
         val adapter = FavouritesViewPagerAdapter(requireActivity())
         viewPager2.adapter = adapter
+
+        (requireActivity() as MainActivity).swapFabVisibility("disable")
     }
 
-    companion object {
-
-    }
 }

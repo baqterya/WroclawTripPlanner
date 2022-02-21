@@ -21,6 +21,7 @@ import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.utils.bitmapDescriptorFromVector
 import com.baqterya.wroclawtripplanner.utils.createLocationRequest
 import com.baqterya.wroclawtripplanner.utils.inputCheck
+import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.PlaceBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
@@ -159,6 +160,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             .setOnClickListener {
                 showAddPlaceDialog()
             }
+        (requireActivity() as MainActivity).swapFabVisibility("enable")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

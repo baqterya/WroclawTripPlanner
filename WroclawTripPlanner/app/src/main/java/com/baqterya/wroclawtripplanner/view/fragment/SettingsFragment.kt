@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.baqterya.wroclawtripplanner.databinding.FragmentSettingsBinding
 import com.baqterya.wroclawtripplanner.utils.inputCheck
 import com.baqterya.wroclawtripplanner.view.activity.LoginActivity
+import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -55,6 +56,8 @@ class SettingsFragment : Fragment() {
                 }
                 .show()
         }
+
+        (requireActivity() as MainActivity).swapFabVisibility("disable")
     }
 
     private fun userLogout() {

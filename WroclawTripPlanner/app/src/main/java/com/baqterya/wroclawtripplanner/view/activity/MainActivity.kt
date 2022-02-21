@@ -34,19 +34,16 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.main_fragment_container)
         binding.textViewSettings.setOnClickListener {
             navController.navigate(R.id.settingsFragment)
-            swapFabVisibility("disable")
         }
         binding.textViewFavourites.setOnClickListener {
             navController.navigate(R.id.listFavouritesFragment)
-            swapFabVisibility("disable")
         }
         binding.fabShowMap.setOnClickListener {
             navController.navigate(R.id.mapFragment)
-            swapFabVisibility("enable")
         }
     }
 
-    private fun swapFabVisibility(mode: String) {
+    fun swapFabVisibility(mode: String) {
         when (mode) {
             "disable" -> {
                 imageViewCenterPin.visibility = View.INVISIBLE
