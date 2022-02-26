@@ -93,17 +93,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     ))
                     refreshMapMarkers()
                 }
-//                val bundle = this.arguments
-//                if (bundle != null) {
-//                    val latLng = bundle.getDoubleArray("latLng")!!
-//                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-//                            LatLng(latLng[0], latLng[1]),
-//                            DEFAULT_ZOOM
-//                        ))
-//                    refreshMapMarkers()
-//                } else {
-//
-//                }
+
             }
             .addOnFailureListener { exception ->
                 if (exception is ResolvableApiException) {
@@ -272,7 +262,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             placeLongitude = map.cameraPosition.target.longitude,
         )
 
-        val dialogChips = dialog.findViewById<ChipGroup>(R.id.chip_group_place_category_picker)
+        val dialogChips = dialog.findViewById<ChipGroup>(R.id.chip_group_place_add_category_picker)
 
         for (dialogChip in dialogChips.iterator()) {
             dialog.findViewById<Chip>(dialogChip.id).setOnCheckedChangeListener { chip, isChecked ->
@@ -285,8 +275,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
 
         dialog.findViewById<Button>(R.id.button_add_place).setOnClickListener {
-            val placeName = dialog.findViewById<EditText>(R.id.edit_text_add_place_name).text.toString()
-            val placeDescription = dialog.findViewById<EditText>(R.id.edit_text_add_place_description).text.toString()
+            val placeName = dialog.findViewById<EditText>(R.id.add_text_add_place_name).text.toString()
+            val placeDescription = dialog.findViewById<EditText>(R.id.add_text_add_place_description).text.toString()
             val placeIsPrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_add_place_is_private).isChecked
 
             val isCategoryPicked = dialogChips.checkedChipIds.isNotEmpty()

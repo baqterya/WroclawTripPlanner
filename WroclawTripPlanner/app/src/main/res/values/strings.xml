@@ -64,6 +64,8 @@
     <string name="users_list_prompt">YOUR %s</string>
     <string name="edit_place">edit place</string>
     <string name="place_likes_prompt">likes: %s</string>
+    <string name="edit_place_prompt">Edit %s</string>
+    <string name="save">SAVE</string>
 
 
 </resources>

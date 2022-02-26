@@ -291,4 +291,22 @@ class FirestoreViewModel {
         return options
     }
 
+    fun editPlaceSetCategoryChips(currentPlace: Place, dialogChips: ChipGroup) {
+        db.collection("places").document(currentPlace.placeId!!)
+            .get()
+            .addOnSuccessListener {
+                val place = it.toObject(Place::class.java)!!
+                for (chip in dialogChips) {
+                    if ((chip as Chip).text in place.placeCategories) {
+                        chip.isChecked = true
+                    }
+                }
+            }
+    }
+
+    fun editPlace(currentPlace: Place) {
+        db.collection("places").document(currentPlace.placeId!!)
+            .set(currentPlace)
+    }
+
 }

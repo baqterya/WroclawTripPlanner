@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_add_place.xml" value="0.25416666666666665" />
+        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_edit_place.xml" value="0.25416666666666665" />
         <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_map.xml" value="0.13020833333333334" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.32592592592592595" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_arrow_page.xml" value="0.292" />
