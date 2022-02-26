@@ -309,4 +309,23 @@ class FirestoreViewModel {
             .set(currentPlace)
     }
 
+    fun addTripToFirestore(currentPlaceId: String, newTrip: Trip) {
+        db.collection("users").whereEqualTo("userId", user?.uid)
+            .get()
+            .addOnSuccessListener {
+                for (user in it) {
+                    newTrip.tripOwnerId = user["userId"] as String
+                    newTrip.tripOwnerName = user["userName"] as String
+                    newTrip.tripPlaceIdList.add(currentPlaceId)
+                    db.collection("trips")
+                        .add(newTrip)
+                        .addOnSuccessListener { trip ->
+                            db.collection("trips").document(trip.id)
+                                .update("tripId", trip.id)
+                        }
+
+                }
+            }
+    }
+
 }

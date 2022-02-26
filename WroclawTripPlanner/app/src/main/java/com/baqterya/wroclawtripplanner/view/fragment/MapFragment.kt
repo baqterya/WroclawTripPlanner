@@ -275,8 +275,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
 
         dialog.findViewById<Button>(R.id.button_add_place).setOnClickListener {
-            val placeName = dialog.findViewById<EditText>(R.id.add_text_add_place_name).text.toString()
-            val placeDescription = dialog.findViewById<EditText>(R.id.add_text_add_place_description).text.toString()
+            val placeName = dialog.findViewById<EditText>(R.id.edit_text_add_place_name).text.toString()
+            val placeDescription = dialog.findViewById<EditText>(R.id.edit_text_add_place_description).text.toString()
             val placeIsPrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_add_place_is_private).isChecked
 
             val isCategoryPicked = dialogChips.checkedChipIds.isNotEmpty()

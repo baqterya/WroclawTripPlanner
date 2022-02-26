@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_add_new_trip.xml" value="0.2" />
         <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_add_place.xml" value="0.25416666666666665" />
         <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_edit_place.xml" value="0.25416666666666665" />
+        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_trip_action_picker.xml" value="0.25416666666666665" />
+        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/dialog_twitter_username_taken.xml" value="0.25416666666666665" />
         <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/fragment_map.xml" value="0.13020833333333334" />
+        <entry key="..\:/projekty/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/layout/view_pager_item_place.xml" value="0.25416666666666665" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_add.xml" value="0.32592592592592595" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_arrow_page.xml" value="0.292" />
         <entry key="..\:/projekty/android/kotlin/WroclawTripPlanner/WroclawTripPlanner/app/src/main/res/drawable-anydpi/ic_arrow_right.xml" value="0.3755" />

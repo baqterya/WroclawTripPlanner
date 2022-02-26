@@ -1,19 +1,24 @@
 package com.baqterya.wroclawtripplanner.utils
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
+import android.widget.*
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
+import com.baqterya.wroclawtripplanner.model.Trip
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
+import com.firebase.geofire.GeoFireUtils
+import com.firebase.geofire.GeoLocation
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
@@ -55,6 +60,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
         }
 
         holder.binding.textViewPlaceDescription.text = currentPlace.placeDescription
+
+        holder.binding.buttonAddPlaceToTrip.setOnClickListener {
+            showAddPlaceToTripDialog(currentPlace, holder.itemView.context)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -101,5 +110,52 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
 
             firestoreViewModel.updatePlaceTags(currentPlace, tags, tagsToRemove, chipGroup)
         }
+    }
+
+    private fun showAddPlaceToTripDialog(currentPlace: Place, context: Context) {
+        val dialog = MaterialDialog(context)
+            .noAutoDismiss()
+            .customView(R.layout.dialog_trip_action_picker)
+
+        dialog.findViewById<Button>(R.id.button_add_to_new_trip).setOnClickListener {
+            showAddNewTripDialog(currentPlace, context)
+            dialog.dismiss()
+        }
+
+        dialog.findViewById<Button>(R.id.button_add_to_existing_trip).setOnClickListener {
+            showTripListDialog(currentPlace, context)
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
+    private fun showAddNewTripDialog(currentPlace: Place, context: Context) {
+        val dialog = MaterialDialog(context)
+            .noAutoDismiss()
+            .customView(R.layout.dialog_add_new_trip)
+
+        val newTrip = Trip()
+
+        dialog.findViewById<Button>(R.id.button_add_trip).setOnClickListener {
+            val tripName = dialog.findViewById<EditText>(R.id.edit_text_add_trip_name).text.toString()
+            val tripDescription = dialog.findViewById<EditText>(R.id.edit_text_add_trip_description).text.toString()
+
+            if (inputCheck(tripName) && inputCheck(tripDescription)) {
+
+                newTrip.tripName = tripName
+                newTrip.tripDescription = tripDescription
+
+                firestoreViewModel.addTripToFirestore(currentPlace.placeId!!, newTrip)
+                dialog.dismiss()
+            } else {
+                Toast.makeText(context, "Please fill all fields.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        dialog.show()
+    }
+
+    private fun showTripListDialog(currentPlace: Place, context: Context) {
+
     }
 }
