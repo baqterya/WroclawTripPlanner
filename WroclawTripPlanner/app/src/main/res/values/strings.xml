@@ -31,7 +31,7 @@
     <string name="log_in">LOG IN</string>
     <string name="place_description_placeholder">DESCRIPTION PLACEHOLDER</string>
     <string name="created_by_placeholder">created by: %s</string>
-    <string name="place_name_placeholder">NAME PLACEHOLDER</string>
+    <string name="name_placeholder">NAME PLACEHOLDER</string>
     <string name="settings">Settings</string>
     <string name="log_out">LOG OUT</string>
     <string name="favourites">Favourites</string>
@@ -71,6 +71,9 @@
     <string name="create_new_trip_prompt">Create a new Trip</string>
     <string name="trip_name_hint">trip name</string>
     <string name="trip_description_hint">trip description</string>
+    <string name="choose_a_trip">Choose a Trip</string>
+    <string name="add_to_trip_content_description">add to trip content description</string>
+    <string name="close_trip_picker">close trip picker</string>
 
 
 </resources>

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.view.get
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -15,14 +16,13 @@ import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
 import com.baqterya.wroclawtripplanner.model.Trip
+import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
-import com.firebase.geofire.GeoFireUtils
-import com.firebase.geofire.GeoLocation
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 
-class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>(){
+class PlaceViewPagerAdapter(private val places: List<Place>, private val activity: FragmentActivity) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>(){
     private val firestoreViewModel = FirestoreViewModel()
 
     class PlaceViewPagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -156,6 +156,23 @@ class PlaceViewPagerAdapter(private val places: List<Place>) : RecyclerView.Adap
     }
 
     private fun showTripListDialog(currentPlace: Place, context: Context) {
+        val dialog = MaterialDialog(context)
+            .noAutoDismiss()
+            .customView(R.layout.dialog_list_user_trips)
 
+        val dialogRecyclerView = dialog.findViewById<RecyclerView>(R.id.recycler_view_choose_a_trip)
+
+        val options = firestoreViewModel.getUserTripOptions(activity)
+        if (options != null) {
+            val adapter = UserTripPickerRecyclerViewAdapter(options, currentPlace, dialog)
+
+            dialogRecyclerView.adapter = adapter
+            dialogRecyclerView.layoutManager = WrapperLinearLayoutManager(activity)
+        }
+        dialog.findViewById<ImageButton>(R.id.image_button_close_trip_picker).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

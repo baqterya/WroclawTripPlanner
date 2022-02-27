@@ -320,7 +320,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         }
                     }
                 }
-                val bottomSheetWrapper = PlaceBottomSheetWrapper(requireView(), places, idx)
+                val bottomSheetWrapper = PlaceBottomSheetWrapper(requireView(), places, idx, requireActivity())
                 bottomSheetWrapper.createPlaceBottomSheet()
                 bottomSheetWrapper.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
                     override fun onPageScrolled(

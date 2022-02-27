@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="@string/place_name_placeholder"
+        android:text="@string/name_placeholder"
         android:layout_marginTop="15dp"
         android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"

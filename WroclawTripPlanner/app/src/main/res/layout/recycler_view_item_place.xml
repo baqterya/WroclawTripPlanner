@@ -23,7 +23,7 @@
             android:textSize="20sp"
             android:layout_margin="10dp"
             android:textColor="@color/md_theme_light_onSecondary"
-            android:text="@string/place_name_placeholder"
+            android:text="@string/name_placeholder"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 

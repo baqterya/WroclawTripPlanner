@@ -7,10 +7,12 @@ import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
 import androidx.fragment.app.FragmentActivity
+import com.afollestad.materialdialogs.MaterialDialog
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
 import com.baqterya.wroclawtripplanner.model.Trip
+import com.baqterya.wroclawtripplanner.utils.UserTripPickerRecyclerViewAdapter
 import com.firebase.geofire.GeoQueryBounds
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
@@ -305,6 +307,7 @@ class FirestoreViewModel {
     }
 
     fun editPlace(currentPlace: Place) {
+        currentPlace.placeCategories = currentPlace.placeCategories.distinct() as ArrayList<String>
         db.collection("places").document(currentPlace.placeId!!)
             .set(currentPlace)
     }
@@ -326,6 +329,28 @@ class FirestoreViewModel {
 
                 }
             }
+    }
+
+    fun getUserTripOptions(activity: FragmentActivity): FirestoreRecyclerOptions<Trip>? {
+        var options: FirestoreRecyclerOptions<Trip>? = null
+        if (user != null) {
+            val userTripsQuery = db.collection("trips")
+                .whereEqualTo("tripOwnerId", user.uid)
+                .orderBy("tripLikes")
+                .orderBy("tripName")
+            options =  FirestoreRecyclerOptions.Builder<Trip>()
+                .setQuery(userTripsQuery, Trip::class.java)
+                .setLifecycleOwner(activity)
+                .build()
+        }
+        return options
+    }
+
+    fun addPlaceToTrip(currentPlace: Place, currentTrip: Trip) {
+        if (currentPlace.placeId !in currentTrip.tripPlaceIdList) {
+            db.collection("trips").document(currentTrip.tripId!!)
+                .update("tripPlaceIdList", FieldValue.arrayUnion(currentPlace.placeId!!))
+        }
     }
 
 }
