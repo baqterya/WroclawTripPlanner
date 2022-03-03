@@ -211,7 +211,7 @@ class FirestoreViewModel {
                     .addOnSuccessListener {
                         updateTripLikesCounter(currentTrip, favCounter)
                     }
-                favButton.setImageResource(R.drawable.ic_favourite_border)
+                favButton.setImageResource(R.drawable.ic_favourite)
             }
         }
     }
