@@ -16,7 +16,6 @@ import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
 import com.baqterya.wroclawtripplanner.model.Trip
-import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.google.android.material.chip.Chip
@@ -41,7 +40,7 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         holder.binding.textViewPlaceOwner.text = String.format(ownerString, currentPlace.placeOwnerName)
 
         firestoreViewModel.isPlaceFav(currentPlace, holder.binding.imageButtonAddPlaceToFav)
-        firestoreViewModel.updateLikesCounter(currentPlace, holder.binding.textViewLikeCounter)
+        firestoreViewModel.updatePlaceLikesCounter(currentPlace, holder.binding.textViewLikeCounter)
         holder.binding.imageButtonAddPlaceToFav.setOnClickListener {
             updatePlaceIsFav(currentPlace, it as ImageButton, holder.binding.textViewLikeCounter)
         }

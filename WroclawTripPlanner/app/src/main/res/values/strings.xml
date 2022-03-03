@@ -74,6 +74,9 @@
     <string name="choose_a_trip">Choose a Trip</string>
     <string name="add_to_trip_content_description">add to trip content description</string>
     <string name="close_trip_picker">close trip picker</string>
+    <string name="trip_list_prompt">COMMUNITY TRIPS</string>
+    <string name="expand_trip_description">expand trip description</string>
+    <string name="description_prompt">Description:</string>
 
 
 </resources>

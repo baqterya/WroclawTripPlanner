@@ -1,0 +1,111 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view_fav_trip"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    app:cardCornerRadius="4dp"
+    app:cardBackgroundColor="@color/md_theme_light_secondary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_view_trip_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="10dp"
+            android:textColor="@color/md_theme_light_onSecondary"
+            android:text="@string/name_placeholder"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/text_view_like_counter_trip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="@string/like_counter_placeholder"
+            android:textColor="@color/md_theme_light_onSecondary"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/image_button_add_trip_to_fav"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="@id/image_button_add_trip_to_fav"
+            app:layout_constraintTop_toBottomOf="@id/image_button_add_trip_to_fav" />
+
+        <ImageButton
+            android:id="@+id/image_button_add_trip_to_fav"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/fui_transparent"
+            android:contentDescription="@string/add_place_to_favourites"
+            android:src="@drawable/ic_favourite_border"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_trip_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_view_trip_name" />
+
+        <TextView
+            android:id="@+id/text_view_trip_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/md_theme_light_onSecondary"
+            android:text="@string/created_by_placeholder"
+            app:layout_constraintStart_toStartOf="@id/text_view_trip_name"
+            app:layout_constraintTop_toBottomOf="@id/text_view_trip_name"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expandable_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="10dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_trip_author">
+
+            <TextView
+                android:id="@+id/text_view_description_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/description_prompt"
+                android:textSize="16sp"
+                android:textColor="@color/md_theme_light_onSecondary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_view_trip_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="150dp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                app:layout_constraintTop_toBottomOf="@id/text_view_description_prompt"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageButton
+            android:id="@+id/image_button_expand_description_trip"
+            android:layout_width="match_parent"
+            android:layout_height="31dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
+            android:backgroundTint="@color/md_theme_dark_primary"
+            android:contentDescription="@string/add_place_to_favourites"
+            android:src="@drawable/ic_expand_more"
+            app:layout_constraintTop_toBottomOf="@id/expandable_view"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

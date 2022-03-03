@@ -44,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         binding.textViewUserPlacesAndTrips.setOnClickListener {
             navController.navigate(R.id.listPlacesTripsFragment)
         }
+        binding.textViewTopTrips.setOnClickListener {
+            navController.navigate(R.id.listAllTripsFragment)
+        }
     }
 
     fun swapFabVisibility(mode: String) {

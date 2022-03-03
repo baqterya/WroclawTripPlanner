@@ -7,12 +7,10 @@ import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
 import androidx.fragment.app.FragmentActivity
-import com.afollestad.materialdialogs.MaterialDialog
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
 import com.baqterya.wroclawtripplanner.model.Trip
-import com.baqterya.wroclawtripplanner.utils.UserTripPickerRecyclerViewAdapter
 import com.firebase.geofire.GeoQueryBounds
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.Task
@@ -173,7 +171,7 @@ class FirestoreViewModel {
                 db.collection("places").document(currentPlace.placeId!!)
                     .update("placeFavUsersId", FieldValue.arrayRemove(user.uid))
                     .addOnSuccessListener {
-                        updateLikesCounter(currentPlace, favCounter)
+                        updatePlaceLikesCounter(currentPlace, favCounter)
                     }
                 favButton.setImageResource(R.drawable.ic_favourite_border)
             } else {
@@ -183,14 +181,51 @@ class FirestoreViewModel {
                 db.collection("places").document(currentPlace.placeId!!)
                     .update("placeFavUsersId", FieldValue.arrayUnion(user.uid))
                     .addOnSuccessListener {
-                        updateLikesCounter(currentPlace, favCounter)
+                        updatePlaceLikesCounter(currentPlace, favCounter)
                     }
                 favButton.setImageResource(R.drawable.ic_favourite)
             }
         }
     }
 
-    fun updateLikesCounter(currentPlace: Place, favCounter: TextView) {
+    fun updateTripIsFav(currentTrip: Trip, favButton: ImageButton, favCounter: TextView) {
+        if (user != null) {
+            favButton.scaleX = 1.1F
+            favButton.scaleY = 1.1F
+            if (user.uid in currentTrip.tripFavUsersId) {
+                currentTrip.tripFavUsersId.remove(user.uid)
+                db.collection("trips").document(currentTrip.tripId!!)
+                    .update("tripLikes", FieldValue.increment(-1))
+                db.collection("trips").document(currentTrip.tripId!!)
+                    .update("tripFavUsersId", FieldValue.arrayRemove(user.uid))
+                    .addOnSuccessListener {
+                        updateTripLikesCounter(currentTrip, favCounter)
+                    }
+                favButton.setImageResource(R.drawable.ic_favourite_border)
+            } else {
+                currentTrip.tripFavUsersId.remove(user.uid)
+                db.collection("trips").document(currentTrip.tripId!!)
+                    .update("tripLikes", FieldValue.increment(1))
+                db.collection("trips").document(currentTrip.tripId!!)
+                    .update("tripFavUsersId", FieldValue.arrayUnion(user.uid))
+                    .addOnSuccessListener {
+                        updateTripLikesCounter(currentTrip, favCounter)
+                    }
+                favButton.setImageResource(R.drawable.ic_favourite_border)
+            }
+        }
+    }
+
+    fun updateTripLikesCounter(currentTrip: Trip, favCounter: TextView) {
+        db.collection("trips").document(currentTrip.tripId!!)
+            .get()
+            .addOnSuccessListener {
+                val likes = it["tripLikes"] as Long
+                favCounter.text = likes.toString()
+            }
+    }
+
+    fun updatePlaceLikesCounter(currentPlace: Place, favCounter: TextView) {
         db.collection("places").document(currentPlace.placeId!!)
             .get()
             .addOnSuccessListener {
@@ -329,6 +364,20 @@ class FirestoreViewModel {
 
                 }
             }
+    }
+
+    fun getAllTripsOptions(activity: FragmentActivity): FirestoreRecyclerOptions<Trip>? {
+        var options: FirestoreRecyclerOptions<Trip>? = null
+        if (user != null) {
+            val userTripsQuery = db.collection("trips")
+                .orderBy("tripLikes")
+                .orderBy("tripName")
+            options =  FirestoreRecyclerOptions.Builder<Trip>()
+                .setQuery(userTripsQuery, Trip::class.java)
+                .setLifecycleOwner(activity)
+                .build()
+        }
+        return options
     }
 
     fun getUserTripOptions(activity: FragmentActivity): FirestoreRecyclerOptions<Trip>? {
