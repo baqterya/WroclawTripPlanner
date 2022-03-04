@@ -216,7 +216,7 @@ class FirestoreViewModel {
         }
     }
 
-    fun updateTripLikesCounter(currentTrip: Trip, favCounter: TextView) {
+    private fun updateTripLikesCounter(currentTrip: Trip, favCounter: TextView) {
         db.collection("trips").document(currentTrip.tripId!!)
             .get()
             .addOnSuccessListener {
