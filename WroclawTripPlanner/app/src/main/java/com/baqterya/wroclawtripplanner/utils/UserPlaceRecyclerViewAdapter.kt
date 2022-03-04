@@ -9,12 +9,17 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.iterator
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.RecyclerViewItemUserPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
+import com.baqterya.wroclawtripplanner.view.activity.MainActivity
+import com.baqterya.wroclawtripplanner.view.fragment.ListFavouritesFragmentDirections
+import com.baqterya.wroclawtripplanner.view.fragment.ListPlacesTripsFragmentDirections
+import com.baqterya.wroclawtripplanner.view.fragment.TripDetailsFragmentDirections
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -48,7 +53,10 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
         }
 
         holder.binding.cardViewUserPlace.setOnClickListener {
-
+            (holder.itemView.context as MainActivity).imageViewCenterPin.visibility = View.VISIBLE
+            val latLng = currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
+            val action = ListPlacesTripsFragmentDirections.actionListPlacesTripsFragmentToMapFragment(latLng)
+            holder.itemView.findNavController().navigate(action)
         }
     }
 
