@@ -30,7 +30,7 @@
     <string name="login_screen_prompt">LOGIN WITH EMAIL</string>
     <string name="log_in">LOG IN</string>
     <string name="place_description_placeholder">DESCRIPTION PLACEHOLDER</string>
-    <string name="created_by_placeholder">created by: %s</string>
+    <string name="created_by_placeholder">Created by: %s</string>
     <string name="name_placeholder">NAME PLACEHOLDER</string>
     <string name="settings">Settings</string>
     <string name="log_out">LOG OUT</string>
@@ -77,6 +77,9 @@
     <string name="trip_list_prompt">COMMUNITY TRIPS</string>
     <string name="expand_trip_description">expand trip description</string>
     <string name="description_prompt">Description:</string>
+    <string name="trip_places_prompt">Places:</string>
+    <string name="content_desc_the_way">show the way of the trip</string>
+    <string name="content_desc_show_trip_s_place_on_the_map">show trip\'s place on the map</string>
 
 
 </resources>

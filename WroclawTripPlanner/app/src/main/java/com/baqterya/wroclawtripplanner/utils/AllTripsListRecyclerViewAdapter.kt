@@ -5,10 +5,12 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.RecyclerViewItemTripBinding
 import com.baqterya.wroclawtripplanner.model.Trip
+import com.baqterya.wroclawtripplanner.view.fragment.ListAllTripsFragmentDirections
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -33,7 +35,8 @@ class AllTripsListRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) :
         holder.binding.textViewTripName.text = currentTrip.tripName
         holder.binding.textViewTripDescription.text = currentTrip.tripDescription
         holder.binding.textViewLikeCounterTrip.text = currentTrip.tripLikes.toString()
-        holder.binding.textViewTripAuthor.text = currentTrip.tripOwnerName
+        val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
+        holder.binding.textViewTripAuthor.text = String.format(ownerString, currentTrip.tripOwnerName)
 
         holder.binding.imageButtonAddTripToFav.setOnClickListener {
             firestoreViewModel.updateTripIsFav(
@@ -44,7 +47,7 @@ class AllTripsListRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) :
         }
 
         val expandableView = holder.binding.expandableView
-        val cardView = holder.binding.cardViewFavTrip
+        val cardView = holder.binding.cardViewTrip
         val buttonExpand = holder.binding.imageButtonExpandDescriptionTrip
 
         holder.binding.imageButtonExpandDescriptionTrip.setOnClickListener {
@@ -57,6 +60,12 @@ class AllTripsListRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) :
                 expandableView.visibility = View.GONE
                 buttonExpand.setImageResource(R.drawable.ic_expand_more)
             }
+        }
+
+        cardView.setOnClickListener {
+            val action = ListAllTripsFragmentDirections
+                .actionListAllTripsFragmentToTripDetailsFragment(currentTrip)
+            holder.itemView.findNavController().navigate(action)
         }
     }
 }

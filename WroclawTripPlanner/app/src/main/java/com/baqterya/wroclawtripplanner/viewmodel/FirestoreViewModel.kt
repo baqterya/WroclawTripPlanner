@@ -402,4 +402,17 @@ class FirestoreViewModel {
         }
     }
 
+    fun getTripPlacesOptions(activity: FragmentActivity, currentTrip: Trip): FirestoreRecyclerOptions<Place>? {
+        var options: FirestoreRecyclerOptions<Place>? = null
+        if (user != null) {
+            val tripPlaceQuery = db.collection("places")
+                .whereIn("placeId", currentTrip.tripPlaceIdList)
+            options =  FirestoreRecyclerOptions.Builder<Place>()
+                .setQuery(tripPlaceQuery, Place::class.java)
+                .setLifecycleOwner(activity)
+                .build()
+        }
+        return options
+    }
+
 }
