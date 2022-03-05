@@ -10,6 +10,7 @@ data class Trip(
     var tripDescription: String? = null,
     var tripOwnerId: String? = null,
     var tripOwnerName: String? = null,
+    var tripIsPrivate: Boolean = false,
     var tripPlaceIdList: ArrayList<String> = arrayListOf(),
     var tripFavUsersId: ArrayList<String> = arrayListOf(),
     var tripLikes: Int = 0,

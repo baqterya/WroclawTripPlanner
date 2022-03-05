@@ -20,6 +20,7 @@ import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWra
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.switchmaterial.SwitchMaterial
 
 class PlaceViewPagerAdapter(private val places: List<Place>, private val activity: FragmentActivity) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>(){
     private val firestoreViewModel = FirestoreViewModel()
@@ -147,11 +148,12 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         dialog.findViewById<Button>(R.id.button_add_trip).setOnClickListener {
             val tripName = dialog.findViewById<EditText>(R.id.edit_text_add_trip_name).text.toString()
             val tripDescription = dialog.findViewById<EditText>(R.id.edit_text_add_trip_description).text.toString()
+            val tripIsPrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_is_trip_private)
 
             if (inputCheck(tripName) && inputCheck(tripDescription)) {
-
                 newTrip.tripName = tripName
                 newTrip.tripDescription = tripDescription
+                newTrip.tripIsPrivate = tripIsPrivate.isChecked
 
                 firestoreViewModel.addTripToFirestore(currentPlace.placeId!!, newTrip)
                 dialog.dismiss()
