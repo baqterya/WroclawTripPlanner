@@ -55,7 +55,7 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
         holder.binding.cardViewUserPlace.setOnClickListener {
             (holder.itemView.context as MainActivity).imageViewCenterPin.visibility = View.VISIBLE
             val latLng = currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
-            val action = ListPlacesTripsFragmentDirections.actionListPlacesTripsFragmentToMapFragment(latLng)
+            val action = ListPlacesTripsFragmentDirections.actionListPlacesTripsFragmentToMapFragment(latLng, currentPlace.placeId)
             holder.itemView.findNavController().navigate(action)
         }
     }

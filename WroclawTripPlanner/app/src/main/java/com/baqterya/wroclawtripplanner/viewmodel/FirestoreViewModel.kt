@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -246,6 +247,11 @@ class FirestoreViewModel {
         return tasks
     }
 
+    fun getPlace(placeId: String): Task<DocumentSnapshot> {
+        val query = db.collection("places").document(placeId)
+        return query.get()
+    }
+
     fun changeUsername(newUserName: String) {
         if (user != null) {
             db.collection("users").document(user.uid)
@@ -414,5 +420,4 @@ class FirestoreViewModel {
         }
         return options
     }
-
 }

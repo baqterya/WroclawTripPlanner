@@ -27,6 +27,11 @@
         <action
             android:id="@+id/action_mapFragment_to_listAllTripsFragment"
             app:destination="@id/listAllTripsFragment" />
+        <argument
+            android:name="placeId"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

@@ -76,24 +76,23 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val builder = LocationSettingsRequest.Builder()
             .addLocationRequest(locationRequest)
 
-
         val settingsClient = LocationServices.getSettingsClient(requireActivity())
         settingsClient.checkLocationSettings(builder.build())
             .addOnSuccessListener {
                 val latLng = args.latLng
+                val placeId = args.placeId
                 if (latLng == null) {
                     getDeviceLocation()
                 } else {
                     val latLngList = latLng.split(",")
-                    val lat = latLngList[0].toDouble()
-                    val lng = latLngList[1].toDouble()
+                    val cameraLatLng = LatLng(latLngList[0].toDouble(), latLngList[1].toDouble())
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                            LatLng(lat, lng),
-                            DEFAULT_ZOOM
+                        cameraLatLng,
+                        DEFAULT_ZOOM
                     ))
-                    refreshMapMarkers()
+                    if (placeId != null)
+                        refreshOneMarker(placeId)
                 }
-
             }
             .addOnFailureListener { exception ->
                 if (exception is ResolvableApiException) {
@@ -224,6 +223,21 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 .position(LatLng(newPlace.placeLatitude!!, newPlace.placeLongitude!!))
                 .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
         )
+    }
+
+    private fun refreshOneMarker(placeId: String) {
+        map.clear()
+        val query = firestoreViewModel.getPlace(placeId)
+        query.addOnSuccessListener {
+            val place = it.toObject(Place::class.java)!!
+            map.addMarker(
+                MarkerOptions()
+                    .title(place.placeName)
+                    .position(LatLng(place.placeLatitude!!, place.placeLongitude!!))
+                    .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
+            )?.showInfoWindow()
+        }
+
     }
 
     private fun refreshMapMarkers(category: String? = null) {

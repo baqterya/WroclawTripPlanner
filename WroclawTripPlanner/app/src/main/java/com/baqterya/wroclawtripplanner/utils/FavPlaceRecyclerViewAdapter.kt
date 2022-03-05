@@ -48,7 +48,7 @@ class FavPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : Fi
         holder.binding.cardViewFavPlace.setOnClickListener {
             (holder.itemView.context as MainActivity).imageViewCenterPin.visibility = View.VISIBLE
             val latLng = currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
-            val action = ListFavouritesFragmentDirections.actionListFavouritesFragmentToMapFragment(latLng)
+            val action = ListFavouritesFragmentDirections.actionListFavouritesFragmentToMapFragment(latLng, currentPlace.placeId)
             holder.itemView.findNavController().navigate(action)
         }
     }

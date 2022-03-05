@@ -33,7 +33,7 @@ class TripPlacesRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : 
         holder.binding.cardViewTripPlace.setOnClickListener {
             (holder.itemView.context as MainActivity).imageViewCenterPin.visibility = View.VISIBLE
             val latLng = currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
-            val action = TripDetailsFragmentDirections.actionTripDetailsFragmentToMapFragment(latLng)
+            val action = TripDetailsFragmentDirections.actionTripDetailsFragmentToMapFragment(latLng, currentPlace.placeId)
             holder.itemView.findNavController().navigate(action)
         }
     }
