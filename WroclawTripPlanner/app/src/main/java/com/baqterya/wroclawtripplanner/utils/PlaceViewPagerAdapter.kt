@@ -178,9 +178,6 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
             dialogRecyclerView.adapter = adapter
             dialogRecyclerView.layoutManager = WrapperLinearLayoutManager(activity)
         }
-        dialog.findViewById<ImageButton>(R.id.image_button_close_trip_picker).setOnClickListener {
-            dialog.dismiss()
-        }
 
         dialog.show()
     }

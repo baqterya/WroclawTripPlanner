@@ -17,9 +17,7 @@ import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.RecyclerViewItemUserPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
-import com.baqterya.wroclawtripplanner.view.fragment.ListFavouritesFragmentDirections
 import com.baqterya.wroclawtripplanner.view.fragment.ListPlacesTripsFragmentDirections
-import com.baqterya.wroclawtripplanner.view.fragment.TripDetailsFragmentDirections
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -71,7 +69,7 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
         val switchIsPlacePrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_edit_place_is_private)
         val dialogChips = dialog.findViewById<ChipGroup>(R.id.chip_group_place_edit_category_picker)
 
-        val ownerString = context.getString(R.string.edit_place_prompt)
+        val ownerString = context.getString(R.string.edit_prompt)
         textViewEditPrompt.text = String.format(ownerString, currentPlace.placeName)
 
         editTextPlaceName.setText(currentPlace.placeName)

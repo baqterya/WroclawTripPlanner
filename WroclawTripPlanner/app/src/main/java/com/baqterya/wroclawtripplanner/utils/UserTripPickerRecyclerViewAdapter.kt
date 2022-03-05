@@ -3,6 +3,7 @@ package com.baqterya.wroclawtripplanner.utils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.baqterya.wroclawtripplanner.R
@@ -32,10 +33,18 @@ class UserTripPickerRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: TripPickerViewHolder, position: Int, currentTrip: Trip) {
+        val firestoreViewModel = FirestoreViewModel()
         holder.binding.textViewTripNamePicker.text = currentTrip.tripName
         holder.binding.imageButtonAddToTrip.setOnClickListener {
-            val firestoreViewModel = FirestoreViewModel()
             firestoreViewModel.addPlaceToTrip(currentPlace, currentTrip)
+            Toast.makeText(dialog.context, "Place added to ${currentTrip.tripName}", Toast.LENGTH_SHORT).show()
+
+            dialog.dismiss()
+        }
+        holder.binding.cardViewTripPicker.setOnClickListener {
+            firestoreViewModel.addPlaceToTrip(currentPlace, currentTrip)
+            Toast.makeText(dialog.context, "Place added to ${currentTrip.tripName}", Toast.LENGTH_SHORT).show()
+
             dialog.dismiss()
         }
     }

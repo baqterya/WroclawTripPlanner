@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:textSize="17sp"
-            android:text="@string/edit_place_prompt"
+            android:text="@string/edit_prompt"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

@@ -29,10 +29,12 @@ class ListAllTripsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val options = firestoreViewModel.getAllTripsOptions(requireActivity())!!
+        val options = firestoreViewModel.getAllTripsOptions(requireActivity())
         val recyclerView = binding.recyclerViewFavourites
-        val adapter = AllTripsListRecyclerViewAdapter(options)
-        recyclerView.adapter = adapter
+        if (options != null) {
+            val adapter = AllTripsListRecyclerViewAdapter(options)
+            recyclerView.adapter = adapter
+        }
         recyclerView.layoutManager = WrapperLinearLayoutManager(requireContext())
 
         (requireActivity() as MainActivity).swapFabVisibility("disable")

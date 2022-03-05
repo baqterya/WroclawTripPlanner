@@ -7,24 +7,14 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageButton
-        android:id="@+id/image_button_close_trip_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_close"
-        android:backgroundTint="@color/md_theme_light_secondary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/close_trip_picker" />
-
     <TextView
         android:id="@+id/text_view_choose_a_trip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="13dp"
         android:text="@string/choose_a_trip"
         android:textSize="22sp"
-        app:layout_constraintTop_toTopOf="@id/image_button_close_trip_picker"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

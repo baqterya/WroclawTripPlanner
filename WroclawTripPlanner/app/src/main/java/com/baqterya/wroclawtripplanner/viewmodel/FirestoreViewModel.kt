@@ -381,15 +381,26 @@ class FirestoreViewModel {
         }
     }
 
+    fun removePlaceFromTrip(currentPlace: Place, currentTrip: Trip) {
+        if (currentPlace.placeId in currentTrip.tripPlaceIdList) {
+            db.collection("trips").document(currentTrip.tripId!!)
+                .update("tripPlaceIdList", FieldValue.arrayRemove(currentPlace.placeId!!))
+            currentTrip.tripPlaceIdList.remove(currentPlace.placeId)
+        }
+    }
+
     fun getTripPlacesOptions(activity: FragmentActivity, currentTrip: Trip): FirestoreRecyclerOptions<Place>? {
         var options: FirestoreRecyclerOptions<Place>? = null
         if (user != null) {
-            val tripPlaceQuery = db.collection("places")
-                .whereIn("placeId", currentTrip.tripPlaceIdList)
-            options =  FirestoreRecyclerOptions.Builder<Place>()
-                .setQuery(tripPlaceQuery, Place::class.java)
-                .setLifecycleOwner(activity)
-                .build()
+
+            if (currentTrip.tripPlaceIdList.isNotEmpty()) {
+                val tripPlaceQuery = db.collection("places")
+                    .whereIn("placeId", currentTrip.tripPlaceIdList)
+                options = FirestoreRecyclerOptions.Builder<Place>()
+                    .setQuery(tripPlaceQuery, Place::class.java)
+                    .setLifecycleOwner(activity)
+                    .build()
+            }
         }
         return options
     }

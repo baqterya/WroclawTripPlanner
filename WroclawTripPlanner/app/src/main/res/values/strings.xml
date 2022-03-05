@@ -64,7 +64,7 @@
     <string name="users_list_prompt">YOUR %s</string>
     <string name="edit_place">edit place</string>
     <string name="place_likes_prompt">likes: %s</string>
-    <string name="edit_place_prompt">Edit %s</string>
+    <string name="edit_prompt">Edit %s</string>
     <string name="save">SAVE</string>
     <string name="add_to_a_new_trip">Add to a new Trip</string>
     <string name="add_to_an_existing_trip">Add to an existing Trip</string>
@@ -80,6 +80,7 @@
     <string name="trip_places_prompt">Places:</string>
     <string name="content_desc_the_way">show the way of the trip</string>
     <string name="content_desc_show_trip_s_place_on_the_map">show trip\'s place on the map</string>
+    <string name="remove_place_from_trip">remove place from the trip</string>
 
 
 </resources>

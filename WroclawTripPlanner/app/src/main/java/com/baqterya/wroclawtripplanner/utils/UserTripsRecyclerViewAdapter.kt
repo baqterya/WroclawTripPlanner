@@ -30,6 +30,11 @@ class UserTripsRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) : Fi
         holder.binding.textViewUserTripName.text = currentTrip.tripName
         val likeString = holder.itemView.context.getString(R.string.place_likes_prompt)
         holder.binding.textViewLikeCounterUserTrip.text = String.format(likeString, currentTrip.tripLikes)
+        holder.binding.cardViewUserTrip.setOnClickListener {
+            val action = ListPlacesTripsFragmentDirections
+                .actionListPlacesTripsFragmentToEditTripFragment(currentTrip)
+            holder.itemView.findNavController().navigate(action)
+        }
         holder.binding.imageButtonEditTrip.setOnClickListener {
             val action = ListPlacesTripsFragmentDirections
                 .actionListPlacesTripsFragmentToEditTripFragment(currentTrip)

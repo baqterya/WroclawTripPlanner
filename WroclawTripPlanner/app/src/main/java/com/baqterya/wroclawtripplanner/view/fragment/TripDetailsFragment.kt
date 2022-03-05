@@ -36,9 +36,11 @@ class TripDetailsFragment : Fragment() {
         binding.textViewTripAuthorDetails.text = String.format(ownerString, currentTrip.tripOwnerName)
         binding.textViewTripDescriptionDetails.text = currentTrip.tripDescription
 
-        val options = firestoreViewModel.getTripPlacesOptions(requireActivity(), currentTrip)!!
-        val adapter = TripPlacesRecyclerViewAdapter(options)
-        binding.recyclerViewTripPlaces.adapter = adapter
+        val options = firestoreViewModel.getTripPlacesOptions(requireActivity(), currentTrip)
+        if (options != null) {
+            val adapter = TripPlacesRecyclerViewAdapter(options)
+            binding.recyclerViewTripPlaces.adapter = adapter
+        }
         binding.recyclerViewTripPlaces.layoutManager = WrapperLinearLayoutManager(requireContext())
 
         binding.fabShowTheWay.setOnClickListener {
