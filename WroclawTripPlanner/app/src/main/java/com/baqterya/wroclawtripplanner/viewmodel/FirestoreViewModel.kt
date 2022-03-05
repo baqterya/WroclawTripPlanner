@@ -348,7 +348,7 @@ class FirestoreViewModel {
         var options: FirestoreRecyclerOptions<Trip>? = null
         if (user != null) {
             val userTripsQuery = db.collection("trips")
-                .whereEqualTo("tripIsPrivate", true)
+                .whereEqualTo("tripIsPrivate", false)
                 .orderBy("tripLikes")
                 .orderBy("tripName")
             options =  FirestoreRecyclerOptions.Builder<Trip>()
