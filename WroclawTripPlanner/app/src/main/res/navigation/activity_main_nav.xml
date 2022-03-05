@@ -63,8 +63,8 @@
             android:id="@+id/action_listPlacesTripsFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
         <action
-            android:id="@+id/action_listPlacesTripsFragment_to_tripDetailsFragment"
-            app:destination="@id/tripDetailsFragment" />
+            android:id="@+id/action_listPlacesTripsFragment_to_editTripFragment"
+            app:destination="@id/editTripFragment" />
     </fragment>
     <fragment
         android:id="@+id/listAllTripsFragment"
@@ -89,5 +89,17 @@
         <action
             android:id="@+id/action_tripDetailsFragment_to_mapFragment"
             app:destination="@id/mapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTripFragment"
+        android:name="com.baqterya.wroclawtripplanner.view.fragment.EditTripFragment"
+        android:label="fragment_edit_trip"
+        tools:layout="@layout/fragment_edit_trip" >
+        <action
+            android:id="@+id/action_editTripFragment_to_listPlacesTripsFragment"
+            app:destination="@id/listPlacesTripsFragment" />
+        <argument
+            android:name="currentTrip"
+            app:argType="com.baqterya.wroclawtripplanner.model.Trip" />
     </fragment>
 </navigation>

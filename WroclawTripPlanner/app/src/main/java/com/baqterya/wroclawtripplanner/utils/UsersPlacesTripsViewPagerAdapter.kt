@@ -39,9 +39,9 @@ class UsersPlacesTripsViewPagerAdapter(private val activity: FragmentActivity) :
                 1 -> {
                     val currentOptions = options.second
                     dataType = "TRIPS"
-                    //                val adapter = UserTripsRecyclerViewAdapter(currentOptions)
-                    //                holder.binding.recyclerViewFavourites.adapter = adapter
-                    //                holder.binding.recyclerViewFavourites.layoutManager = WrapperLinearLayoutManager(activity)
+                    val adapter = UserTripsRecyclerViewAdapter(currentOptions)
+                    holder.binding.recyclerViewUserPlacesTrips.adapter = adapter
+                    holder.binding.recyclerViewUserPlacesTrips.layoutManager = WrapperLinearLayoutManager(activity)
                 }
             }
         val titleString = holder.itemView.context.getString(R.string.users_list_prompt)

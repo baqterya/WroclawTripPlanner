@@ -38,9 +38,9 @@ class FavouritesViewPagerAdapter(private val activity: FragmentActivity) : Recyc
                 1 -> {
                     val currentOptions = options.second
                     favType = "TRIPS"
-    //                val adapter = FavTripsRecyclerViewAdapter(currentOptions as FirestoreRecyclerOptions<Trip>)
-    //                holder.binding.recyclerViewFavourites.adapter = adapter
-    //                holder.binding.recyclerViewFavourites.layoutManager = WrapperLinearLayoutManager(activity)
+                    val adapter = FavTripsRecyclerViewAdapter(currentOptions)
+                    holder.binding.recyclerViewFavourites.adapter = adapter
+                    holder.binding.recyclerViewFavourites.layoutManager = WrapperLinearLayoutManager(activity)
                 }
             }
         val titleString = holder.itemView.context.getString(R.string.fav_list_prompt)
