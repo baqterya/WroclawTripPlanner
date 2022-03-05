@@ -151,79 +151,51 @@ class FirestoreViewModel {
         return tasks
     }
 
-    fun isPlaceFav(currentPlace: Place, favButton: ImageButton) {
-        if (user != null) {
-            if (user.uid in currentPlace.placeFavUsersId) {
-                favButton.setImageResource(R.drawable.ic_favourite)
-                favButton.scaleX = 1.1F
-                favButton.scaleY = 1.1F
-            }
-        }
+    fun isPlaceFav(currentPlace: Place) : Boolean {
+        return user?.uid in currentPlace.placeFavUsersId
     }
 
-    fun updatePlaceIsFav(currentPlace: Place, favButton: ImageButton, favCounter: TextView) {
+    fun updatePlaceIsFav(currentPlace: Place, favCounter: TextView? = null) {
         if (user != null) {
-            favButton.scaleX = 1.1F
-            favButton.scaleY = 1.1F
-            if (user.uid in currentPlace.placeFavUsersId) {
+            if (isPlaceFav(currentPlace)){
                 currentPlace.placeFavUsersId.remove(user.uid)
                 db.collection("places").document(currentPlace.placeId!!)
                     .update("placeLikes", FieldValue.increment(-1))
                 db.collection("places").document(currentPlace.placeId!!)
                     .update("placeFavUsersId", FieldValue.arrayRemove(user.uid))
-                    .addOnSuccessListener {
-                        updatePlaceLikesCounter(currentPlace, favCounter)
-                    }
-                favButton.setImageResource(R.drawable.ic_favourite_border)
             } else {
                 currentPlace.placeFavUsersId.add(user.uid)
                 db.collection("places").document(currentPlace.placeId!!)
-                .update("placeLikes", FieldValue.increment(1))
+                    .update("placeLikes", FieldValue.increment(1))
                 db.collection("places").document(currentPlace.placeId!!)
                     .update("placeFavUsersId", FieldValue.arrayUnion(user.uid))
-                    .addOnSuccessListener {
-                        updatePlaceLikesCounter(currentPlace, favCounter)
-                    }
-                favButton.setImageResource(R.drawable.ic_favourite)
+            }
+            if (favCounter != null) {
+                updatePlaceLikesCounter(currentPlace, favCounter)
             }
         }
     }
 
-    fun updateTripIsFav(currentTrip: Trip, favButton: ImageButton, favCounter: TextView) {
+    fun isTripFav(currentTrip: Trip) : Boolean {
+        return user?.uid in currentTrip.tripFavUsersId
+    }
+
+    fun updateTripIsFav(currentTrip: Trip) {
         if (user != null) {
-            favButton.scaleX = 1.1F
-            favButton.scaleY = 1.1F
-            if (user.uid in currentTrip.tripFavUsersId) {
+            if (isTripFav(currentTrip)) {
                 currentTrip.tripFavUsersId.remove(user.uid)
                 db.collection("trips").document(currentTrip.tripId!!)
                     .update("tripLikes", FieldValue.increment(-1))
                 db.collection("trips").document(currentTrip.tripId!!)
                     .update("tripFavUsersId", FieldValue.arrayRemove(user.uid))
-                    .addOnSuccessListener {
-                        updateTripLikesCounter(currentTrip, favCounter)
-                    }
-                favButton.setImageResource(R.drawable.ic_favourite_border)
             } else {
                 currentTrip.tripFavUsersId.remove(user.uid)
                 db.collection("trips").document(currentTrip.tripId!!)
                     .update("tripLikes", FieldValue.increment(1))
                 db.collection("trips").document(currentTrip.tripId!!)
                     .update("tripFavUsersId", FieldValue.arrayUnion(user.uid))
-                    .addOnSuccessListener {
-                        updateTripLikesCounter(currentTrip, favCounter)
-                    }
-                favButton.setImageResource(R.drawable.ic_favourite)
             }
         }
-    }
-
-    private fun updateTripLikesCounter(currentTrip: Trip, favCounter: TextView) {
-        db.collection("trips").document(currentTrip.tripId!!)
-            .get()
-            .addOnSuccessListener {
-                val likes = it["tripLikes"] as Long
-                favCounter.text = likes.toString()
-            }
     }
 
     fun updatePlaceLikesCounter(currentPlace: Place, favCounter: TextView) {

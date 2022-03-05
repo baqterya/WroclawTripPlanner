@@ -38,12 +38,17 @@ class AllTripsListRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) :
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
         holder.binding.textViewTripAuthor.text = String.format(ownerString, currentTrip.tripOwnerName)
 
-        holder.binding.imageButtonAddTripToFav.setOnClickListener {
-            firestoreViewModel.updateTripIsFav(
-                currentTrip,
-                holder.binding.imageButtonAddTripToFav,
-                holder.binding.textViewLikeCounterTrip
-            )
+        val buttonFavTrip = holder.binding.imageButtonAddTripToFav
+        if (firestoreViewModel.isTripFav(currentTrip)) {
+            buttonFavTrip.setImageResource(R.drawable.ic_favourite)
+        } else {
+            buttonFavTrip.setImageResource(R.drawable.ic_favourite_border)
+        }
+        buttonFavTrip.scaleX = 1.1F
+        buttonFavTrip.scaleY = 1.1F
+
+        buttonFavTrip.setOnClickListener {
+            firestoreViewModel.updateTripIsFav(currentTrip)
         }
 
         val expandableView = holder.binding.expandableView

@@ -37,12 +37,17 @@ class FavPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : Fi
 
         holder.binding.textViewLikeCounterFav.text = currentPlace.placeLikes.toString()
 
-        holder.binding.imageButtonAddPlaceToFavFav.setOnClickListener {
-            firestoreViewModel.updatePlaceIsFav(
-                currentPlace,
-                holder.binding.imageButtonAddPlaceToFavFav,
-                holder.binding.textViewLikeCounterFav
-            )
+        val imageButtonFav = holder.binding.imageButtonAddPlaceToFavFav
+        imageButtonFav.scaleX = 1.1F
+        imageButtonFav.scaleY = 1.1F
+        if (firestoreViewModel.isPlaceFav(currentPlace)) {
+            imageButtonFav.setImageResource(R.drawable.ic_favourite)
+        } else {
+            imageButtonFav.setImageResource(R.drawable.ic_favourite_border)
+        }
+
+        imageButtonFav.setOnClickListener {
+            firestoreViewModel.updatePlaceIsFav(currentPlace)
         }
 
         holder.binding.cardViewFavPlace.setOnClickListener {

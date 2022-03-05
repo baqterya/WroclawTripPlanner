@@ -39,10 +39,14 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
         holder.binding.textViewPlaceOwner.text = String.format(ownerString, currentPlace.placeOwnerName)
 
-        firestoreViewModel.isPlaceFav(currentPlace, holder.binding.imageButtonAddPlaceToFav)
-        firestoreViewModel.updatePlaceLikesCounter(currentPlace, holder.binding.textViewLikeCounter)
-        holder.binding.imageButtonAddPlaceToFav.setOnClickListener {
-            updatePlaceIsFav(currentPlace, it as ImageButton, holder.binding.textViewLikeCounter)
+        val buttonFavPlace = holder.binding.imageButtonAddPlaceToFav
+        updatePlaceFavUI(currentPlace, buttonFavPlace)
+        val likeCounter = holder.binding.textViewLikeCounter
+        likeCounter.text = currentPlace.placeLikes.toString()
+
+        buttonFavPlace.setOnClickListener {
+            firestoreViewModel.updatePlaceIsFav(currentPlace, likeCounter)
+            updatePlaceFavUI(currentPlace, buttonFavPlace)
         }
 
         val categoryString = StringBuilder()
@@ -69,6 +73,14 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         return places.size
     }
 
+    private fun updatePlaceFavUI(currentPlace: Place, buttonFavPlace: ImageButton) {
+        if (firestoreViewModel.isPlaceFav(currentPlace)) {
+            buttonFavPlace.setImageResource(R.drawable.ic_favourite)
+        } else {
+            buttonFavPlace.setImageResource(R.drawable.ic_favourite_border)
+        }
+    }
+
     private fun findMaxUsedTags(tags: ArrayList<Tag>): ArrayList<Tag> {
         val topTenTags = arrayListOf<Tag>()
 
@@ -91,10 +103,6 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
             (chipGroup[idx] as Chip).text = tagString
             (chipGroup[idx] as Chip).isVisible = true
         }
-    }
-
-    private fun updatePlaceIsFav(currentPlace: Place, imageButton: ImageButton, textView: TextView) {
-        firestoreViewModel.updatePlaceIsFav(currentPlace, imageButton, textView)
     }
 
     private fun openTagsSelectorSheet(view: View, currentPlace: Place, chipGroup: ChipGroup) {
