@@ -417,4 +417,9 @@ class FirestoreViewModel {
         db.collection("places").document(currentPlace.placeId!!)
             .delete()
     }
+
+    fun deleteTrip(currentTrip: Trip) {
+        db.collection("trips").document(currentTrip.tripId!!)
+            .delete()
+    }
 }

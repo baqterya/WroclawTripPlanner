@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentEditTripBinding
 import com.baqterya.wroclawtripplanner.utils.EditTripPlacesRecyclerViewAdapter
 import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
@@ -37,6 +40,9 @@ class EditTripFragment : Fragment() {
         val buttonSave = binding.fabEditTrip
         val recyclerView = binding.recyclerViewEditTripPlaces
 
+        val editString = requireContext().getString(R.string.edit_prompt)
+        binding.textViewEditTripPrompt.text = String.format(editString, currentTrip.tripName)
+
         editTextTripName.setText(currentTrip.tripName)
         editTextTripDescription.setText(currentTrip.tripDescription)
         switchIsPrivate.isChecked = currentTrip.tripIsPrivate
@@ -58,6 +64,13 @@ class EditTripFragment : Fragment() {
 
                 firestoreViewModel.editTrip(currentTrip)
             }
+        }
+
+        binding.imageButtonDeleteTrip.setOnClickListener {
+            firestoreViewModel.deleteTrip(currentTrip)
+            Toast.makeText(requireContext(), "Successfully removed ${currentTrip.tripName}", Toast.LENGTH_SHORT).show()
+            val action = EditTripFragmentDirections.actionEditTripFragmentToListPlacesTripsFragment()
+            findNavController().navigate(action)
         }
     }
 

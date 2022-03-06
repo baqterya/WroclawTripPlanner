@@ -67,8 +67,8 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
         val switchIsPlacePrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_edit_place_is_private)
         val dialogChips = dialog.findViewById<ChipGroup>(R.id.chip_group_place_edit_category_picker)
 
-        val ownerString = context.getString(R.string.edit_prompt)
-        textViewEditPrompt.text = String.format(ownerString, currentPlace.placeName)
+        val editString = context.getString(R.string.edit_prompt)
+        textViewEditPrompt.text = String.format(editString, currentPlace.placeName)
 
         editTextPlaceName.setText(currentPlace.placeName)
         editTextPlaceDescription.setText(currentPlace.placeDescription)
