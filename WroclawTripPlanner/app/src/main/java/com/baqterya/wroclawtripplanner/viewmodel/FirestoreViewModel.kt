@@ -405,4 +405,16 @@ class FirestoreViewModel {
     fun editTrip(currentTrip: Trip) {
         db.collection("trips").document(currentTrip.tripId!!).set(currentTrip)
     }
+
+    fun deletePlace(currentPlace: Place) {
+        db.collection("trips")
+            .get()
+            .addOnSuccessListener {
+                for (trip in it) {
+                    trip.reference.update("tripPlaceIdList", FieldValue.arrayRemove(currentPlace.placeId))
+                }
+            }
+        db.collection("places").document(currentPlace.placeId!!)
+            .delete()
+    }
 }

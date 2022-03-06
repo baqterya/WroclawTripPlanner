@@ -81,6 +81,7 @@
     <string name="content_desc_the_way">show the way of the trip</string>
     <string name="content_desc_show_trip_s_place_on_the_map">show trip\'s place on the map</string>
     <string name="remove_place_from_trip">remove place from the trip</string>
+    <string name="remove_the_place">remove the place</string>
 
 
 </resources>

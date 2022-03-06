@@ -1,13 +1,11 @@
 package com.baqterya.wroclawtripplanner.utils
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.view.iterator
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -89,6 +87,19 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
             }
         }
 
+        dialog.findViewById<ImageButton>(R.id.image_button_delete_place).setOnClickListener {
+            AlertDialog.Builder(context)
+                .setPositiveButton("Yes") {_, _ ->
+                    firestoreViewModel.deletePlace(currentPlace)
+                    Toast.makeText(context, "${currentPlace.placeName} successfully removed", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+                .setNegativeButton("No") {_, _ ->}
+                .setTitle("Delete ${currentPlace.placeName}")
+                .setMessage("Are you sure you want to delete ${currentPlace.placeName}")
+                .create().show()
+        }
+
         dialog.findViewById<Button>(R.id.button_edit_place).setOnClickListener {
             val placeName = editTextPlaceName.text.toString()
             val placeDescription = editTextPlaceDescription.text.toString()
@@ -97,11 +108,11 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
             val isCategoryPicked = dialogChips.checkedChipIds.isNotEmpty()
 
             if (inputCheck(placeName) && inputCheck(placeDescription) && isCategoryPicked) {
-
                 currentPlace.placeName = placeName
                 currentPlace.placeDescription = placeDescription
                 currentPlace.placeIsPrivate = placeIsPrivate
                 firestoreViewModel.editPlace(currentPlace)
+                Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             } else {
                 Toast.makeText(context, "Please fill all fields.", Toast.LENGTH_SHORT).show()
