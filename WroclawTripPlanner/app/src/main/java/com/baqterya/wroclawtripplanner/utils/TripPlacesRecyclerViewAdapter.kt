@@ -9,7 +9,6 @@ import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.RecyclerViewItemTripPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
-import com.baqterya.wroclawtripplanner.view.fragment.ListFavouritesFragmentDirections
 import com.baqterya.wroclawtripplanner.view.fragment.TripDetailsFragmentDirections
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions

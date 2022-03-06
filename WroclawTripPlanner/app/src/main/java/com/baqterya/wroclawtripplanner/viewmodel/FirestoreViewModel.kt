@@ -1,13 +1,11 @@
 package com.baqterya.wroclawtripplanner.viewmodel
 
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
 import androidx.fragment.app.FragmentActivity
-import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
 import com.baqterya.wroclawtripplanner.model.Trip
@@ -198,7 +196,7 @@ class FirestoreViewModel {
         }
     }
 
-    fun updatePlaceLikesCounter(currentPlace: Place, favCounter: TextView) {
+    private fun updatePlaceLikesCounter(currentPlace: Place, favCounter: TextView) {
         db.collection("places").document(currentPlace.placeId!!)
             .get()
             .addOnSuccessListener {
@@ -392,7 +390,6 @@ class FirestoreViewModel {
     fun getTripPlacesOptions(activity: FragmentActivity, currentTrip: Trip): FirestoreRecyclerOptions<Place>? {
         var options: FirestoreRecyclerOptions<Place>? = null
         if (user != null) {
-
             if (currentTrip.tripPlaceIdList.isNotEmpty()) {
                 val tripPlaceQuery = db.collection("places")
                     .whereIn("placeId", currentTrip.tripPlaceIdList)
@@ -403,5 +400,9 @@ class FirestoreViewModel {
             }
         }
         return options
+    }
+
+    fun editTrip(currentTrip: Trip) {
+        db.collection("trips").document(currentTrip.tripId!!).set(currentTrip)
     }
 }

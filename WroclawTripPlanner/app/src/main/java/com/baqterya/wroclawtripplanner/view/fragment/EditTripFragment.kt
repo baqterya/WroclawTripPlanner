@@ -1,10 +1,10 @@
 package com.baqterya.wroclawtripplanner.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.baqterya.wroclawtripplanner.databinding.FragmentEditTripBinding
 import com.baqterya.wroclawtripplanner.utils.EditTripPlacesRecyclerViewAdapter
@@ -55,6 +55,8 @@ class EditTripFragment : Fragment() {
                 currentTrip.tripName = newName
                 currentTrip.tripDescription = newDescription
                 currentTrip.tripIsPrivate = switchIsPrivate.isChecked
+
+                firestoreViewModel.editTrip(currentTrip)
             }
         }
     }

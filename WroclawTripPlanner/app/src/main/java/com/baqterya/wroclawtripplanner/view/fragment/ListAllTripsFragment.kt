@@ -1,10 +1,10 @@
 package com.baqterya.wroclawtripplanner.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.baqterya.wroclawtripplanner.databinding.FragmentListAllTripsBinding
 import com.baqterya.wroclawtripplanner.utils.AllTripsListRecyclerViewAdapter
 import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
