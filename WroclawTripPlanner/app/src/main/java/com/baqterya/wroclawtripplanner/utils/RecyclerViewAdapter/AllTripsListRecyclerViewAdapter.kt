@@ -1,4 +1,4 @@
-package com.baqterya.wroclawtripplanner.utils
+package com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter
 
 import android.transition.AutoTransition
 import android.transition.TransitionManager

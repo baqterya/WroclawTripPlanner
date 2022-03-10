@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.baqterya.wroclawtripplanner.databinding.FragmentListAllTripsBinding
-import com.baqterya.wroclawtripplanner.utils.AllTripsListRecyclerViewAdapter
+import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.AllTripsListRecyclerViewAdapter
 import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel

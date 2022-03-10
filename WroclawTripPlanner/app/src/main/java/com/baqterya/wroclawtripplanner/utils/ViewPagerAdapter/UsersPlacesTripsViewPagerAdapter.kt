@@ -1,4 +1,4 @@
-package com.baqterya.wroclawtripplanner.utils
+package com.baqterya.wroclawtripplanner.utils.ViewPagerAdapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemUserPlacesTripsBinding
+import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.UserPlaceRecyclerViewAdapter
+import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.UserTripsRecyclerViewAdapter
+import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 
 class UsersPlacesTripsViewPagerAdapter(private val activity: FragmentActivity) : RecyclerView.Adapter<UsersPlacesTripsViewPagerAdapter.UsersPlacesTripsViewPagerViewHolder>() {

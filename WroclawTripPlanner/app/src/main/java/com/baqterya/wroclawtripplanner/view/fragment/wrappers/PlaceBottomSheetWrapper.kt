@@ -6,7 +6,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
-import com.baqterya.wroclawtripplanner.utils.PlaceViewPagerAdapter
+import com.baqterya.wroclawtripplanner.utils.ViewPagerAdapter.PlaceViewPagerAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class PlaceBottomSheetWrapper(private val view: View, private val places: ArrayList<Place>, private val clickedItemIndex: Int, private val activity: FragmentActivity) {

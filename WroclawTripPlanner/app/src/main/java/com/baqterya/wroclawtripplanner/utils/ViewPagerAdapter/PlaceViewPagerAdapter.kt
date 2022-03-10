@@ -1,4 +1,4 @@
-package com.baqterya.wroclawtripplanner.utils
+package com.baqterya.wroclawtripplanner.utils.ViewPagerAdapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -19,6 +19,9 @@ import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.model.Tag
 import com.baqterya.wroclawtripplanner.model.Trip
+import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.UserTripPickerRecyclerViewAdapter
+import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
+import com.baqterya.wroclawtripplanner.utils.inputCheck
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.google.android.material.chip.Chip

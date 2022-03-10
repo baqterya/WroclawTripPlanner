@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentTripDetailsBinding
-import com.baqterya.wroclawtripplanner.utils.TripPlacesRecyclerViewAdapter
+import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.TripPlacesRecyclerViewAdapter
 import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 

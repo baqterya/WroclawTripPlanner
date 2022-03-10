@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.baqterya.wroclawtripplanner.databinding.FragmentListFavouritesBinding
-import com.baqterya.wroclawtripplanner.utils.FavouritesViewPagerAdapter
+import com.baqterya.wroclawtripplanner.utils.ViewPagerAdapter.FavouritesViewPagerAdapter
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 
 class ListFavouritesFragment : Fragment() {

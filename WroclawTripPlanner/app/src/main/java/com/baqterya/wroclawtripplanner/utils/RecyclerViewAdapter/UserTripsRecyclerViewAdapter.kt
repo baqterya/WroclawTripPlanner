@@ -1,4 +1,4 @@
-package com.baqterya.wroclawtripplanner.utils
+package com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter
 
 import android.view.LayoutInflater
 import android.view.View

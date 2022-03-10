@@ -1,4 +1,4 @@
-package com.baqterya.wroclawtripplanner.utils
+package com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter
 
 import android.app.AlertDialog
 import android.content.Context
@@ -14,6 +14,7 @@ import com.afollestad.materialdialogs.customview.customView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.RecyclerViewItemUserPlaceBinding
 import com.baqterya.wroclawtripplanner.model.Place
+import com.baqterya.wroclawtripplanner.utils.inputCheck
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.view.fragment.ListPlacesTripsFragmentDirections
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel

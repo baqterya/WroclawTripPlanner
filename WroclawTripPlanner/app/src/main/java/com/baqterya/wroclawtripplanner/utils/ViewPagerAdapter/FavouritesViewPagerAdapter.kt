@@ -1,4 +1,4 @@
-package com.baqterya.wroclawtripplanner.utils
+package com.baqterya.wroclawtripplanner.utils.ViewPagerAdapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.ViewPagerItemListFavouritesBinding
+import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.FavPlaceRecyclerViewAdapter
+import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.FavTripsRecyclerViewAdapter
+import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 
 class FavouritesViewPagerAdapter(private val activity: FragmentActivity) : RecyclerView.Adapter<FavouritesViewPagerAdapter.FavouritesViewPagerViewHolder>(){

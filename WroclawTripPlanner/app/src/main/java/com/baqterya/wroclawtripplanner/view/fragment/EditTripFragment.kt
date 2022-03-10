@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentEditTripBinding
-import com.baqterya.wroclawtripplanner.utils.EditTripPlacesRecyclerViewAdapter
+import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.EditTripPlacesRecyclerViewAdapter
 import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.utils.inputCheck
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
