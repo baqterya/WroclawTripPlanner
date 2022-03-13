@@ -382,7 +382,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map.clear()
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
-        val tasks = firestoreViewModel.createFindPlacesByTagTask(bounds)
+        val tasks = firestoreViewModel.createFindPlacesTask(bounds)
 
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {

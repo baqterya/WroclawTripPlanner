@@ -21,10 +21,20 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+/**
+ * A view model class that facilitates the communication between User Interface and
+ * the Firestore Database.
+ *
+ * @property db: instance of the application's Firestore Database
+ * @property user: instance of the currently logged in user
+ */
 class FirestoreViewModel {
     private val db = Firebase.firestore
     private val user = Firebase.auth.currentUser
 
+    /**
+     * Adds a new place to the database.
+     */
     fun addPlaceToFirestore(newPlace: Place) {
         db.collection("users").whereEqualTo("userId", user?.uid)
             .get()
@@ -43,8 +53,10 @@ class FirestoreViewModel {
             }
     }
 
-    fun updatePlaceTags(place: Place, tagsToAdd: ArrayList<Tag>, tagsToRemove: ArrayList<Tag>, chipGroup: ChipGroup
-    ) {
+    /**
+     * Updates the place's tags according to chips selected by the user.
+     */
+    fun updatePlaceTags(place: Place, tagsToAdd: ArrayList<Tag>, tagsToRemove: ArrayList<Tag>, chipGroup: ChipGroup) {
         if (user != null) {
             for (tag in tagsToAdd) {
                 tag.tagAddedByUserIds.add(user.uid)
@@ -105,6 +117,9 @@ class FirestoreViewModel {
         }
     }
 
+    /**
+     * Finds the tags already added by the user and checks their chips.
+     */
     fun checkUserTags(currentPlace: Place, chipGroups: ArrayList<ChipGroup>) {
          if (user != null) {
              db.collection("places").document(currentPlace.placeId!!)
@@ -126,6 +141,12 @@ class FirestoreViewModel {
          }
     }
 
+    /**
+     * Finds places in GeoBounds around the user.
+     *
+     * @param category: optional argument that specifies the category of places desired by the user.
+     * @return array list of firebase tasks with required documents from the database.
+     */
     fun createFindPlacesTask(bounds: List<GeoQueryBounds>, category: String? = null) : ArrayList<Task<QuerySnapshot>> {
         val tasks = arrayListOf<Task<QuerySnapshot>>()
         for (bound in bounds) {
@@ -149,10 +170,16 @@ class FirestoreViewModel {
         return tasks
     }
 
+    /**
+     * Finds out whether the place is added to favourites by the current user.
+     */
     fun isPlaceFav(currentPlace: Place) : Boolean {
         return user?.uid in currentPlace.placeFavUsersId
     }
 
+    /**
+     * Updates place's like counter and the list of users that liked it.
+     */
     fun updatePlaceIsFav(currentPlace: Place, favCounter: TextView? = null) {
         if (user != null) {
             if (isPlaceFav(currentPlace)){
@@ -174,10 +201,16 @@ class FirestoreViewModel {
         }
     }
 
+    /**
+     * Finds out whether the trip is added to favourites by the current user.
+     */
     fun isTripFav(currentTrip: Trip) : Boolean {
         return user?.uid in currentTrip.tripFavUsersId
     }
 
+    /**
+     * Updates trip's like counter and the list of users that liked it.
+     */
     fun updateTripIsFav(currentTrip: Trip) {
         if (user != null) {
             if (isTripFav(currentTrip)) {
@@ -196,6 +229,9 @@ class FirestoreViewModel {
         }
     }
 
+    /**
+     * Updated a UI element that displays place's likes in a non-firestore adapter.
+     */
     private fun updatePlaceLikesCounter(currentPlace: Place, favCounter: TextView) {
         db.collection("places").document(currentPlace.placeId!!)
             .get()
@@ -205,23 +241,17 @@ class FirestoreViewModel {
             }
     }
 
-    fun createFindPlacesByTagTask(bounds: List<GeoQueryBounds>) : ArrayList<Task<QuerySnapshot>> {
-        val tasks = arrayListOf<Task<QuerySnapshot>>()
-        for (bound in bounds) {
-            val query = db.collection("places")
-                .orderBy("placeGeoHash")
-                .startAt(bound.startHash)
-                .endAt(bound.endHash)
-            tasks.add(query.get())
-        }
-        return tasks
-    }
-
+    /**
+     * Gets a particular place from the database.
+     */
     fun getPlace(placeId: String): Task<DocumentSnapshot> {
         val query = db.collection("places").document(placeId)
         return query.get()
     }
 
+    /**
+     * Changes the user's username that is displayed on his places and trips.
+     */
     fun changeUsername(newUserName: String) {
         if (user != null) {
             db.collection("users").document(user.uid)
@@ -237,6 +267,9 @@ class FirestoreViewModel {
         }
     }
 
+    /**
+     * Fills a required editText with the current user's username.
+     */
     fun fillUsername(editText: EditText) {
         if (user != null) {
             db.collection("users").document(user.uid)
@@ -247,10 +280,15 @@ class FirestoreViewModel {
         }
     }
 
-    fun userLogout() {
-        Firebase.auth.signOut()
-    }
+    /**
+     * Logs out the user.
+     */
+    fun userLogout() = Firebase.auth.signOut()
 
+
+    /**
+     * Creates the recycler options for user's favourite places and trips.
+     */
     fun getFavouritesRecyclerOptions(activity: FragmentActivity) : Pair<FirestoreRecyclerOptions<Place>, FirestoreRecyclerOptions<Trip>>?  {
         var options: Pair<FirestoreRecyclerOptions<Place>, FirestoreRecyclerOptions<Trip>>? = null
         if (user != null) {
@@ -278,6 +316,9 @@ class FirestoreViewModel {
         return options
     }
 
+    /**
+     * Creates the recycler options for user's own places and trips.
+     */
     fun getUsersPlacesTripsRecyclerOptions(activity: FragmentActivity): Pair<FirestoreRecyclerOptions<Place>, FirestoreRecyclerOptions<Trip>>? {
         var options: Pair<FirestoreRecyclerOptions<Place>, FirestoreRecyclerOptions<Trip>>? = null
         if (user != null) {
@@ -304,6 +345,45 @@ class FirestoreViewModel {
         return options
     }
 
+    /**
+     * Creates the recycler options for all trips.
+     */
+    fun getAllTripsOptions(activity: FragmentActivity): FirestoreRecyclerOptions<Trip>? {
+        var options: FirestoreRecyclerOptions<Trip>? = null
+        if (user != null) {
+            val userTripsQuery = db.collection("trips")
+                .whereEqualTo("tripIsPrivate", false)
+                .orderBy("tripLikes")
+                .orderBy("tripName")
+            options =  FirestoreRecyclerOptions.Builder<Trip>()
+                .setQuery(userTripsQuery, Trip::class.java)
+                .setLifecycleOwner(activity)
+                .build()
+        }
+        return options
+    }
+
+    /**
+     * Creates the recycler options for user's trips.
+     */
+    fun getUserTripOptions(activity: FragmentActivity): FirestoreRecyclerOptions<Trip>? {
+        var options: FirestoreRecyclerOptions<Trip>? = null
+        if (user != null) {
+            val userTripsQuery = db.collection("trips")
+                .whereEqualTo("tripOwnerId", user.uid)
+                .orderBy("tripLikes")
+                .orderBy("tripName")
+            options =  FirestoreRecyclerOptions.Builder<Trip>()
+                .setQuery(userTripsQuery, Trip::class.java)
+                .setLifecycleOwner(activity)
+                .build()
+        }
+        return options
+    }
+
+    /**
+     * Sets category chips' isChecked attribute according to edited place's categories.
+     */
     fun editPlaceSetCategoryChips(currentPlace: Place, dialogChips: ChipGroup) {
         db.collection("places").document(currentPlace.placeId!!)
             .get()
@@ -317,12 +397,18 @@ class FirestoreViewModel {
             }
     }
 
+    /**
+     * Updates a place according to changes done by the user.
+     */
     fun editPlace(currentPlace: Place) {
         currentPlace.placeCategories = currentPlace.placeCategories.distinct() as ArrayList<String>
         db.collection("places").document(currentPlace.placeId!!)
             .set(currentPlace)
     }
 
+    /**
+     * Adds a trip to the Firestore database.
+     */
     fun addTripToFirestore(currentPlaceId: String, newTrip: Trip) {
         db.collection("users").whereEqualTo("userId", user?.uid)
             .get()
@@ -342,36 +428,9 @@ class FirestoreViewModel {
             }
     }
 
-    fun getAllTripsOptions(activity: FragmentActivity): FirestoreRecyclerOptions<Trip>? {
-        var options: FirestoreRecyclerOptions<Trip>? = null
-        if (user != null) {
-            val userTripsQuery = db.collection("trips")
-                .whereEqualTo("tripIsPrivate", false)
-                .orderBy("tripLikes")
-                .orderBy("tripName")
-            options =  FirestoreRecyclerOptions.Builder<Trip>()
-                .setQuery(userTripsQuery, Trip::class.java)
-                .setLifecycleOwner(activity)
-                .build()
-        }
-        return options
-    }
-
-    fun getUserTripOptions(activity: FragmentActivity): FirestoreRecyclerOptions<Trip>? {
-        var options: FirestoreRecyclerOptions<Trip>? = null
-        if (user != null) {
-            val userTripsQuery = db.collection("trips")
-                .whereEqualTo("tripOwnerId", user.uid)
-                .orderBy("tripLikes")
-                .orderBy("tripName")
-            options =  FirestoreRecyclerOptions.Builder<Trip>()
-                .setQuery(userTripsQuery, Trip::class.java)
-                .setLifecycleOwner(activity)
-                .build()
-        }
-        return options
-    }
-
+    /**
+     * Adds a place to a trip.
+     */
     fun addPlaceToTrip(currentPlace: Place, currentTrip: Trip) {
         if (currentPlace.placeId !in currentTrip.tripPlaceIdList) {
             db.collection("trips").document(currentTrip.tripId!!)
@@ -379,6 +438,9 @@ class FirestoreViewModel {
         }
     }
 
+    /**
+     * Removes a place from a trip.
+     */
     fun removePlaceFromTrip(currentPlace: Place, currentTrip: Trip) {
         if (currentPlace.placeId in currentTrip.tripPlaceIdList) {
             db.collection("trips").document(currentTrip.tripId!!)
@@ -387,6 +449,9 @@ class FirestoreViewModel {
         }
     }
 
+    /**
+     * Creates recycler options for a list of trip's places.
+     */
     fun getTripPlacesOptions(activity: FragmentActivity, currentTrip: Trip): FirestoreRecyclerOptions<Place>? {
         var options: FirestoreRecyclerOptions<Place>? = null
         if (user != null) {
@@ -402,10 +467,16 @@ class FirestoreViewModel {
         return options
     }
 
+    /**
+     * Updates a trip according to changes done by the user.
+     */
     fun editTrip(currentTrip: Trip) {
         db.collection("trips").document(currentTrip.tripId!!).set(currentTrip)
     }
 
+    /**
+     * Deletes a place from the database.
+     */
     fun deletePlace(currentPlace: Place) {
         db.collection("trips")
             .get()
@@ -418,11 +489,17 @@ class FirestoreViewModel {
             .delete()
     }
 
+    /**
+     * Deletes a trip from the database.
+     */
     fun deleteTrip(currentTrip: Trip) {
         db.collection("trips").document(currentTrip.tripId!!)
             .delete()
     }
 
+    /**
+     * Creates a task list containing all places in a trip.
+     */
     fun createShowTripPlacesTask(tripToShow: Trip): ArrayList<Task<QuerySnapshot>> {
         val tasks = arrayListOf<Task<QuerySnapshot>>()
         for (placeId in tripToShow.tripPlaceIdList) {
