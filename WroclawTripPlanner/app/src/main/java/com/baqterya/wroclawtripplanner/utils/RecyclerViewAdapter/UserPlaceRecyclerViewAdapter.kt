@@ -29,7 +29,8 @@ import com.google.android.material.switchmaterial.SwitchMaterial
  *
  * @property firestoreViewModel: Firestore View Model that communicates with the database
  */
-class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : FirestoreRecyclerAdapter<Place, UserPlaceRecyclerViewAdapter.UserPlaceViewHolder>(options) {
+class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) :
+    FirestoreRecyclerAdapter<Place, UserPlaceRecyclerViewAdapter.UserPlaceViewHolder>(options) {
     private val firestoreViewModel = FirestoreViewModel()
 
     class UserPlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -48,7 +49,8 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
     override fun onBindViewHolder(holder: UserPlaceViewHolder, position: Int, currentPlace: Place) {
         holder.binding.textViewPlaceNameUser.text = currentPlace.placeName
         val likeString = holder.itemView.context.getString(R.string.place_likes_prompt)
-        holder.binding.textViewLikeCounterUser.text = String.format(likeString, currentPlace.placeLikes)
+        holder.binding.textViewLikeCounterUser.text =
+            String.format(likeString, currentPlace.placeLikes)
 
         holder.binding.imageButtonEditPlace.setOnClickListener {
             showEditPlaceDialog(currentPlace, holder.itemView.context)
@@ -56,8 +58,13 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
 
         holder.binding.cardViewUserPlace.setOnClickListener {
             (holder.itemView.context as MainActivity).imageViewCenterPin.visibility = View.VISIBLE
-            val latLng = currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
-            val action = ListPlacesTripsFragmentDirections.actionListPlacesTripsFragmentToMapFragment(latLng, currentPlace.placeId)
+            val latLng =
+                currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
+            val action =
+                ListPlacesTripsFragmentDirections.actionListPlacesTripsFragmentToMapFragment(
+                    latLng,
+                    currentPlace.placeId
+                )
             holder.itemView.findNavController().navigate(action)
         }
     }
@@ -72,8 +79,10 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
 
         val textViewEditPrompt = dialog.findViewById<TextView>(R.id.text_view_edit_place_prompt)
         val editTextPlaceName = dialog.findViewById<EditText>(R.id.edit_text_edit_place_name)
-        val editTextPlaceDescription = dialog.findViewById<EditText>(R.id.edit_text_edit_place_description)
-        val switchIsPlacePrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_edit_place_is_private)
+        val editTextPlaceDescription =
+            dialog.findViewById<EditText>(R.id.edit_text_edit_place_description)
+        val switchIsPlacePrivate =
+            dialog.findViewById<SwitchMaterial>(R.id.switch_edit_place_is_private)
         val dialogChips = dialog.findViewById<ChipGroup>(R.id.chip_group_place_edit_category_picker)
 
         val editString = context.getString(R.string.edit_prompt)
@@ -98,12 +107,16 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
 
         dialog.findViewById<ImageButton>(R.id.image_button_delete_place).setOnClickListener {
             AlertDialog.Builder(context)
-                .setPositiveButton("Yes") {_, _ ->
+                .setPositiveButton("Yes") { _, _ ->
                     firestoreViewModel.deletePlace(currentPlace)
-                    Toast.makeText(context, "${currentPlace.placeName} successfully removed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "${currentPlace.placeName} successfully removed",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     dialog.dismiss()
                 }
-                .setNegativeButton("No") {_, _ ->}
+                .setNegativeButton("No") { _, _ -> }
                 .setTitle("Delete ${currentPlace.placeName}")
                 .setMessage("Are you sure you want to delete ${currentPlace.placeName}")
                 .create().show()

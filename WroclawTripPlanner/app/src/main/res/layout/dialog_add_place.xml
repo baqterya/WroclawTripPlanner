@@ -5,8 +5,7 @@
     android:minHeight="400dp"
     android:layout_margin="40dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -30,7 +29,7 @@
             app:switchMinWidth="55dp"
             app:layout_constraintTop_toTopOf="@id/text_view_add_place_prompt"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_input_layout_add_place_name"
@@ -89,7 +88,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="27dp"
             app:layout_constraintTop_toBottomOf="@id/scroll_view_add_description"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group_place_add_category_picker"
@@ -106,7 +105,7 @@
                 android:minWidth="96dp"
                 android:layoutDirection="rtl"
                 style="@style/Widget.Material3.Chip.Filter"
-                android:text="@string/category_culture"/>
+                android:text="@string/category_culture" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_category_food_drink"
@@ -125,7 +124,7 @@
                 android:minWidth="106dp"
                 android:layoutDirection="rtl"
                 style="@style/Widget.Material3.Chip.Filter"
-                android:text="@string/category_services"/>
+                android:text="@string/category_services" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_category_shopping"
@@ -134,7 +133,7 @@
                 android:minWidth="106dp"
                 android:layoutDirection="rtl"
                 style="@style/Widget.Material3.Chip.Filter"
-                android:text="@string/category_shopping"/>
+                android:text="@string/category_shopping" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_category_leisure"
@@ -143,7 +142,7 @@
                 android:minWidth="96dp"
                 android:layoutDirection="rtl"
                 style="@style/Widget.Material3.Chip.Filter"
-                android:text="@string/category_leisure"/>
+                android:text="@string/category_leisure" />
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -155,7 +154,7 @@
             android:text="@string/add"
             app:layout_constraintTop_toBottomOf="@id/chip_group_place_add_category_picker"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

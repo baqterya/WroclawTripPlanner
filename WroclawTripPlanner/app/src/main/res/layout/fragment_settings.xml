@@ -16,7 +16,7 @@
         android:textSize="26sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_edit_username"
@@ -27,16 +27,14 @@
         android:hint="@string/change_username_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_change_username_prompt"
-        >
+        app:layout_constraintTop_toBottomOf="@id/text_view_change_username_prompt">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_text_edit_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:importantForAutofill="no"
-            />
+            android:importantForAutofill="no" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,6 +56,6 @@
         app:cornerRadius="3dp"
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

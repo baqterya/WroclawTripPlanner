@@ -9,7 +9,7 @@
         android:id="@+id/welcomeFragment"
         android:name="com.baqterya.wroclawtripplanner.view.fragment.login.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" >
+        tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_registerWithEmailFragment"
             app:destination="@id/registerWithEmailFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/registerWithEmailFragment"
         android:name="com.baqterya.wroclawtripplanner.view.fragment.login.RegisterWithEmailFragment"
         android:label="fragment_register_with_email"
-        tools:layout="@layout/fragment_register_with_email" >
+        tools:layout="@layout/fragment_register_with_email">
         <action
             android:id="@+id/action_registerWithEmailFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
@@ -30,7 +30,7 @@
         android:id="@+id/loginWithEmailFragment"
         android:name="com.baqterya.wroclawtripplanner.view.fragment.login.LoginWithEmailFragment"
         android:label="fragment_login_with_email"
-        tools:layout="@layout/fragment_login_with_email" >
+        tools:layout="@layout/fragment_login_with_email">
         <action
             android:id="@+id/action_loginWithEmailFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />

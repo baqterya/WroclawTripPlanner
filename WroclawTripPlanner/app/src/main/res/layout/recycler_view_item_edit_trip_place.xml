@@ -25,7 +25,7 @@
             android:textColor="@color/md_theme_light_onSecondary"
             android:text="@string/name_placeholder"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
             android:id="@+id/image_button_remove_place_from_trip"
@@ -37,7 +37,7 @@
             android:layout_marginHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_view_place_name_trip"
-            android:contentDescription="@string/remove_place_from_trip"/>
+            android:contentDescription="@string/remove_place_from_trip" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

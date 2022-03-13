@@ -16,7 +16,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 /**
  * Firestore Recycler View Adapter that lists all of trip's places.
  */
-class TripPlacesRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : FirestoreRecyclerAdapter<Place, TripPlacesRecyclerViewAdapter.TripPlaceViewHolder>(options)  {
+class TripPlacesRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) :
+    FirestoreRecyclerAdapter<Place, TripPlacesRecyclerViewAdapter.TripPlaceViewHolder>(options) {
     class TripPlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = RecyclerViewItemTripPlaceBinding.bind(itemView)
     }
@@ -34,8 +35,12 @@ class TripPlacesRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : 
         holder.binding.textViewPlaceNameTrip.text = currentPlace.placeName
         holder.binding.cardViewTripPlace.setOnClickListener {
             (holder.itemView.context as MainActivity).imageViewCenterPin.visibility = View.VISIBLE
-            val latLng = currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
-            val action = TripDetailsFragmentDirections.actionTripDetailsFragmentToMapFragment(latLng, currentPlace.placeId)
+            val latLng =
+                currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
+            val action = TripDetailsFragmentDirections.actionTripDetailsFragmentToMapFragment(
+                latLng,
+                currentPlace.placeId
+            )
             holder.itemView.findNavController().navigate(action)
         }
     }

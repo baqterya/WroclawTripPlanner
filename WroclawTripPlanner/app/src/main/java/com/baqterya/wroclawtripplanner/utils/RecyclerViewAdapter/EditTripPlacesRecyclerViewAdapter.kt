@@ -20,7 +20,13 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
  *
  * @property firestoreViewModel: Firestore View Model that communicates with the database
  */
-class EditTripPlacesRecyclerViewAdapter(private val hostFragment: EditTripFragment, private val currentTrip: Trip, options: FirestoreRecyclerOptions<Place>) : FirestoreRecyclerAdapter<Place, EditTripPlacesRecyclerViewAdapter.EditTripPlaceViewHolder>(options) {
+class EditTripPlacesRecyclerViewAdapter(
+    private val hostFragment: EditTripFragment,
+    private val currentTrip: Trip,
+    options: FirestoreRecyclerOptions<Place>
+) : FirestoreRecyclerAdapter<Place, EditTripPlacesRecyclerViewAdapter.EditTripPlaceViewHolder>(
+    options
+) {
     private val firestoreViewModel = FirestoreViewModel()
 
     class EditTripPlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -37,7 +43,11 @@ class EditTripPlacesRecyclerViewAdapter(private val hostFragment: EditTripFragme
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun onBindViewHolder(holder: EditTripPlaceViewHolder, position: Int, currentPlace: Place) {
+    override fun onBindViewHolder(
+        holder: EditTripPlaceViewHolder,
+        position: Int,
+        currentPlace: Place
+    ) {
         holder.binding.textViewPlaceNameTrip.text = currentPlace.placeName
 
         holder.binding.imageButtonRemovePlaceFromTrip.setOnClickListener {

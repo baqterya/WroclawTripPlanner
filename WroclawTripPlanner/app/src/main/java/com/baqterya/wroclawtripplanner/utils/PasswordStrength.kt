@@ -56,21 +56,22 @@ enum class PasswordStrength(private var resId: Int, color: Int) {
                 if (!sawSpecial && !Character.isLetterOrDigit(character)) {
                     sawSpecial = true
                 } else if (!sawDigit && Character.isDigit(character)) {
-                        sawDigit = true
-                    } else if (!sawUpper || !sawLower) {
-                        if (Character.isUpperCase(character))
-                            sawUpper = true
-                        else
-                            sawLower = true
-                    }
+                    sawDigit = true
+                } else if (!sawUpper || !sawLower) {
+                    if (Character.isUpperCase(character))
+                        sawUpper = true
+                    else
+                        sawLower = true
                 }
+            }
 
 
             if (password.length > REQUIRED_LENGTH) {
-                if (REQUIRE_SPECIAL_CHARACTERS &&!sawSpecial
+                if (REQUIRE_SPECIAL_CHARACTERS && !sawSpecial
                     || REQUIRE_UPPER_CASE && !sawUpper
                     || REQUIRE_LOWER_CASE && !sawLower
-                    || REQUIRE_DIGITS && !sawDigit) {
+                    || REQUIRE_DIGITS && !sawDigit
+                ) {
                     currentScore = 1
                 } else {
                     currentScore = 2

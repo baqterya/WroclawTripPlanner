@@ -67,7 +67,7 @@
         android:textColor="@color/md_theme_light_onPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_input_layout_add_trip_description"/>
+        app:layout_constraintTop_toBottomOf="@id/text_input_layout_add_trip_description" />
 
     <Button
         android:id="@+id/button_add_trip"
@@ -79,6 +79,6 @@
         android:textColor="@color/md_theme_dark_onPrimary"
         app:layout_constraintTop_toBottomOf="@id/switch_is_trip_private"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

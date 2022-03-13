@@ -33,7 +33,10 @@ import com.google.android.material.switchmaterial.SwitchMaterial
  *
  * @property firestoreViewModel: Firestore View Model that communicates with the database
  */
-class PlaceViewPagerAdapter(private val places: List<Place>, private val activity: FragmentActivity) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>(){
+class PlaceViewPagerAdapter(
+    private val places: List<Place>,
+    private val activity: FragmentActivity
+) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>() {
     private val firestoreViewModel = FirestoreViewModel()
 
     class PlaceViewPagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -41,7 +44,8 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewPagerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_pager_item_place, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.view_pager_item_place, parent, false)
         return PlaceViewPagerViewHolder(view)
     }
 
@@ -53,7 +57,8 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         val currentPlace = places[position]
         holder.binding.textViewPlaceName.text = currentPlace.placeName
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
-        holder.binding.textViewPlaceOwner.text = String.format(ownerString, currentPlace.placeOwnerName)
+        holder.binding.textViewPlaceOwner.text =
+            String.format(ownerString, currentPlace.placeOwnerName)
 
         val buttonFavPlace = holder.binding.imageButtonAddPlaceToFav
         updatePlaceFavUI(currentPlace, buttonFavPlace)
@@ -75,7 +80,11 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         fillTagChips(placeTags, holder.binding.chipGroupPlaceTopTags)
 
         holder.binding.buttonAddTagsToPlace.setOnClickListener {
-            openTagsSelectorSheet(holder.itemView, currentPlace, holder.binding.chipGroupPlaceTopTags)
+            openTagsSelectorSheet(
+                holder.itemView,
+                currentPlace,
+                holder.binding.chipGroupPlaceTopTags
+            )
         }
 
         holder.binding.textViewPlaceDescription.text = currentPlace.placeDescription
@@ -139,7 +148,7 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         tagsBottomSheetWrapper.checkUserTags(currentPlace)
         tagsBottomSheetWrapper.fabTagsProceed.setOnClickListener {
             val tags = tagsBottomSheetWrapper.selectedTags
-            val tagsToRemove= tagsBottomSheetWrapper.tagsToRemove
+            val tagsToRemove = tagsBottomSheetWrapper.tagsToRemove
             tagsBottomSheetWrapper.tagsBottomSheet.dismiss()
             if (tags.isEmpty() && tagsToRemove.isEmpty()) return@setOnClickListener
 
@@ -180,8 +189,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         val newTrip = Trip()
 
         dialog.findViewById<Button>(R.id.button_add_trip).setOnClickListener {
-            val tripName = dialog.findViewById<EditText>(R.id.edit_text_add_trip_name).text.toString()
-            val tripDescription = dialog.findViewById<EditText>(R.id.edit_text_add_trip_description).text.toString()
+            val tripName =
+                dialog.findViewById<EditText>(R.id.edit_text_add_trip_name).text.toString()
+            val tripDescription =
+                dialog.findViewById<EditText>(R.id.edit_text_add_trip_description).text.toString()
             val tripIsPrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_is_trip_private)
 
             if (inputCheck(tripName) && inputCheck(tripDescription)) {

@@ -15,7 +15,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 /**
  * Firestore Recycler View Adapter that lists all of user's own Trips from the database.
  */
-class UserTripsRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) : FirestoreRecyclerAdapter<Trip, UserTripsRecyclerViewAdapter.UserTripViewHolder>(options) {
+class UserTripsRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) :
+    FirestoreRecyclerAdapter<Trip, UserTripsRecyclerViewAdapter.UserTripViewHolder>(options) {
     class UserTripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = RecyclerViewItemUserTripBinding.bind(itemView)
     }
@@ -32,7 +33,8 @@ class UserTripsRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) : Fi
     override fun onBindViewHolder(holder: UserTripViewHolder, position: Int, currentTrip: Trip) {
         holder.binding.textViewUserTripName.text = currentTrip.tripName
         val likeString = holder.itemView.context.getString(R.string.place_likes_prompt)
-        holder.binding.textViewLikeCounterUserTrip.text = String.format(likeString, currentTrip.tripLikes)
+        holder.binding.textViewLikeCounterUserTrip.text =
+            String.format(likeString, currentTrip.tripLikes)
         holder.binding.cardViewUserTrip.setOnClickListener {
             val action = ListPlacesTripsFragmentDirections
                 .actionListPlacesTripsFragmentToEditTripFragment(currentTrip)

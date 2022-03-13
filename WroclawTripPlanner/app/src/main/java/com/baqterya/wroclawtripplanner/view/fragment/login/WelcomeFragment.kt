@@ -47,7 +47,8 @@ class WelcomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonEmailSignUp.setOnClickListener {
-            val action = WelcomeFragmentDirections.actionWelcomeFragmentToRegisterWithEmailFragment()
+            val action =
+                WelcomeFragmentDirections.actionWelcomeFragmentToRegisterWithEmailFragment()
             findNavController().navigate(action)
         }
 
@@ -117,19 +118,31 @@ class WelcomeFragment : Fragment() {
                                 .noAutoDismiss()
                                 .customView(R.layout.dialog_twitter_username_taken)
 
-                            dialog.findViewById<Button>(R.id.button_retry_username).setOnClickListener {
-                                val newUsernameEditText = dialog.findViewById<EditText>(R.id.edit_text_retry_username)
+                            dialog.findViewById<Button>(R.id.button_retry_username)
+                                .setOnClickListener {
+                                    val newUsernameEditText =
+                                        dialog.findViewById<EditText>(R.id.edit_text_retry_username)
 
-                                if (TextUtils.isEmpty(newUsernameEditText.text.toString().trim { it <= ' ' })) {
-                                    Toast.makeText(requireContext(), "Please enter a new username.", Toast.LENGTH_SHORT).show()
-                                    newUsernameEditText.requestFocus()
-                                    val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                                    imm.showSoftInput(newUsernameEditText, InputMethodManager.SHOW_IMPLICIT)
-                                    return@setOnClickListener
+                                    if (TextUtils.isEmpty(
+                                            newUsernameEditText.text.toString().trim { it <= ' ' })
+                                    ) {
+                                        Toast.makeText(
+                                            requireContext(),
+                                            "Please enter a new username.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        newUsernameEditText.requestFocus()
+                                        val imm =
+                                            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                        imm.showSoftInput(
+                                            newUsernameEditText,
+                                            InputMethodManager.SHOW_IMPLICIT
+                                        )
+                                        return@setOnClickListener
+                                    }
+                                    newUser.userName = newUsernameEditText.text.toString()
+                                    checkIfNameAvailable(newUser)
                                 }
-                                newUser.userName = newUsernameEditText.text.toString()
-                                checkIfNameAvailable(newUser)
-                            }
                             dialog.show()
                         }
                     }

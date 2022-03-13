@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_gravity="bottom"
-            android:background="@drawable/fade_gradient_bottom"/>
+            android:background="@drawable/fade_gradient_bottom" />
 
     </FrameLayout>
 
@@ -40,8 +40,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_screen_image"
-        />
+        app:layout_constraintTop_toBottomOf="@id/title_screen_image" />
 
 
     <LinearLayout
@@ -60,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/login_prompt"/>
+            android:text="@string/login_prompt" />
 
         <TextView
             android:id="@+id/text_view_sign_in"
@@ -69,8 +68,7 @@
             android:padding="5dp"
             android:textStyle="bold"
             android:text="@string/sign_in_prompt"
-            android:textColor="@color/md_theme_dark_tertiary"
-            />
+            android:textColor="@color/md_theme_dark_tertiary" />
 
     </LinearLayout>
 
@@ -86,7 +84,7 @@
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toTopOf="@id/linear_layout_login_prompt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -108,7 +106,7 @@
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toTopOf="@id/button_twitter_sign_in"
         app:layout_constraintStart_toStartOf="@id/button_twitter_sign_in"
-        app:layout_constraintEnd_toEndOf="@id/button_twitter_sign_in"/>
+        app:layout_constraintEnd_toEndOf="@id/button_twitter_sign_in" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
