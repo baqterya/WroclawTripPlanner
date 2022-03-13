@@ -4,7 +4,14 @@ import android.content.Context
 import android.graphics.Color
 import com.baqterya.wroclawtripplanner.R
 
-enum class PasswordStrength private constructor(private var resId: Int, color: Int) {
+
+/**
+ * Enum class used for checking the strength of a password entered by a user in account creation.
+ */
+enum class PasswordStrength(private var resId: Int, color: Int) {
+    /**
+     * Colors and strings assigned to strength status
+     */
     WEAK(R.string.password_strength_weak, Color.RED),
     MEDIUM(R.string.password_strength_medium, Color.argb(255, 220, 185, 0)),
     STRONG(R.string.password_strength_strong, Color.GREEN),
@@ -25,13 +32,20 @@ enum class PasswordStrength private constructor(private var resId: Int, color: I
         private var REQUIRED_LENGTH = 8
         private var MAXIMUM_LENGTH = 15
 
+        /**
+         * Options for the strength calculator
+         */
         private var REQUIRE_SPECIAL_CHARACTERS = true
         private var REQUIRE_DIGITS = true
         private var REQUIRE_LOWER_CASE = true
         private var REQUIRE_UPPER_CASE = true
 
         fun calculateStrength(password: String): PasswordStrength {
-            var currentScore = 0
+            /**
+             * Calculates the strength of a entered password and returns it as an enum
+             * class containing both the required string and color for the progress bar.
+             */
+            var currentScore: Int
             var sawUpper = false
             var sawLower = false
             var sawDigit = false
@@ -48,7 +62,6 @@ enum class PasswordStrength private constructor(private var resId: Int, color: I
                             sawUpper = true
                         else
                             sawLower = true
-//                        if (sawUpper && sawLower)
                     }
                 }
 
