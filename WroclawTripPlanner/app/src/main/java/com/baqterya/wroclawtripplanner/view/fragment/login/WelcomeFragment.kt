@@ -90,36 +90,42 @@ class WelcomeFragment : Fragment() {
     }
 
     private fun checkIfNameAvailable(newUser: User) {
-        db.collection("users").get()
-            .addOnSuccessListener { result ->
-                var isUsernameFree = true
-                for (document in result) {
-                    if ((document.data["userName"] as String).lowercase() == newUser.userName!!.lowercase())
-                        isUsernameFree = false
-                }
-
-                if (isUsernameFree) {
-                    proceedToMain(newUser)
-                } else {
-                    val dialog = MaterialDialog(requireContext())
-                        .noAutoDismiss()
-                        .customView(R.layout.dialog_twitter_username_taken)
-
-                    dialog.findViewById<Button>(R.id.button_retry_username).setOnClickListener {
-                        val newUsernameEditText = dialog.findViewById<EditText>(R.id.edit_text_retry_username)
-
-                        if (TextUtils.isEmpty(newUsernameEditText.text.toString().trim { it <= ' ' })) {
-                            Toast.makeText(requireContext(), "Please enter a new username.", Toast.LENGTH_SHORT).show()
-                            newUsernameEditText.requestFocus()
-                            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                            imm.showSoftInput(newUsernameEditText, InputMethodManager.SHOW_IMPLICIT)
-                            return@setOnClickListener
+        db.collection("users").document(newUser.userId!!).get()
+            .addOnSuccessListener {
+                proceedToMain(newUser)
+            }
+            .addOnFailureListener {
+                db.collection("users").get()
+                    .addOnSuccessListener { result ->
+                        var isUsernameFree = true
+                        for (document in result) {
+                            if ((document.data["userName"] as String).lowercase() == newUser.userName!!.lowercase())
+                                isUsernameFree = false
                         }
-                        newUser.userName = newUsernameEditText.text.toString()
-                        checkIfNameAvailable(newUser)
+
+                        if (isUsernameFree) {
+                            proceedToMain(newUser)
+                        } else {
+                            val dialog = MaterialDialog(requireContext())
+                                .noAutoDismiss()
+                                .customView(R.layout.dialog_twitter_username_taken)
+
+                            dialog.findViewById<Button>(R.id.button_retry_username).setOnClickListener {
+                                val newUsernameEditText = dialog.findViewById<EditText>(R.id.edit_text_retry_username)
+
+                                if (TextUtils.isEmpty(newUsernameEditText.text.toString().trim { it <= ' ' })) {
+                                    Toast.makeText(requireContext(), "Please enter a new username.", Toast.LENGTH_SHORT).show()
+                                    newUsernameEditText.requestFocus()
+                                    val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                    imm.showSoftInput(newUsernameEditText, InputMethodManager.SHOW_IMPLICIT)
+                                    return@setOnClickListener
+                                }
+                                newUser.userName = newUsernameEditText.text.toString()
+                                checkIfNameAvailable(newUser)
+                            }
+                            dialog.show()
+                        }
                     }
-                    dialog.show()
-                }
             }
     }
 
