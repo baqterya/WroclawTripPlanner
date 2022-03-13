@@ -31,15 +31,17 @@ class LoginActivity : AppCompatActivity() {
 
         Dexter.withContext(this)
             .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-            .withListener(object: PermissionListener {
+            .withListener(object : PermissionListener {
                 override fun onPermissionGranted(permissionGrantedResponse: PermissionGrantedResponse?) {}
 
                 override fun onPermissionDenied(permissionDeniedResponse: PermissionDeniedResponse?) {
                     if (permissionDeniedResponse?.isPermanentlyDenied == true) {
                         val permissionAlert = MaterialAlertDialogBuilder(this@LoginActivity)
                             .setTitle("Location permission denied")
-                            .setMessage("This app needs.\n" +
-                                    "Do you want to go to system settings to allow the permission?")
+                            .setMessage(
+                                "This app needs.\n" +
+                                        "Do you want to go to system settings to allow the permission?"
+                            )
                             .setPositiveButton("OK") { _, _ ->
                                 val intent = Intent()
                                 intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
@@ -49,11 +51,15 @@ class LoginActivity : AppCompatActivity() {
                             .setNegativeButton("No", null)
                         permissionAlert.show()
                     } else {
-                        Toast.makeText(this@LoginActivity, "Permission denied.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "Permission denied.", Toast.LENGTH_SHORT)
+                            .show()
                     }
                 }
 
-                override fun onPermissionRationaleShouldBeShown(permissionRequest: PermissionRequest?, permissionToken: PermissionToken?) {}
+                override fun onPermissionRationaleShouldBeShown(
+                    permissionRequest: PermissionRequest?,
+                    permissionToken: PermissionToken?
+                ) {}
             })
             .check()
     }

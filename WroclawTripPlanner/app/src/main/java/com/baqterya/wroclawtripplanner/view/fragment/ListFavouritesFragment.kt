@@ -31,7 +31,7 @@ class ListFavouritesFragment : Fragment() {
         val adapter = FavouritesViewPagerAdapter(requireActivity())
         viewPager2.adapter = adapter
 
-        viewPager2.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,

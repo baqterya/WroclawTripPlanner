@@ -20,7 +20,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
  *
  * @property firestoreViewModel: Firestore View Model that communicates with the database
  */
-class FavTripsRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) : FirestoreRecyclerAdapter<Trip, FavTripsRecyclerViewAdapter.FavTripViewHolder>(options) {
+class FavTripsRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) :
+    FirestoreRecyclerAdapter<Trip, FavTripsRecyclerViewAdapter.FavTripViewHolder>(options) {
     private val firestoreViewModel = FirestoreViewModel()
 
     class FavTripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -41,7 +42,8 @@ class FavTripsRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) : Fir
         holder.binding.textViewTripDescription.text = currentTrip.tripDescription
         holder.binding.textViewLikeCounterTrip.text = currentTrip.tripLikes.toString()
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
-        holder.binding.textViewTripAuthor.text = String.format(ownerString, currentTrip.tripOwnerName)
+        holder.binding.textViewTripAuthor.text =
+            String.format(ownerString, currentTrip.tripOwnerName)
 
         val buttonFavTrip = holder.binding.imageButtonAddTripToFav
         if (firestoreViewModel.isTripFav(currentTrip)) {

@@ -14,7 +14,7 @@
         android:textSize="19sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button_add_to_existing_trip"
@@ -25,6 +25,6 @@
         android:textSize="19sp"
         app:layout_constraintTop_toBottomOf="@id/button_add_to_new_trip"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

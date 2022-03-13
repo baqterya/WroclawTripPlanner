@@ -43,7 +43,7 @@ class RegisterWithEmailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.editTextPasswordRegister.addTextChangedListener(object: TextWatcher {
+        binding.editTextPasswordRegister.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable?) {}
 
@@ -54,48 +54,75 @@ class RegisterWithEmailFragment : Fragment() {
         })
 
         binding.buttonRegister.setOnClickListener {
-            if (TextUtils.isEmpty(binding.editTextEmailRegister.text.toString().trim { it <= ' ' })) {
-                Toast.makeText(requireContext(), "Please enter an email.", Toast.LENGTH_SHORT).show()
+            if (TextUtils.isEmpty(
+                    binding.editTextEmailRegister.text.toString().trim { it <= ' ' })
+            ) {
+                Toast.makeText(requireContext(), "Please enter an email.", Toast.LENGTH_SHORT)
+                    .show()
                 binding.editTextEmailRegister.requestFocus()
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(binding.editTextEmailRegister, InputMethodManager.SHOW_IMPLICIT)
                 return@setOnClickListener
             }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(binding.editTextEmailRegister.text.toString()).matches()) {
-                Toast.makeText(requireContext(), "Please enter a valid email.", Toast.LENGTH_SHORT).show()
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            if (!Patterns.EMAIL_ADDRESS.matcher(binding.editTextEmailRegister.text.toString())
+                    .matches()
+            ) {
+                Toast.makeText(requireContext(), "Please enter a valid email.", Toast.LENGTH_SHORT)
+                    .show()
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(binding.editTextEmailRegister, InputMethodManager.SHOW_IMPLICIT)
                 return@setOnClickListener
             }
 
-            if (TextUtils.isEmpty(binding.editTextUsernameRegister.text.toString().trim { it <= ' ' })) {
-                Toast.makeText(requireContext(), "Please enter a username.", Toast.LENGTH_SHORT).show()
+            if (TextUtils.isEmpty(
+                    binding.editTextUsernameRegister.text.toString().trim { it <= ' ' })
+            ) {
+                Toast.makeText(requireContext(), "Please enter a username.", Toast.LENGTH_SHORT)
+                    .show()
                 binding.editTextUsernameRegister.requestFocus()
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.showSoftInput(binding.editTextUsernameRegister, InputMethodManager.SHOW_IMPLICIT)
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(
+                    binding.editTextUsernameRegister,
+                    InputMethodManager.SHOW_IMPLICIT
+                )
                 return@setOnClickListener
             }
 
             if (!safePassword) {
-                Toast.makeText(requireContext(), "Please create a safe password.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Please create a safe password.",
+                    Toast.LENGTH_SHORT
+                ).show()
                 binding.editTextPasswordRegister.requestFocus()
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.showSoftInput(binding.editTextPasswordRegister, InputMethodManager.SHOW_IMPLICIT)
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(
+                    binding.editTextPasswordRegister,
+                    InputMethodManager.SHOW_IMPLICIT
+                )
                 return@setOnClickListener
             }
 
             if (!arePasswordsSame()) {
-                Toast.makeText(requireContext(), "Passwords do not match.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Passwords do not match.", Toast.LENGTH_SHORT)
+                    .show()
                 binding.editTextRepeatRegister.requestFocus()
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(binding.editTextRepeatRegister, InputMethodManager.SHOW_IMPLICIT)
                 return@setOnClickListener
             }
 
-            val email: String = binding.editTextEmailRegister.text.toString().trim {it <= ' '}
-            val password: String = binding.editTextPasswordRegister.text.toString().trim {it <= ' '}
-            val username: String = binding.editTextUsernameRegister.text.toString().trim {it <= ' '}
+            val email: String = binding.editTextEmailRegister.text.toString().trim { it <= ' ' }
+            val password: String =
+                binding.editTextPasswordRegister.text.toString().trim { it <= ' ' }
+            val username: String =
+                binding.editTextUsernameRegister.text.toString().trim { it <= ' ' }
 
             db.collection("users").get()
                 .addOnSuccessListener { result ->
@@ -108,9 +135,17 @@ class RegisterWithEmailFragment : Fragment() {
                     if (isUsernameFree) {
                         createUser(email, password, username)
                     } else {
-                        Toast.makeText(requireContext(), "This username is taken", Toast.LENGTH_SHORT).show()
-                        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                        imm.showSoftInput(binding.editTextUsernameRegister, InputMethodManager.SHOW_IMPLICIT)
+                        Toast.makeText(
+                            requireContext(),
+                            "This username is taken",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val imm =
+                            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        imm.showSoftInput(
+                            binding.editTextUsernameRegister,
+                            InputMethodManager.SHOW_IMPLICIT
+                        )
                     }
                 }
         }
@@ -165,7 +200,11 @@ class RegisterWithEmailFragment : Fragment() {
                 if (task.isSuccessful) {
                     val firebaseUser = task.result!!.user!!
 
-                    Toast.makeText(requireContext(), "You have registered successfully", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "You have registered successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     val newUser = User(firebaseUser.uid, username, email)
                     addUserToFirestore(newUser)
 
@@ -173,7 +212,7 @@ class RegisterWithEmailFragment : Fragment() {
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     requireActivity().finish()
-                } else  {
+                } else {
                     Log.e(TAG, "createUser: ", task.exception)
                 }
             }

@@ -16,7 +16,7 @@
         android:layout_marginTop="35dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_email_register"
@@ -96,7 +96,7 @@
         app:layout_constraintEnd_toStartOf="@id/text_view_password_strength"
         app:layout_constraintTop_toTopOf="@id/text_view_password_strength"
         app:layout_constraintBottom_toBottomOf="@id/text_view_password_strength"
-        style="@style/Widget.MaterialComponents.LinearProgressIndicator"/>
+        style="@style/Widget.MaterialComponents.LinearProgressIndicator" />
 
     <TextView
         android:id="@+id/text_view_password_strength"
@@ -106,7 +106,7 @@
         android:gravity="center_horizontal"
         app:layout_constraintTop_toBottomOf="@id/text_input_layout_password_register"
         app:layout_constraintEnd_toEndOf="@id/text_input_layout_password_register"
-        android:text="@string/password_str_dummy"/>
+        android:text="@string/password_str_dummy" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_repeat_password_register"
@@ -139,7 +139,7 @@
         android:text="@string/password_instructions"
         app:layout_constraintTop_toBottomOf="@id/text_input_layout_repeat_password_register"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button_register"
@@ -154,7 +154,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/password_instructions"
-        android:text="@string/button_register"/>
+        android:text="@string/button_register" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

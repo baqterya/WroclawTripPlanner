@@ -69,14 +69,20 @@ class EditTripFragment : Fragment() {
 
                 firestoreViewModel.editTrip(currentTrip)
             }
-            val action = EditTripFragmentDirections.actionEditTripFragmentToListPlacesTripsFragment()
+            val action =
+                EditTripFragmentDirections.actionEditTripFragmentToListPlacesTripsFragment()
             findNavController().navigate(action)
         }
 
         binding.imageButtonDeleteTrip.setOnClickListener {
             firestoreViewModel.deleteTrip(currentTrip)
-            Toast.makeText(requireContext(), "Successfully removed ${currentTrip.tripName}", Toast.LENGTH_SHORT).show()
-            val action = EditTripFragmentDirections.actionEditTripFragmentToListPlacesTripsFragment()
+            Toast.makeText(
+                requireContext(),
+                "Successfully removed ${currentTrip.tripName}",
+                Toast.LENGTH_SHORT
+            ).show()
+            val action =
+                EditTripFragmentDirections.actionEditTripFragmentToListPlacesTripsFragment()
             findNavController().navigate(action)
         }
     }

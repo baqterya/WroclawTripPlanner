@@ -14,7 +14,7 @@
         android:layout_marginEnd="10dp"
         app:layout_constraintTop_toTopOf="@id/text_view_place_name"
         app:layout_constraintBottom_toBottomOf="@id/text_view_place_name"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
         android:id="@+id/image_button_add_place_to_fav"
@@ -39,7 +39,7 @@
         android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/text_view_place_owner"
@@ -50,7 +50,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_place_name"/>
+        app:layout_constraintTop_toBottomOf="@id/text_view_place_name" />
 
     <TextView
         android:id="@+id/text_view_place_category"
@@ -62,7 +62,7 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_place_owner"/>
+        app:layout_constraintTop_toBottomOf="@id/text_view_place_owner" />
 
     <TextView
         android:id="@+id/text_view_place_tags_prompt"
@@ -72,7 +72,7 @@
         android:text="@string/tags_prompt"
         app:layout_constraintTop_toBottomOf="@id/text_view_place_category"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <HorizontalScrollView
         android:id="@+id/scroll_view_place_tags"
@@ -83,13 +83,13 @@
         app:layout_constraintTop_toBottomOf="@id/text_view_place_tags_prompt">
 
         <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group_place_top_tags"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxWidth="325dp"
-        app:layout_constraintTop_toBottomOf="@id/text_view_place_tags_prompt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+            android:id="@+id/chip_group_place_top_tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="325dp"
+            app:layout_constraintTop_toBottomOf="@id/text_view_place_tags_prompt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -113,7 +113,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -129,7 +129,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -137,7 +137,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -145,7 +145,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -153,7 +153,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -161,7 +161,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
             <com.google.android.material.chip.Chip
                 android:layout_width="wrap_content"
@@ -169,7 +169,7 @@
                 android:clickable="false"
                 android:visibility="gone"
                 android:textColor="@color/md_theme_dark_onBackground"
-                style="@style/MyAssistChipStyle"/>
+                style="@style/MyAssistChipStyle" />
 
         </com.google.android.material.chip.ChipGroup>
 
@@ -184,7 +184,7 @@
         android:text="@string/add_a_tag"
         app:layout_constraintTop_toBottomOf="@id/scroll_view_place_tags"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:id="@+id/scroll_view_place_description"
@@ -214,6 +214,6 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="50dp"
         android:text="@string/add_place_to_a_trip"
-        app:layout_constraintTop_toBottomOf="@id/scroll_view_place_description"/>
+        app:layout_constraintTop_toBottomOf="@id/scroll_view_place_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
  * A wrapper for a bottom sheet dialog that shows a place's data.
  * It contains a view pager that displays all of the places returned by a firestore query.
  */
-class PlaceBottomSheetWrapper(private val view: View, private val places: ArrayList<Place>, private val clickedItemIndex: Int, private val activity: FragmentActivity) {
+class PlaceBottomSheetWrapper(
+    private val view: View,
+    private val places: ArrayList<Place>,
+    private val clickedItemIndex: Int,
+    private val activity: FragmentActivity
+) {
     lateinit var viewPager2: ViewPager2
     lateinit var placeBottomSheet: BottomSheetDialog
 

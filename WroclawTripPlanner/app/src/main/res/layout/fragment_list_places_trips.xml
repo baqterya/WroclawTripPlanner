@@ -10,7 +10,7 @@
         android:id="@+id/view_pager_2_user_places_trips"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="40dp"/>
+        android:layout_marginBottom="40dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_to_user_places"

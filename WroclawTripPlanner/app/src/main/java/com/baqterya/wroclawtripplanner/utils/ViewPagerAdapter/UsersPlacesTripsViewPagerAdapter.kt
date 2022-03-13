@@ -19,7 +19,8 @@ import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
  * @property firestoreViewModel: Firestore View Model that communicates with the database
  * @property options: Firestore Recycler View Options that gather the lists of user's trips and places
  */
-class UsersPlacesTripsViewPagerAdapter(private val activity: FragmentActivity) : RecyclerView.Adapter<UsersPlacesTripsViewPagerAdapter.UsersPlacesTripsViewPagerViewHolder>() {
+class UsersPlacesTripsViewPagerAdapter(private val activity: FragmentActivity) :
+    RecyclerView.Adapter<UsersPlacesTripsViewPagerAdapter.UsersPlacesTripsViewPagerViewHolder>() {
     private val firestoreViewModel = FirestoreViewModel()
     private val options = firestoreViewModel.getUsersPlacesTripsRecyclerOptions(activity)
 
@@ -31,7 +32,8 @@ class UsersPlacesTripsViewPagerAdapter(private val activity: FragmentActivity) :
         parent: ViewGroup,
         viewType: Int
     ): UsersPlacesTripsViewPagerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_pager_item_user_places_trips, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.view_pager_item_user_places_trips, parent, false)
         return UsersPlacesTripsViewPagerViewHolder(view)
     }
 
@@ -47,7 +49,8 @@ class UsersPlacesTripsViewPagerAdapter(private val activity: FragmentActivity) :
                     dataType = "PLACES"
                     val adapter = UserPlaceRecyclerViewAdapter(currentOptions)
                     holder.binding.recyclerViewUserPlacesTrips.adapter = adapter
-                    holder.binding.recyclerViewUserPlacesTrips.layoutManager = WrapperLinearLayoutManager(activity)
+                    holder.binding.recyclerViewUserPlacesTrips.layoutManager =
+                        WrapperLinearLayoutManager(activity)
                 }
                 1 -> {
                     /**
@@ -57,7 +60,8 @@ class UsersPlacesTripsViewPagerAdapter(private val activity: FragmentActivity) :
                     dataType = "TRIPS"
                     val adapter = UserTripsRecyclerViewAdapter(currentOptions)
                     holder.binding.recyclerViewUserPlacesTrips.adapter = adapter
-                    holder.binding.recyclerViewUserPlacesTrips.layoutManager = WrapperLinearLayoutManager(activity)
+                    holder.binding.recyclerViewUserPlacesTrips.layoutManager =
+                        WrapperLinearLayoutManager(activity)
                 }
             }
         val titleString = holder.itemView.context.getString(R.string.users_list_prompt)

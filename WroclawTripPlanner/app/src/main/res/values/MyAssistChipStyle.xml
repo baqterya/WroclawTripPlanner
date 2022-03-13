@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="MyAssistChipStyle" parent="Widget.Material3.Chip.Assist">
         <item name="chipSurfaceColor">@color/fui_transparent</item>
         <item name="chipBackgroundColor">#15000000</item>

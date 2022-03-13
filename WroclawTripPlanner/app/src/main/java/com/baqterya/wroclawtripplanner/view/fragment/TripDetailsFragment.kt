@@ -20,7 +20,7 @@ import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
  */
 class TripDetailsFragment : Fragment() {
     private var _binding: FragmentTripDetailsBinding? = null
-        private val binding get() = _binding!!
+    private val binding get() = _binding!!
 
     private val firestoreViewModel = FirestoreViewModel()
     private val args by navArgs<TripDetailsFragmentArgs>()
@@ -39,7 +39,8 @@ class TripDetailsFragment : Fragment() {
         val currentTrip = args.currentTrip
         binding.textViewTripNameDetails.text = currentTrip.tripName
         val ownerString = requireContext().getString(R.string.created_by_placeholder)
-        binding.textViewTripAuthorDetails.text = String.format(ownerString, currentTrip.tripOwnerName)
+        binding.textViewTripAuthorDetails.text =
+            String.format(ownerString, currentTrip.tripOwnerName)
         binding.textViewTripDescriptionDetails.text = currentTrip.tripDescription
 
         val options = firestoreViewModel.getTripPlacesOptions(requireActivity(), currentTrip)

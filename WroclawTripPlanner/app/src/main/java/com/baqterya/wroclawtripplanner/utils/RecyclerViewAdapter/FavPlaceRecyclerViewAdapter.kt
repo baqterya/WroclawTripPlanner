@@ -19,7 +19,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
  *
  * @property firestoreViewModel: Firestore View Model that communicates with the database
  */
-class FavPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : FirestoreRecyclerAdapter<Place, FavPlaceRecyclerViewAdapter.FavPlaceViewHolder>(options) {
+class FavPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) :
+    FirestoreRecyclerAdapter<Place, FavPlaceRecyclerViewAdapter.FavPlaceViewHolder>(options) {
     private val firestoreViewModel = FirestoreViewModel()
 
     class FavPlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,7 +39,8 @@ class FavPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : Fi
     override fun onBindViewHolder(holder: FavPlaceViewHolder, position: Int, currentPlace: Place) {
         holder.binding.textViewPlaceNameFav.text = currentPlace.placeName
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
-        holder.binding.textViewPlaceAuthorFav.text = String.format(ownerString, currentPlace.placeOwnerName)
+        holder.binding.textViewPlaceAuthorFav.text =
+            String.format(ownerString, currentPlace.placeOwnerName)
 
         holder.binding.textViewLikeCounterFav.text = currentPlace.placeLikes.toString()
 
@@ -57,8 +59,12 @@ class FavPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : Fi
 
         holder.binding.cardViewFavPlace.setOnClickListener {
             (holder.itemView.context as MainActivity).imageViewCenterPin.visibility = View.VISIBLE
-            val latLng = currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
-            val action = ListFavouritesFragmentDirections.actionListFavouritesFragmentToMapFragment(latLng, currentPlace.placeId)
+            val latLng =
+                currentPlace.placeLatitude.toString() + ',' + currentPlace.placeLongitude.toString()
+            val action = ListFavouritesFragmentDirections.actionListFavouritesFragmentToMapFragment(
+                latLng,
+                currentPlace.placeId
+            )
             holder.itemView.findNavController().navigate(action)
         }
     }

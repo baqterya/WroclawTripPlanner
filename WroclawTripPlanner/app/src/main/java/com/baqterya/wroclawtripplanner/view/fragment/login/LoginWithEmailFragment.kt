@@ -34,35 +34,50 @@ class LoginWithEmailFragment : Fragment() {
 
         binding.buttonLogIn.setOnClickListener {
             if (TextUtils.isEmpty(binding.editTextEmailLogin.text.toString().trim { it <= ' ' })) {
-                Toast.makeText(requireContext(), "Please enter a username.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter a username.", Toast.LENGTH_SHORT)
+                    .show()
                 binding.editTextEmailLogin.requestFocus()
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(binding.editTextEmailLogin, InputMethodManager.SHOW_IMPLICIT)
                 return@setOnClickListener
             }
 
-            if (TextUtils.isEmpty(binding.editTextPasswordLogin.text.toString().trim { it <= ' ' })) {
-                Toast.makeText(requireContext(), "Please enter a password.", Toast.LENGTH_SHORT).show()
+            if (TextUtils.isEmpty(
+                    binding.editTextPasswordLogin.text.toString().trim { it <= ' ' })
+            ) {
+                Toast.makeText(requireContext(), "Please enter a password.", Toast.LENGTH_SHORT)
+                    .show()
                 binding.editTextPasswordLogin.requestFocus()
-                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val imm =
+                    requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(binding.editTextPasswordLogin, InputMethodManager.SHOW_IMPLICIT)
                 return@setOnClickListener
             }
 
-            val email: String = binding.editTextEmailLogin.text.toString().trim {it <= ' '}
-            val password: String = binding.editTextPasswordLogin.text.toString().trim {it <= ' '}
+            val email: String = binding.editTextEmailLogin.text.toString().trim { it <= ' ' }
+            val password: String = binding.editTextPasswordLogin.text.toString().trim { it <= ' ' }
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(requireContext(), "You have logged in successfully.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "You have logged in successfully.",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                         val intent = Intent(activity, MainActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                         requireActivity().finish()
                     } else {
-                        Toast.makeText(requireContext(), task.exception!!.message.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            requireContext(),
+                            task.exception!!.message.toString(),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
         }

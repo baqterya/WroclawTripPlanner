@@ -25,7 +25,7 @@
             android:textColor="@color/md_theme_light_onSecondary"
             android:text="@string/name_placeholder"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_marginHorizontal="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/text_view_place_name_trip"
-            android:contentDescription="@string/content_desc_show_trip_s_place_on_the_map"/>
+            android:contentDescription="@string/content_desc_show_trip_s_place_on_the_map" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

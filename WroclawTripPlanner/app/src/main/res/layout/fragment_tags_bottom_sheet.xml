@@ -31,7 +31,7 @@
                     android:text="@string/culture_category_prompt"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group_tags_culture"
@@ -46,70 +46,70 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_museum"/>
+                        android:text="@string/tag_museum" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_library"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_library"/>
+                        android:text="@string/tag_library" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_art_gallery"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_art_gallery"/>
+                        android:text="@string/tag_art_gallery" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_opera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_opera"/>
+                        android:text="@string/tag_opera" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_theater"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_theater"/>
+                        android:text="@string/tag_theater" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_musical_theater"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_musical_theater"/>
+                        android:text="@string/tag_musical_theater" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_philharmonic_hall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_philharmonic_hall"/>
+                        android:text="@string/tag_philharmonic_hall" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_monument"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_monument"/>
+                        android:text="@string/tag_monument" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_temple"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_temple"/>
+                        android:text="@string/tag_temple" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_historic_building"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_historic_building"/>
+                        android:text="@string/tag_historic_building" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -131,7 +131,7 @@
                     android:text="@string/food_and_drinks_prompt"
                     android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="12dp"
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group_tags_food_and_drink"
@@ -146,21 +146,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_vegetarian"/>
+                        android:text="@string/tag_vegetarian" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_vegan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_vegan"/>
+                        android:text="@string/tag_vegan" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_restaurant"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_restaurant"/>
+                        android:text="@string/tag_restaurant" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_bar"
@@ -168,70 +168,70 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_bar"/>
+                        android:text="@string/tag_bar" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_coffee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_coffee"/>
+                        android:text="@string/tag_coffee" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_bistro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_bistro"/>
+                        android:text="@string/tag_bistro" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_italian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_italian"/>
+                        android:text="@string/tag_italian" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_indian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_indian"/>
+                        android:text="@string/tag_indian" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_chinese"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_chinese"/>
+                        android:text="@string/tag_chinese" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_polish"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_polish"/>
+                        android:text="@string/tag_polish" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_japanese"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_japanese"/>
+                        android:text="@string/tag_japanese" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_georgian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_georgian"/>
+                        android:text="@string/tag_georgian" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_vietnamese"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_vietnamese"/>
+                        android:text="@string/tag_vietnamese" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_thai"
@@ -239,49 +239,49 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_thai"/>
+                        android:text="@string/tag_thai" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_pizza"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_pizza"/>
+                        android:text="@string/tag_pizza" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_burger"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_burger"/>
+                        android:text="@string/tag_burger" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_kebab"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_kebab"/>
+                        android:text="@string/tag_kebab" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_falafel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_falafel"/>
+                        android:text="@string/tag_falafel" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_pasta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_pasta"/>
+                        android:text="@string/tag_pasta" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_curry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_curry"/>
+                        android:text="@string/tag_curry" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -303,7 +303,7 @@
                     android:text="@string/leisure_prompt"
                     android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="12dp"
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group_tags_leisure"
@@ -319,7 +319,7 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_park"/>
+                        android:text="@string/tag_park" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_gym"
@@ -327,14 +327,14 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_gym"/>
+                        android:text="@string/tag_gym" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_movie_theater"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_movie_theater"/>
+                        android:text="@string/tag_movie_theater" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_spa"
@@ -342,14 +342,14 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_spa"/>
+                        android:text="@string/tag_spa" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_zoo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_zoo"/>
+                        android:text="@string/tag_zoo" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_swimming_pool"
@@ -357,49 +357,49 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_swimming_pool"/>
+                        android:text="@string/tag_swimming_pool" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_playground"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_playground"/>
+                        android:text="@string/tag_playground" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_amusement_park"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_amusement_park"/>
+                        android:text="@string/tag_amusement_park" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_for_children"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_for_children"/>
+                        android:text="@string/tag_for_children" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_board_games"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_board_games"/>
+                        android:text="@string/tag_board_games" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_nightlife"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_nightlife"/>
+                        android:text="@string/tag_nightlife" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_sports_field"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_sports_field"/>
+                        android:text="@string/tag_sports_field" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_stadium"
@@ -407,21 +407,21 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_stadium"/>
+                        android:text="@string/tag_stadium" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_escape_room"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_escape_room"/>
+                        android:text="@string/tag_escape_room" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_hanging_out"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_hanging_out"/>
+                        android:text="@string/tag_hanging_out" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -443,7 +443,7 @@
                     android:text="@string/shopping_prompt"
                     android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="12dp"
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group_tags_shopping"
@@ -459,7 +459,7 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_groceries"/>
+                        android:text="@string/tag_groceries" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_shopping_mall"
@@ -467,14 +467,14 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_shopping_mall"/>
+                        android:text="@string/tag_shopping_mall" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_electronics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_electronics"/>
+                        android:text="@string/tag_electronics" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_apparel"
@@ -482,14 +482,14 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_apparel"/>
+                        android:text="@string/tag_apparel" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_sporting_equipment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_sporting_equipment"/>
+                        android:text="@string/tag_sporting_equipment" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_home"
@@ -497,35 +497,35 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_home"/>
+                        android:text="@string/tag_home" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_garden"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_garden"/>
+                        android:text="@string/tag_garden" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_convenience_store"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_convenience_store"/>
+                        android:text="@string/tag_convenience_store" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_beauty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_beauty"/>
+                        android:text="@string/tag_beauty" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_drug_store"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_pharmacy"/>
+                        android:text="@string/tag_pharmacy" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -548,7 +548,7 @@
                     android:text="@string/services_prompt"
                     android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="12dp"
-                    android:textSize="23sp"/>
+                    android:textSize="23sp" />
 
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/chip_group_tags_services"
@@ -563,28 +563,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_hotel"/>
+                        android:text="@string/tag_hotel" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_hospital"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_hospital"/>
+                        android:text="@string/tag_hospital" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_tram_bus_stop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_tram_bus_stop"/>
+                        android:text="@string/tag_tram_bus_stop" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_train_station"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_train_station"/>
+                        android:text="@string/tag_train_station" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_bike_rental"
@@ -592,7 +592,7 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_bike_rental"/>
+                        android:text="@string/tag_bike_rental" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_car_rental"
@@ -600,35 +600,35 @@
                         android:layout_height="wrap_content"
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_car_rental"/>
+                        android:text="@string/tag_car_rental" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_parking"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_parking"/>
+                        android:text="@string/tag_parking" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_gas_station"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_gas_station"/>
+                        android:text="@string/tag_gas_station" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_car_wash"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_car_wash"/>
+                        android:text="@string/tag_car_wash" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_electric_vehicle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_electric_vehicle"/>
+                        android:text="@string/tag_electric_vehicle" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_atm"
@@ -636,21 +636,21 @@
                         android:layout_height="wrap_content"
                         android:minWidth="70dp"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_atm"/>
+                        android:text="@string/tag_atm" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_mail_and_shipping"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_mail_and_shipping"/>
+                        android:text="@string/tag_mail_and_shipping" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_dry_cleaning"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_dry_cleaning"/>
+                        android:text="@string/tag_dry_cleaning" />
 
                 </com.google.android.material.chip.ChipGroup>
 
@@ -670,6 +670,6 @@
         android:layout_marginBottom="14dp"
         android:scaleX="1.5"
         android:layout_gravity="bottom|end"
-        android:backgroundTint="@color/md_theme_light_tertiary"/>
+        android:backgroundTint="@color/md_theme_light_tertiary" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -23,7 +23,7 @@
             android:textColor="@color/md_theme_light_onSecondary"
             android:text="@string/name_placeholder"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/text_view_like_counter_trip"
@@ -58,7 +58,7 @@
             android:textColor="@color/md_theme_light_onSecondary"
             android:text="@string/created_by_placeholder"
             app:layout_constraintStart_toStartOf="@id/text_view_trip_name"
-            app:layout_constraintTop_toBottomOf="@id/text_view_trip_name"/>
+            app:layout_constraintTop_toBottomOf="@id/text_view_trip_name" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/expandable_view"
@@ -79,7 +79,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/md_theme_light_onSecondary"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text_view_trip_description"
@@ -88,7 +88,7 @@
                 android:maxHeight="150dp"
                 android:layout_marginTop="10dp"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/text_view_description_prompt"/>
+                app:layout_constraintTop_toBottomOf="@id/text_view_description_prompt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

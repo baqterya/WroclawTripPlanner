@@ -120,7 +120,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 }
             }
 
-        map.setOnMarkerClickListener { marker : Marker ->
+        map.setOnMarkerClickListener { marker: Marker ->
             openPlaceBrowserDrawer(marker)
             false
         }
@@ -141,7 +141,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireContext())
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
@@ -185,7 +186,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     @SuppressLint("MissingPermission")
     private fun getDeviceLocation() {
         fusedLocationProviderClient.lastLocation
-            .addOnSuccessListener { location : Location? ->
+            .addOnSuccessListener { location: Location? ->
                 if (location != null) {
                     lastKnownLocation = location
                     map.moveCamera(
@@ -277,7 +278,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
      */
     private fun refreshMapMarkers(category: String? = null) {
         map.clear()
-        val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
+        val location =
+            GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
         val tasks = firestoreViewModel.createFindPlacesTask(bounds, category)
 
@@ -294,7 +296,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         map.addMarker(
                             MarkerOptions()
                                 .title(document["placeName"] as String).position(latLng)
-                                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
+                                .icon(
+                                    bitmapDescriptorFromVector(
+                                        requireContext(),
+                                        R.drawable.ic_map_pin
+                                    )
+                                )
                         )
                     }
                 }
@@ -327,17 +334,22 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
 
         dialog.findViewById<Button>(R.id.button_add_place).setOnClickListener {
-            val placeName = dialog.findViewById<EditText>(R.id.edit_text_add_place_name).text.toString()
-            val placeDescription = dialog.findViewById<EditText>(R.id.edit_text_add_place_description).text.toString()
-            val placeIsPrivate = dialog.findViewById<SwitchMaterial>(R.id.switch_add_place_is_private).isChecked
+            val placeName =
+                dialog.findViewById<EditText>(R.id.edit_text_add_place_name).text.toString()
+            val placeDescription =
+                dialog.findViewById<EditText>(R.id.edit_text_add_place_description).text.toString()
+            val placeIsPrivate =
+                dialog.findViewById<SwitchMaterial>(R.id.switch_add_place_is_private).isChecked
 
             val isCategoryPicked = dialogChips.checkedChipIds.isNotEmpty()
 
             if (inputCheck(placeName) && inputCheck(placeDescription) && isCategoryPicked) {
-                val hash = GeoFireUtils.getGeoHashForLocation(GeoLocation(
-                    map.cameraPosition.target.latitude,
-                    map.cameraPosition.target.longitude
-                ))
+                val hash = GeoFireUtils.getGeoHashForLocation(
+                    GeoLocation(
+                        map.cameraPosition.target.latitude,
+                        map.cameraPosition.target.longitude
+                    )
+                )
 
                 newPlace.placeName = placeName
                 newPlace.placeGeoHash = hash
@@ -347,7 +359,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 addPlace(newPlace)
                 dialog.dismiss()
             } else {
-                Toast.makeText(requireContext(), "Please fill all fields.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please fill all fields.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
         dialog.show()
@@ -357,7 +370,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
      * Opens the place bottom sheet with all places in camera center's vicinity.
      */
     private fun openPlaceBrowserDrawer(marker: Marker) {
-        val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
+        val location =
+            GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
         val tasks = firestoreViewModel.createFindPlacesTask(bounds)
 
@@ -375,22 +389,26 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         }
                     }
                 }
-                val bottomSheetWrapper = PlaceBottomSheetWrapper(requireView(), places, idx, requireActivity())
+                val bottomSheetWrapper =
+                    PlaceBottomSheetWrapper(requireView(), places, idx, requireActivity())
                 bottomSheetWrapper.createPlaceBottomSheet()
-                bottomSheetWrapper.viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                bottomSheetWrapper.viewPager2.registerOnPageChangeCallback(object :
+                    ViewPager2.OnPageChangeCallback() {
                     override fun onPageScrolled(
                         position: Int,
                         positionOffset: Float,
                         positionOffsetPixels: Int
                     ) {
                         super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                            LatLng(
-                                places[position].placeLatitude!!,
-                                places[position].placeLongitude!!
-                            ),
-                            DEFAULT_ZOOM
-                        ))
+                        map.animateCamera(
+                            CameraUpdateFactory.newLatLngZoom(
+                                LatLng(
+                                    places[position].placeLatitude!!,
+                                    places[position].placeLongitude!!
+                                ),
+                                DEFAULT_ZOOM
+                            )
+                        )
                     }
                 })
                 bottomSheetWrapper.placeBottomSheet.show()
@@ -419,7 +437,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
      */
     private fun findMarkersByTags(tags: ArrayList<String>) {
         map.clear()
-        val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
+        val location =
+            GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
         val tasks = firestoreViewModel.createFindPlacesTask(bounds)
 
@@ -429,7 +448,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     val snapshot = task.result
                     for (document in snapshot) {
                         val place = document.toObject(Place().javaClass)
-                        val placeTags  = arrayListOf<String>()
+                        val placeTags = arrayListOf<String>()
                         for (tag in place.placeTagList) {
                             placeTags.add(tag.tagName!!)
                         }
@@ -476,7 +495,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         map.addMarker(
                             MarkerOptions()
                                 .title(document["placeName"] as String).position(latLng)
-                                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
+                                .icon(
+                                    bitmapDescriptorFromVector(
+                                        requireContext(),
+                                        R.drawable.ic_map_pin
+                                    )
+                                )
                         )
                     }
 
