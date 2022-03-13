@@ -3,6 +3,12 @@ package com.baqterya.wroclawtripplanner.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
+/**
+ * Data class model of a Trip object in the database.
+ * It is parcelable so it can be used as a fragment argument in the navigation component.
+ *
+ * @property tripFavUsersId: list of IDs of users that added the trip to their favourites
+ */
 @Parcelize
 data class Trip(
     var tripId: String? = null,

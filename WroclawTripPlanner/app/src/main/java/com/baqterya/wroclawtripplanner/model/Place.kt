@@ -1,5 +1,10 @@
 package com.baqterya.wroclawtripplanner.model
 
+/**
+ * Data class model of a Place object in the database
+ *
+ * @property placeFavUsersId: List of users that added the place to their favourites
+ */
 data class Place(
     var placeId: String? = null,
     var placeName: String? = null,
