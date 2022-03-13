@@ -83,6 +83,8 @@
     <string name="remove_place_from_trip">remove place from the trip</string>
     <string name="remove_the_place">remove the place</string>
     <string name="remove_the_trip">remove the trip</string>
+    <string name="tag_falafel">falafel</string>
+    <string name="tag_train_station">train station</string>
 
 
 </resources>

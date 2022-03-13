@@ -220,6 +220,13 @@
                         android:text="@string/tag_japanese"/>
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_georgian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_georgian"/>
+
+                    <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_vietnamese"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -233,13 +240,6 @@
                         android:minWidth="60dp"
                         style="@style/MyFilterChipStyle"
                         android:text="@string/tag_thai"/>
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chip_tag_georgian"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="@style/MyFilterChipStyle"
-                        android:text="@string/tag_georgian"/>
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_pizza"
@@ -261,6 +261,13 @@
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
                         android:text="@string/tag_kebab"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_falafel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_falafel"/>
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_pasta"
@@ -571,6 +578,13 @@
                         android:layout_height="wrap_content"
                         style="@style/MyFilterChipStyle"
                         android:text="@string/tag_tram_bus_stop"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_tag_train_station"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/MyFilterChipStyle"
+                        android:text="@string/tag_train_station"/>
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tag_bike_rental"
