@@ -25,7 +25,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-
+/**
+ * Welcom fragment that allows the user to pick whether they want to register for the app using an
+ * email or twitter account, or log in with their email if they already have an account.
+ */
 class WelcomeFragment : Fragment() {
     private var _binding: FragmentWelcomeBinding? = null
         private val binding get() = _binding!!
@@ -89,6 +92,10 @@ class WelcomeFragment : Fragment() {
         }
     }
 
+    /**
+     * Function that checks whether user's twitter nickname is not already used by another user
+     * of the app.
+     */
     private fun checkIfNameAvailable(newUser: User) {
         db.collection("users").document(newUser.userId!!).get()
             .addOnSuccessListener {
@@ -129,7 +136,10 @@ class WelcomeFragment : Fragment() {
             }
     }
 
-
+    /**
+     * Function that redirects the user to the main activity after a successful login with
+     * their twitter account.
+     */
     private fun proceedToMain(newUser: User) {
         db.collection("users").document(newUser.userId!!).set(newUser)
 

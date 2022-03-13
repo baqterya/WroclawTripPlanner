@@ -14,6 +14,10 @@ import com.baqterya.wroclawtripplanner.databinding.FragmentLoginWithEmailBinding
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
+/**
+ * Fragment that allows the user to log in using their email.
+ * It checks whether all field are filled and redirects the user to the main activity.
+ */
 class LoginWithEmailFragment : Fragment() {
     private var _binding: FragmentLoginWithEmailBinding? = null
         private val binding get() = _binding!!
@@ -62,8 +66,5 @@ class LoginWithEmailFragment : Fragment() {
                     }
                 }
         }
-    }
-
-    companion object {
     }
 }

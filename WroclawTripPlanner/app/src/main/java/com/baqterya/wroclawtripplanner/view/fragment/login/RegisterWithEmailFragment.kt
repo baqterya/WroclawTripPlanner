@@ -24,7 +24,6 @@ import com.google.firebase.ktx.Firebase
 
 /**
  * Fragment that allows the user to register using their email.
-
  */
 class RegisterWithEmailFragment : Fragment() {
     private var _binding: FragmentRegisterWithEmailBinding? = null
@@ -117,6 +116,10 @@ class RegisterWithEmailFragment : Fragment() {
         }
     }
 
+    /**
+     * Function that updates the password strength progress bar according to the text entered by
+     * the user.
+     */
     private fun updatePasswordStrengthView(password: String) {
         val progressBar = binding.progressBarPasswordStrength
         val strengthView = binding.textViewPasswordStrength
@@ -152,6 +155,10 @@ class RegisterWithEmailFragment : Fragment() {
         }
     }
 
+    /**
+     * Function that creates a user in firebase authentication system after all of the
+     * fields are filled properly.
+     */
     private fun createUser(email: String, password: String, username: String) {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -172,10 +179,16 @@ class RegisterWithEmailFragment : Fragment() {
             }
     }
 
+    /**
+     * Function that checks whether user repeated their desired password properly.
+     */
     private fun arePasswordsSame(): Boolean {
         return binding.editTextPasswordRegister.text == binding.editTextRepeatRegister.text
     }
 
+    /**
+     * Function that saves user's data as a firestore document.
+     */
     private fun addUserToFirestore(newUser: User) {
         db.collection("users").document(newUser.userId!!).set(newUser)
     }
