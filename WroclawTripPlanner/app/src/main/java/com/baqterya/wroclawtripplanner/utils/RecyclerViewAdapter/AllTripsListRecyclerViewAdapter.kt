@@ -36,10 +36,10 @@ class AllTripsListRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) :
         return TripViewHolder(objectView)
     }
 
+    /**
+     * Fills the list item with the trip's data acquired from the database.
+     */
     override fun onBindViewHolder(holder: TripViewHolder, position: Int, currentTrip: Trip) {
-        /**
-         * Fills the list item with the trip's data acquired from the database.
-         */
         holder.binding.textViewTripName.text = currentTrip.tripName
         holder.binding.textViewTripDescription.text = currentTrip.tripDescription
         holder.binding.textViewLikeCounterTrip.text = currentTrip.tripLikes.toString()

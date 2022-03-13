@@ -10,6 +10,7 @@ class WrapperLinearLayoutManager(context: Context) : LinearLayoutManager(context
      * Linear layout manager wrapper that handles an exception that occurs when returning to
      * the app with a recycler view opened.
      */
+
     override fun onLayoutChildren(recycler: RecyclerView.Recycler?, state: RecyclerView.State?) {
         try {
             super.onLayoutChildren(recycler, state)

@@ -45,10 +45,11 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         return PlaceViewPagerViewHolder(view)
     }
 
+    /**
+     * Fills the page with Place's data acquired from the database
+     */
     override fun onBindViewHolder(holder: PlaceViewPagerViewHolder, position: Int) {
-        /**
-         * Fills the page with Place's data acquired from the database
-         */
+
         val currentPlace = places[position]
         holder.binding.textViewPlaceName.text = currentPlace.placeName
         val ownerString = holder.itemView.context.getString(R.string.created_by_placeholder)
@@ -88,10 +89,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         return places.size
     }
 
+    /**
+     * Updates the like button according to user's action
+     */
     private fun updatePlaceFavUI(currentPlace: Place, buttonFavPlace: ImageButton) {
-        /**
-         * Updates the like button according to user's action
-         */
         if (firestoreViewModel.isPlaceFav(currentPlace)) {
             buttonFavPlace.setImageResource(R.drawable.ic_favourite)
         } else {
@@ -99,10 +100,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         }
     }
 
+    /**
+     * Finds ten most popular tags of the place.
+     */
     private fun findMaxUsedTags(tags: ArrayList<Tag>): ArrayList<Tag> {
-        /**
-         * Finds ten most popular tags of the place.
-         */
         val topTenTags = arrayListOf<Tag>()
 
         while (topTenTags.size < 10) {
@@ -117,10 +118,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         return topTenTags
     }
 
+    /**
+     * Displays top ten tags of the place on chips.
+     */
     private fun fillTagChips(topTenTags: ArrayList<Tag>, chipGroup: ChipGroup) {
-        /**
-         * Displays top ten tags of the place on chips.
-         */
         for (tag in topTenTags) {
             val idx = topTenTags.indexOf(tag)
             val tagString = tag.tagName.plus(" ").plus(tag.tagCounter)
@@ -129,10 +130,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         }
     }
 
+    /**
+     * Opens bottom sheet used for adding and removing tags from the place.
+     */
     private fun openTagsSelectorSheet(view: View, currentPlace: Place, chipGroup: ChipGroup) {
-        /**
-         * Opens bottom sheet used for adding and removing tags from the place.
-         */
         val tagsBottomSheetWrapper = TagsBottomSheetWrapper(view)
         tagsBottomSheetWrapper.createTagBottomSheet(addingTags = true)
         tagsBottomSheetWrapper.checkUserTags(currentPlace)
@@ -146,11 +147,11 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         }
     }
 
+    /**
+     * Shows the dialog that lets user pick whether they want to add the place
+     * to an existing trip or create a new trip with the place already in it.
+     */
     private fun showAddPlaceToTripDialog(currentPlace: Place, context: Context) {
-        /**
-         * Shows the dialog that lets user pick whether they want to add the place
-         * to an existing trip or create a new trip with the place already in it.
-         */
         val dialog = MaterialDialog(context)
             .noAutoDismiss()
             .customView(R.layout.dialog_trip_action_picker)
@@ -168,10 +169,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         dialog.show()
     }
 
+    /**
+     * Creates a dialog that lets the user create a new trip.
+     */
     private fun showAddNewTripDialog(currentPlace: Place, context: Context) {
-        /**
-         * Creates a dialog that lets the user create a new trip.
-         */
         val dialog = MaterialDialog(context)
             .noAutoDismiss()
             .customView(R.layout.dialog_add_new_trip)
@@ -197,10 +198,10 @@ class PlaceViewPagerAdapter(private val places: List<Place>, private val activit
         dialog.show()
     }
 
+    /**
+     * Shows a dialog containing a list all of user's trips to add the place to.
+     */
     private fun showTripListDialog(currentPlace: Place, context: Context) {
-        /**
-         * Shows a dialog containing a list all of user's trips to add the place to.
-         */
         val dialog = MaterialDialog(context)
             .noAutoDismiss()
             .customView(R.layout.dialog_list_user_trips)

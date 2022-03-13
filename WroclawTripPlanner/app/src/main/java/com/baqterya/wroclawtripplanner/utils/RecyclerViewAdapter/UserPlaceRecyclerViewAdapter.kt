@@ -62,10 +62,10 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
         }
     }
 
+    /**
+     * Shows a dialog that allows the user to edit a place.
+     */
     private fun showEditPlaceDialog(currentPlace: Place, context: Context) {
-        /**
-         * Shows a dialog that allows the user to edit a place.
-         */
         val dialog = MaterialDialog(context)
             .noAutoDismiss()
             .customView(R.layout.dialog_edit_place)
