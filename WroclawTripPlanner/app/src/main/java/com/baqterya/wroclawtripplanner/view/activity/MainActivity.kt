@@ -11,6 +11,11 @@ import com.baqterya.wroclawtripplanner.databinding.ActivityMainBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Main activity that hosts all of the non-login-related fragments.
+ *
+ * @property user: used to check whether a user is logged in
+ */
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val user = Firebase.auth.currentUser
@@ -49,6 +54,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Public method that allows fragments to alter between an Add Pin FAB and Return To Map FAB
+     */
     fun swapFabVisibility(mode: String) {
         when (mode) {
             "disable" -> {

@@ -16,6 +16,10 @@ import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 
+/**
+ * Activity that hosts all of the fragments required for user to log in.
+ * It checks whether the user allowed the app to access their location.
+ */
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
