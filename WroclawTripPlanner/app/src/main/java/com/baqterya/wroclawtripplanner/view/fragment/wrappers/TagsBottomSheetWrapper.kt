@@ -12,6 +12,9 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 
+/**
+ * A wrapper for a bottom sheet dialog that displays tags to search a place with or to add to a place.
+ */
 class TagsBottomSheetWrapper(private val view: View) {
     lateinit var fabTagsProceed: ExtendedFloatingActionButton
     lateinit var tagsBottomSheet: BottomSheetDialog
@@ -19,6 +22,12 @@ class TagsBottomSheetWrapper(private val view: View) {
     val selectedTags = arrayListOf<Tag>()
     val tagsToRemove = arrayListOf<Tag>()
 
+    /**
+     * Creates and applies setting to a tagsBottomSheet.
+     *
+     * @param addingTags: specifies whether a sheet is created to find a place by tags
+     * or to add tags to a place.
+     */
     fun createTagBottomSheet(addingTags: Boolean = false) {
         tagsBottomSheet = BottomSheetDialog(view.context)
         tagsBottomSheet.setContentView(R.layout.fragment_tags_bottom_sheet)
@@ -65,11 +74,17 @@ class TagsBottomSheetWrapper(private val view: View) {
         tagsBottomSheet.show()
     }
 
+    /**
+     * Checks for tags already added by the user and checks the tag chips accordingly.
+     */
     fun checkUserTags(currentPlace: Place) {
         val placeViewModel = FirestoreViewModel()
         placeViewModel.checkUserTags(currentPlace, chipGroups)
     }
 
+    /**
+     * Disables all non-checked chips.
+     */
     private fun disableChips() {
         for (chipGroup in chipGroups.iterator()) {
             for (chip in chipGroup) {
@@ -80,6 +95,9 @@ class TagsBottomSheetWrapper(private val view: View) {
         }
     }
 
+    /**
+     * Enables all chips.
+     */
     private fun enableChips() {
         for (chipGroup in chipGroups.iterator()) {
             for (chip in chipGroup) {
