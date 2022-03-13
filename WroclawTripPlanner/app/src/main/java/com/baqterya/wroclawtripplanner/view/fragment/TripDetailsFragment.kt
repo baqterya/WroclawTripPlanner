@@ -13,6 +13,11 @@ import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.TripPlacesRecyc
 import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 
+/**
+ * A fragment that displays the details of a trip.
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 class TripDetailsFragment : Fragment() {
     private var _binding: FragmentTripDetailsBinding? = null
         private val binding get() = _binding!!

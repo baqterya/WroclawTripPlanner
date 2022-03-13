@@ -11,7 +11,11 @@ import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 
-
+/**
+ * A fragment that lists all of the trips made by app's users.
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 class ListAllTripsFragment : Fragment() {
     private var _binding: FragmentListAllTripsBinding? = null
         private val binding get() = _binding!!

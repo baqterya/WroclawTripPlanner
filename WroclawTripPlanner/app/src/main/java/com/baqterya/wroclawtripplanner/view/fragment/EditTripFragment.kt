@@ -15,6 +15,11 @@ import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.utils.inputCheck
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 
+/**
+ * A fragment that lets the user to update their trip
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 class EditTripFragment : Fragment() {
     private var _binding: FragmentEditTripBinding? = null
         private val binding get() = _binding!!
@@ -76,6 +81,9 @@ class EditTripFragment : Fragment() {
         }
     }
 
+    /**
+     * A function that updates the adapter of trip's places recycler view.
+     */
     fun updateAdapter(placeId: String) {
         val currentTrip = args.currentTrip
         currentTrip.tripPlaceIdList.remove(placeId)

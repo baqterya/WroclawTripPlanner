@@ -14,7 +14,11 @@ import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-
+/**
+ * A Fragment that allows the user to log out and change their user name.
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
         private val binding get() = _binding!!

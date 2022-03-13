@@ -10,6 +10,9 @@ import com.baqterya.wroclawtripplanner.databinding.FragmentListPlacesTripsBindin
 import com.baqterya.wroclawtripplanner.utils.ViewPagerAdapter.UsersPlacesTripsViewPagerAdapter
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 
+/**
+ * A Fragment that contains a view pager that lists user's own places and trips.
+ */
 class ListPlacesTripsFragment : Fragment() {
     private var _binding: FragmentListPlacesTripsBinding? = null
         private val binding get() = _binding!!

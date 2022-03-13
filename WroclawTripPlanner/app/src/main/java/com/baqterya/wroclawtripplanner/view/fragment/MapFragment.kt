@@ -42,6 +42,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 
 
+/**
+ * A fragment that displays the map and contains all of it's functionalities.
+ *
+ * @property map: Google Map object of the displayed map
+ * @property fusedLocationProviderClient: location provider client used to get the devices location
+ * @property lastKnownLocation: last known location of the device
+ * @property locationCallback: a callback used to move camera to user's last known location
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 @Suppress("DEPRECATION")
 class MapFragment : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentMapBinding? = null
@@ -55,6 +64,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private val firestoreViewModel = FirestoreViewModel()
     private val args by navArgs<MapFragmentArgs>()
 
+    /**
+     * A function that initiates all of the map's functions when the map is ready to be displayed.
+     */
     @SuppressLint("MissingPermission")
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
@@ -167,6 +179,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * Function that moves camera to last known device's location.
+     */
     @SuppressLint("MissingPermission")
     private fun getDeviceLocation() {
         fusedLocationProviderClient.lastLocation
@@ -214,6 +229,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
+    /**
+     * Function that sets the location button parameters.
+     */
     @SuppressLint("ResourceType")
     private fun locationButtonSettings() {
         val myLocationButton = requireView().findViewById<View>(R.id.map).findViewById<ImageView>(2)
@@ -223,6 +241,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         buttonParams.setMargins(0, 0, 30, 170)
     }
 
+    /**
+     * Adds a place to the database and displays it's pin on the map.
+     */
     private fun addPlace(newPlace: Place) {
         firestoreViewModel.addPlaceToFirestore(newPlace)
         map.addMarker(
@@ -230,9 +251,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                 .title(newPlace.placeName)
                 .position(LatLng(newPlace.placeLatitude!!, newPlace.placeLongitude!!))
                 .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
-        )
+        )?.showInfoWindow()
     }
 
+    /**
+     * Displays one particular pin on the map.
+     */
     private fun refreshOneMarker(placeId: String) {
         map.clear()
         val query = firestoreViewModel.getPlace(placeId)
@@ -248,6 +272,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+    /**
+     * Finds places in search radius around the camera center and displays them on the map.
+     */
     private fun refreshMapMarkers(category: String? = null) {
         map.clear()
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
@@ -274,6 +301,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
+    /**
+     * Shows a dialog that let's the user to add a place to the database.
+     */
     private fun showAddPlaceDialog() {
         val dialog = MaterialDialog(requireContext())
             .noAutoDismiss()
@@ -323,6 +353,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         dialog.show()
     }
 
+    /**
+     * Opens the place bottom sheet with all places in camera center's vicinity.
+     */
     private fun openPlaceBrowserDrawer(marker: Marker) {
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
         val bounds = GeoFireUtils.getGeoHashQueryBounds(location, SEARCH_RADIUS_IN_M)
@@ -364,6 +397,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
+    /**
+     * Opens the tag bottom sheet for the user to filter places with.
+     */
     private fun openTagSelectorSheet() {
         val tagsBottomSheetWrapper = TagsBottomSheetWrapper(requireView())
         tagsBottomSheetWrapper.createTagBottomSheet()
@@ -378,6 +414,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    /**
+     * Displays markers with tags requested by the user.
+     */
     private fun findMarkersByTags(tags: ArrayList<String>) {
         map.clear()
         val location = GeoLocation(map.cameraPosition.target.latitude, map.cameraPosition.target.longitude)
@@ -416,6 +455,9 @@ class MapFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
+    /**
+     * Displays the markers of a trip's places.
+     */
     private fun showTripMarkers(tripToShow: Trip) {
         map.clear()
         val tasks = firestoreViewModel.createShowTripPlacesTask(tripToShow)

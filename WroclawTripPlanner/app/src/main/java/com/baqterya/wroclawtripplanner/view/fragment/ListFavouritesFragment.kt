@@ -10,6 +10,9 @@ import com.baqterya.wroclawtripplanner.databinding.FragmentListFavouritesBinding
 import com.baqterya.wroclawtripplanner.utils.ViewPagerAdapter.FavouritesViewPagerAdapter
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 
+/**
+ * A Fragment that contains a view pager that lists user's favourites.
+ */
 class ListFavouritesFragment : Fragment() {
     private var _binding: FragmentListFavouritesBinding? = null
         private val binding get() = _binding!!
