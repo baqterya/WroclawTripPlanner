@@ -24,6 +24,11 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.switchmaterial.SwitchMaterial
 
+/**
+ * Firestore Recycler View Adapter that lists all of user's own Places from the database.
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : FirestoreRecyclerAdapter<Place, UserPlaceRecyclerViewAdapter.UserPlaceViewHolder>(options) {
     private val firestoreViewModel = FirestoreViewModel()
 
@@ -58,6 +63,9 @@ class UserPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : F
     }
 
     private fun showEditPlaceDialog(currentPlace: Place, context: Context) {
+        /**
+         * Shows a dialog that allows the user to edit a place.
+         */
         val dialog = MaterialDialog(context)
             .noAutoDismiss()
             .customView(R.layout.dialog_edit_place)

@@ -12,6 +12,9 @@ import com.baqterya.wroclawtripplanner.view.fragment.ListPlacesTripsFragmentDire
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
+/**
+ * Firestore Recycler View Adapter that lists all of user's own Trips from the database.
+ */
 class UserTripsRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) : FirestoreRecyclerAdapter<Trip, UserTripsRecyclerViewAdapter.UserTripViewHolder>(options) {
     class UserTripViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = RecyclerViewItemUserTripBinding.bind(itemView)

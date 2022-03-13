@@ -14,6 +14,11 @@ import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
+/**
+ * Firestore Recycler View Adapter that lists all of user's favourites Places from the database.
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 class FavPlaceRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : FirestoreRecyclerAdapter<Place, FavPlaceRecyclerViewAdapter.FavPlaceViewHolder>(options) {
     private val firestoreViewModel = FirestoreViewModel()
 

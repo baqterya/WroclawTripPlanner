@@ -15,6 +15,11 @@ import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
+/**
+ * Firestore Recycler View Adapter that lists all Trips from the database.
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 class AllTripsListRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) : FirestoreRecyclerAdapter<Trip, AllTripsListRecyclerViewAdapter.TripViewHolder>(options) {
     val firestoreViewModel = FirestoreViewModel()
 
@@ -32,6 +37,9 @@ class AllTripsListRecyclerViewAdapter(options: FirestoreRecyclerOptions<Trip>) :
     }
 
     override fun onBindViewHolder(holder: TripViewHolder, position: Int, currentTrip: Trip) {
+        /**
+         * Fills the list item with the trip's data acquired from the database.
+         */
         holder.binding.textViewTripName.text = currentTrip.tripName
         holder.binding.textViewTripDescription.text = currentTrip.tripDescription
         holder.binding.textViewLikeCounterTrip.text = currentTrip.tripLikes.toString()

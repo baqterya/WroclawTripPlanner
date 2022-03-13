@@ -14,6 +14,10 @@ import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
+/**
+ * Firestore Recycler View Adapter that lists all of user's Trips from the database.
+ * It allows the user to add a place to one of their trips.
+ */
 class UserTripPickerRecyclerViewAdapter(
     options: FirestoreRecyclerOptions<Trip>,
     private val currentPlace: Place,

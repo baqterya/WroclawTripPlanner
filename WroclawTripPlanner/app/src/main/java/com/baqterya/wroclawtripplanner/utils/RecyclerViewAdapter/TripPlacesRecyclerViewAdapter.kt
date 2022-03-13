@@ -13,6 +13,9 @@ import com.baqterya.wroclawtripplanner.view.fragment.TripDetailsFragmentDirectio
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
+/**
+ * Firestore Recycler View Adapter that lists all of trip's places.
+ */
 class TripPlacesRecyclerViewAdapter(options: FirestoreRecyclerOptions<Place>) : FirestoreRecyclerAdapter<Place, TripPlacesRecyclerViewAdapter.TripPlaceViewHolder>(options)  {
     class TripPlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = RecyclerViewItemTripPlaceBinding.bind(itemView)

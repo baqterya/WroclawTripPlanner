@@ -14,6 +14,12 @@ import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
+/**
+ * Firestore Recycler View Adapter that lists all places in a trip.
+ * It allows the user to remove a place from a trip.
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ */
 class EditTripPlacesRecyclerViewAdapter(private val hostFragment: EditTripFragment, private val currentTrip: Trip, options: FirestoreRecyclerOptions<Place>) : FirestoreRecyclerAdapter<Place, EditTripPlacesRecyclerViewAdapter.EditTripPlaceViewHolder>(options) {
     private val firestoreViewModel = FirestoreViewModel()
 
