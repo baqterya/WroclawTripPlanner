@@ -12,6 +12,13 @@ import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.FavTripsRecycle
 import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 
+/**
+ * ViewPagerAdapter class for the view pager of user's favourite places and trips.
+ * First page displays the places and second page displays the trips.
+ *
+ * @property firestoreViewModel: Firestore View Model that communicates with the database
+ * @property options: Firestore Recycler View Options that gather the lists of favourites
+ */
 class FavouritesViewPagerAdapter(private val activity: FragmentActivity) : RecyclerView.Adapter<FavouritesViewPagerAdapter.FavouritesViewPagerViewHolder>(){
     private val firestoreViewModel = FirestoreViewModel()
     private val options = firestoreViewModel.getFavouritesRecyclerOptions(activity)
@@ -20,18 +27,19 @@ class FavouritesViewPagerAdapter(private val activity: FragmentActivity) : Recyc
         val binding = ViewPagerItemListFavouritesBinding.bind(itemView)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavouritesViewPagerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.view_pager_item_list_favourites, parent, false)
         return FavouritesViewPagerViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: FavouritesViewPagerViewHolder, position: Int) {
-
         var favType = ""
         if (options != null)
             when (position) {
                 0 -> {
+                    /**
+                     * create the recycler view of favourite places on the first page
+                      */
                     val currentOptions = options.first
                     favType = "PLACES"
                     val adapter = FavPlaceRecyclerViewAdapter(currentOptions)
@@ -39,6 +47,9 @@ class FavouritesViewPagerAdapter(private val activity: FragmentActivity) : Recyc
                     holder.binding.recyclerViewFavourites.layoutManager = WrapperLinearLayoutManager(activity)
                 }
                 1 -> {
+                    /**
+                     * create the recycler view of favourite places on the second page
+                     */
                     val currentOptions = options.second
                     favType = "TRIPS"
                     val adapter = FavTripsRecyclerViewAdapter(currentOptions)
