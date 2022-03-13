@@ -32,6 +32,11 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
+        <argument
+            android:name="tripToShow"
+            app:argType="com.baqterya.wroclawtripplanner.model.Trip"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

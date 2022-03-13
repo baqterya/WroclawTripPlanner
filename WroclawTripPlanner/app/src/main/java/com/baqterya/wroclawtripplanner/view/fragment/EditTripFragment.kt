@@ -64,6 +64,8 @@ class EditTripFragment : Fragment() {
 
                 firestoreViewModel.editTrip(currentTrip)
             }
+            val action = EditTripFragmentDirections.actionEditTripFragmentToListPlacesTripsFragment()
+            findNavController().navigate(action)
         }
 
         binding.imageButtonDeleteTrip.setOnClickListener {

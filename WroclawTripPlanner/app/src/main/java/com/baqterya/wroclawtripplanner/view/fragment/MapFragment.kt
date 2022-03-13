@@ -18,6 +18,7 @@ import com.afollestad.materialdialogs.customview.customView
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentMapBinding
 import com.baqterya.wroclawtripplanner.model.Place
+import com.baqterya.wroclawtripplanner.model.Trip
 import com.baqterya.wroclawtripplanner.utils.bitmapDescriptorFromVector
 import com.baqterya.wroclawtripplanner.utils.createLocationRequest
 import com.baqterya.wroclawtripplanner.utils.inputCheck
@@ -79,19 +80,26 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val settingsClient = LocationServices.getSettingsClient(requireActivity())
         settingsClient.checkLocationSettings(builder.build())
             .addOnSuccessListener {
-                val latLng = args.latLng
-                val placeId = args.placeId
-                if (latLng == null) {
-                    getDeviceLocation()
+                if (args.tripToShow == null) {
+                    val latLng = args.latLng
+                    val placeId = args.placeId
+                    if (latLng == null) {
+                        getDeviceLocation()
+                    } else {
+                        val latLngList = latLng.split(",")
+                        val cameraLatLng =
+                            LatLng(latLngList[0].toDouble(), latLngList[1].toDouble())
+                        map.moveCamera(
+                            CameraUpdateFactory.newLatLngZoom(
+                                cameraLatLng,
+                                DEFAULT_ZOOM
+                            )
+                        )
+                        if (placeId != null)
+                            refreshOneMarker(placeId)
+                    }
                 } else {
-                    val latLngList = latLng.split(",")
-                    val cameraLatLng = LatLng(latLngList[0].toDouble(), latLngList[1].toDouble())
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                        cameraLatLng,
-                        DEFAULT_ZOOM
-                    ))
-                    if (placeId != null)
-                        refreshOneMarker(placeId)
+                    showTripMarkers(args.tripToShow!!)
                 }
             }
             .addOnFailureListener { exception ->
@@ -405,6 +413,34 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         }
                     }
                 }
+            }
+    }
+
+    private fun showTripMarkers(tripToShow: Trip) {
+        map.clear()
+        val tasks = firestoreViewModel.createShowTripPlacesTask(tripToShow)
+        Tasks.whenAllComplete(tasks)
+            .addOnCompleteListener {
+                val latLngBounds = LatLngBounds.builder()
+                for (task in tasks) {
+                    val snapshot = task.result
+
+                    for (document in snapshot) {
+                        val latLng = LatLng(
+                            document["placeLatitude"] as Double,
+                            document["placeLongitude"] as Double
+                        )
+                        latLngBounds.include(latLng)
+                        map.addMarker(
+                            MarkerOptions()
+                                .title(document["placeName"] as String).position(latLng)
+                                .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin))
+                        )
+                    }
+
+                }
+                val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 300)
+                map.animateCamera(cameraUpdate)
             }
     }
 

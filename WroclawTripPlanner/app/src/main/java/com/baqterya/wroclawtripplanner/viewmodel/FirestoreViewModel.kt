@@ -422,4 +422,14 @@ class FirestoreViewModel {
         db.collection("trips").document(currentTrip.tripId!!)
             .delete()
     }
+
+    fun createShowTripPlacesTask(tripToShow: Trip): ArrayList<Task<QuerySnapshot>> {
+        val tasks = arrayListOf<Task<QuerySnapshot>>()
+        for (placeId in tripToShow.tripPlaceIdList) {
+            val query = db.collection("places")
+                .whereEqualTo("placeId", placeId)
+            tasks.add(query.get())
+        }
+        return tasks
+    }
 }

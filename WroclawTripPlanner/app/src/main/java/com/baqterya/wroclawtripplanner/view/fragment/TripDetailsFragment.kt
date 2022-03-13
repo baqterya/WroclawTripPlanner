@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentTripDetailsBinding
@@ -44,7 +45,10 @@ class TripDetailsFragment : Fragment() {
         binding.recyclerViewTripPlaces.layoutManager = WrapperLinearLayoutManager(requireContext())
 
         binding.fabShowTheWay.setOnClickListener {
-
+            val action = TripDetailsFragmentDirections.actionTripDetailsFragmentToMapFragment(
+                tripToShow = currentTrip
+            )
+            findNavController().navigate(action)
         }
     }
 
