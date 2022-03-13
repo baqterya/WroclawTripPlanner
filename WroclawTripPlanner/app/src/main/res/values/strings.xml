@@ -85,6 +85,7 @@
     <string name="remove_the_trip">remove the trip</string>
     <string name="tag_falafel">falafel</string>
     <string name="tag_train_station">train station</string>
+    <string name="hint_repeat_password">repeat password</string>
 
 
 </resources>

@@ -22,7 +22,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
+/**
+ * Fragment that allows the user to register using their email.
 
+ */
 class RegisterWithEmailFragment : Fragment() {
     private var _binding: FragmentRegisterWithEmailBinding? = null
         private val binding get() = _binding!!
@@ -80,6 +83,14 @@ class RegisterWithEmailFragment : Fragment() {
                 binding.editTextPasswordRegister.requestFocus()
                 val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.showSoftInput(binding.editTextPasswordRegister, InputMethodManager.SHOW_IMPLICIT)
+                return@setOnClickListener
+            }
+
+            if (!arePasswordsSame()) {
+                Toast.makeText(requireContext(), "Passwords do not match.", Toast.LENGTH_SHORT).show()
+                binding.editTextRepeatRegister.requestFocus()
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(binding.editTextRepeatRegister, InputMethodManager.SHOW_IMPLICIT)
                 return@setOnClickListener
             }
 
@@ -159,6 +170,10 @@ class RegisterWithEmailFragment : Fragment() {
                     Log.e(TAG, "createUser: ", task.exception)
                 }
             }
+    }
+
+    private fun arePasswordsSame(): Boolean {
+        return binding.editTextPasswordRegister.text == binding.editTextRepeatRegister.text
     }
 
     private fun addUserToFirestore(newUser: User) {
