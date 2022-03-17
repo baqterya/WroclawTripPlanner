@@ -86,6 +86,7 @@
     <string name="tag_falafel">falafel</string>
     <string name="tag_train_station">train station</string>
     <string name="hint_repeat_password">repeat password</string>
+    <string name="navigate_to_the_place">Navigate to the place</string>
 
 
 </resources>

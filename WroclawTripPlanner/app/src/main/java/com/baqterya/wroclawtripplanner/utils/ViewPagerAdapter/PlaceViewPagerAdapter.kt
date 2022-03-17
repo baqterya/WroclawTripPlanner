@@ -22,6 +22,7 @@ import com.baqterya.wroclawtripplanner.model.Trip
 import com.baqterya.wroclawtripplanner.utils.RecyclerViewAdapter.UserTripPickerRecyclerViewAdapter
 import com.baqterya.wroclawtripplanner.utils.WrapperLinearLayoutManager
 import com.baqterya.wroclawtripplanner.utils.inputCheck
+import com.baqterya.wroclawtripplanner.view.fragment.MapFragment
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.google.android.material.chip.Chip
@@ -35,7 +36,8 @@ import com.google.android.material.switchmaterial.SwitchMaterial
  */
 class PlaceViewPagerAdapter(
     private val places: List<Place>,
-    private val activity: FragmentActivity
+    private val activity: FragmentActivity,
+    private val mapFragment: MapFragment
 ) : RecyclerView.Adapter<PlaceViewPagerAdapter.PlaceViewPagerViewHolder>() {
     private val firestoreViewModel = FirestoreViewModel()
 
@@ -91,6 +93,10 @@ class PlaceViewPagerAdapter(
 
         holder.binding.buttonAddPlaceToTrip.setOnClickListener {
             showAddPlaceToTripDialog(currentPlace, holder.itemView.context)
+        }
+
+        holder.binding.fabNavigateToPlace.setOnClickListener {
+            mapFragment.drawPathToPlace(currentPlace.placeLatitude!!, currentPlace.placeLongitude!!, currentPlace.placeId!!)
         }
     }
 

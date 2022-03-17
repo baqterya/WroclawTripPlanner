@@ -2,6 +2,7 @@ package com.baqterya.wroclawtripplanner.view.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.databinding.FragmentMapBinding
 import com.baqterya.wroclawtripplanner.model.Place
@@ -40,6 +44,8 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.google.maps.android.PolyUtil
+import org.json.JSONObject
 
 
 /**
@@ -61,13 +67,15 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var lastKnownLocation: Location
     private lateinit var locationCallback: LocationCallback
 
+    private lateinit var bottomSheetWrapper: PlaceBottomSheetWrapper
+
     private val firestoreViewModel = FirestoreViewModel()
     private val args by navArgs<MapFragmentArgs>()
 
     /**
      * A function that initiates all of the map's functions when the map is ready to be displayed.
      */
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "PotentialBehaviorOverride")
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
         map.isMyLocationEnabled = true
@@ -178,6 +186,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         if (requestCode == 1000) {
             getDeviceLocation()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (requireActivity() as MainActivity).savedLocation = LatLng(map.myLocation.latitude, map.myLocation.longitude)
     }
 
     /**
@@ -389,8 +402,8 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                         }
                     }
                 }
-                val bottomSheetWrapper =
-                    PlaceBottomSheetWrapper(requireView(), places, idx, requireActivity())
+                bottomSheetWrapper =
+                    PlaceBottomSheetWrapper(requireView(), places, idx, requireActivity(), this)
                 bottomSheetWrapper.createPlaceBottomSheet()
                 bottomSheetWrapper.viewPager2.registerOnPageChangeCallback(object :
                     ViewPager2.OnPageChangeCallback() {
@@ -482,15 +495,17 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val tasks = firestoreViewModel.createShowTripPlacesTask(tripToShow)
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {
+                val path = arrayListOf<LatLng>()
+                path.add((requireActivity() as MainActivity).savedLocation)
                 val latLngBounds = LatLngBounds.builder()
                 for (task in tasks) {
                     val snapshot = task.result
-
                     for (document in snapshot) {
                         val latLng = LatLng(
                             document["placeLatitude"] as Double,
                             document["placeLongitude"] as Double
                         )
+                        path.add(latLng)
                         latLngBounds.include(latLng)
                         map.addMarker(
                             MarkerOptions()
@@ -505,9 +520,77 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     }
 
                 }
+                drawTripPath(path)
                 val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 300)
                 map.animateCamera(cameraUpdate)
             }
+    }
+
+    private fun drawTripPath(tripPlaces: java.util.ArrayList<LatLng>) {
+        for (idx in 1 until tripPlaces.size) {
+            val path: MutableList<List<LatLng>> = ArrayList()
+            val urlDirections =
+                "https://maps.googleapis.com/maps/api/directions/json?" +
+                        "origin=${tripPlaces[idx-1].latitude},${tripPlaces[idx-1].longitude}&" +
+                        "destination=${tripPlaces[idx].latitude},${tripPlaces[idx].longitude}&" +
+                        "key=AIzaSyCNXAkT-Zg-NY4md_kespycX7fV_ff8KQw"
+
+            val directionsRequest = object : StringRequest(
+                Method.GET,
+                urlDirections,
+                Response.Listener { response ->
+                    val responseJSON = JSONObject(response)
+                    val routes = responseJSON.getJSONArray("routes")
+                    val legs = routes.getJSONObject(0).getJSONArray("legs")
+                    val steps = legs.getJSONObject(0).getJSONArray("steps")
+                    for (i in 0 until steps.length()) {
+                        val points = steps.getJSONObject(i).getJSONObject("polyline").getString("points")
+                        path.add(PolyUtil.decode(points))
+                    }
+                    for (i in 0 until path.size) {
+                        map.addPolyline(PolylineOptions().addAll(path[i]).color(Color.rgb(230, 138, 0)))
+                    }
+                },
+                Response.ErrorListener {  }) {}
+            val requestQueue = Volley.newRequestQueue(requireContext())
+            requestQueue.add(directionsRequest)
+        }
+    }
+
+    fun drawPathToPlace(placeLatitude: Double, placeLongitude: Double, placeId: String) {
+        refreshOneMarker(placeId)
+        bottomSheetWrapper.dismiss()
+        val path: MutableList<List<LatLng>> = ArrayList()
+        val urlDirections =
+            "https://maps.googleapis.com/maps/api/directions/json?" +
+                    "origin=${map.myLocation.latitude},${map.myLocation.longitude}&" +
+                    "destination=${placeLatitude},${placeLongitude}&" +
+                    "key=AIzaSyCNXAkT-Zg-NY4md_kespycX7fV_ff8KQw"
+
+        val directionsRequest = object : StringRequest(
+            Method.GET,
+            urlDirections,
+            Response.Listener { response ->
+                val responseJSON = JSONObject(response)
+                val routes = responseJSON.getJSONArray("routes")
+                val legs = routes.getJSONObject(0).getJSONArray("legs")
+                val steps = legs.getJSONObject(0).getJSONArray("steps")
+                for (i in 0 until steps.length()) {
+                    val points = steps.getJSONObject(i).getJSONObject("polyline").getString("points")
+                    path.add(PolyUtil.decode(points))
+                }
+                for (i in 0 until path.size) {
+                    map.addPolyline(PolylineOptions().addAll(path[i]).color(Color.rgb(230, 138, 0)))
+                }
+            },
+            Response.ErrorListener {  }) {}
+        val requestQueue = Volley.newRequestQueue(requireContext())
+        requestQueue.add(directionsRequest)
+        val latLngBounds = LatLngBounds.builder()
+        latLngBounds.include(LatLng(placeLatitude, placeLongitude))
+        latLngBounds.include(LatLng(map.myLocation.latitude, map.myLocation.longitude))
+        val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 300)
+        map.animateCamera(cameraUpdate)
     }
 
 

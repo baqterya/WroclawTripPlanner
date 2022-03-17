@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.baqterya.wroclawtripplanner.R
 import com.baqterya.wroclawtripplanner.model.Place
 import com.baqterya.wroclawtripplanner.utils.ViewPagerAdapter.PlaceViewPagerAdapter
+import com.baqterya.wroclawtripplanner.view.fragment.MapFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 /**
@@ -17,7 +18,8 @@ class PlaceBottomSheetWrapper(
     private val view: View,
     private val places: ArrayList<Place>,
     private val clickedItemIndex: Int,
-    private val activity: FragmentActivity
+    private val activity: FragmentActivity,
+    private val mapFragment: MapFragment
 ) {
     lateinit var viewPager2: ViewPager2
     lateinit var placeBottomSheet: BottomSheetDialog
@@ -30,7 +32,7 @@ class PlaceBottomSheetWrapper(
         placeBottomSheet.setContentView(R.layout.fragment_place_bottom_sheet)
         placeBottomSheet.behavior.peekHeight = view.height
 
-        val adapter = PlaceViewPagerAdapter(places, activity)
+        val adapter = PlaceViewPagerAdapter(places, activity, mapFragment)
         viewPager2 = placeBottomSheet.findViewById(R.id.view_pager_2_places)!!
         viewPager2.adapter = adapter
         viewPager2.currentItem = clickedItemIndex
@@ -45,4 +47,7 @@ class PlaceBottomSheetWrapper(
         viewPager2.setPageTransformer(marginPageTransformer)
     }
 
+    fun dismiss() {
+        placeBottomSheet.dismiss()
+    }
 }
