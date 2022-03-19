@@ -29,6 +29,7 @@ import com.baqterya.wroclawtripplanner.utils.inputCheck
 import com.baqterya.wroclawtripplanner.view.activity.MainActivity
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.PlaceBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TagsBottomSheetWrapper
+import com.baqterya.wroclawtripplanner.view.fragment.wrappers.TripPlacesBottomSheetWrapper
 import com.baqterya.wroclawtripplanner.viewmodel.FirestoreViewModel
 import com.firebase.geofire.GeoFireUtils
 import com.firebase.geofire.GeoLocation
@@ -140,9 +141,6 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMapBinding.inflate(inflater, container, false)
-
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
 
         return binding.root
     }
@@ -492,11 +490,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
      */
     private fun showTripMarkers(tripToShow: Trip) {
         map.clear()
+        val places = arrayListOf<Place>()
         val tasks = firestoreViewModel.createShowTripPlacesTask(tripToShow)
         Tasks.whenAllComplete(tasks)
             .addOnCompleteListener {
                 val path = arrayListOf<LatLng>()
-                path.add((requireActivity() as MainActivity).savedLocation)
                 val latLngBounds = LatLngBounds.builder()
                 for (task in tasks) {
                     val snapshot = task.result
@@ -505,6 +503,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                             document["placeLatitude"] as Double,
                             document["placeLongitude"] as Double
                         )
+                        places.add(document.toObject(Place::class.java))
                         path.add(latLng)
                         latLngBounds.include(latLng)
                         map.addMarker(
@@ -520,19 +519,27 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     }
 
                 }
-                drawTripPath(path)
-                val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 300)
+                val placesBottomSheet = TripPlacesBottomSheetWrapper(requireContext(), this, places)
+                placesBottomSheet.createTripOrderBottomSheet()
+                drawTripPath(path, placesBottomSheet.travelMode)
+                val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 400)
                 map.animateCamera(cameraUpdate)
             }
+
     }
 
-    private fun drawTripPath(tripPlaces: java.util.ArrayList<LatLng>) {
+    fun drawTripPath(tripPlaces: java.util.ArrayList<LatLng>, mode: String) {
+        map.clear()
+        tripPlaces.add(0, (requireActivity() as MainActivity).savedLocation)
+        val latLngBounds = LatLngBounds.builder()
+        latLngBounds.include((requireActivity() as MainActivity).savedLocation)
         for (idx in 1 until tripPlaces.size) {
             val path: MutableList<List<LatLng>> = ArrayList()
             val urlDirections =
                 "https://maps.googleapis.com/maps/api/directions/json?" +
                         "origin=${tripPlaces[idx-1].latitude},${tripPlaces[idx-1].longitude}&" +
                         "destination=${tripPlaces[idx].latitude},${tripPlaces[idx].longitude}&" +
+                        "mode=${mode}&" +
                         "key=AIzaSyCNXAkT-Zg-NY4md_kespycX7fV_ff8KQw"
 
             val directionsRequest = object : StringRequest(
@@ -552,9 +559,14 @@ class MapFragment : Fragment(), OnMapReadyCallback {
                     }
                 },
                 Response.ErrorListener {  }) {}
+            latLngBounds.include(tripPlaces[idx])
+            map.addMarker(MarkerOptions()
+                .position(tripPlaces[idx]).icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_map_pin)))
             val requestQueue = Volley.newRequestQueue(requireContext())
             requestQueue.add(directionsRequest)
         }
+        val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 400)
+        map.animateCamera(cameraUpdate)
     }
 
     fun drawPathToPlace(placeLatitude: Double, placeLongitude: Double, placeId: String) {
@@ -589,7 +601,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         val latLngBounds = LatLngBounds.builder()
         latLngBounds.include(LatLng(placeLatitude, placeLongitude))
         latLngBounds.include(LatLng(map.myLocation.latitude, map.myLocation.longitude))
-        val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 300)
+        val cameraUpdate = CameraUpdateFactory.newLatLngBounds(latLngBounds.build(), 400)
         map.animateCamera(cameraUpdate)
     }
 

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view_trip_place"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    app:cardCornerRadius="4dp"
+    app:cardBackgroundColor="@color/md_theme_light_secondary">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/image_view_drag_indicator"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            app:icon="@drawable/ic_drag_indicator"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="33dp"
+            android:backgroundTint="@color/fui_transparent"
+            app:iconTint="@color/md_theme_light_onTertiary"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/text_view_place_name_trip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_margin="10dp"
+            android:textColor="@color/md_theme_light_onSecondary"
+            android:text="@string/name_placeholder"
+            app:layout_constraintTop_toTopOf="@id/image_view_drag_indicator"
+            app:layout_constraintBottom_toBottomOf="@id/image_view_drag_indicator"
+            app:layout_constraintStart_toEndOf="@id/image_view_drag_indicator" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
