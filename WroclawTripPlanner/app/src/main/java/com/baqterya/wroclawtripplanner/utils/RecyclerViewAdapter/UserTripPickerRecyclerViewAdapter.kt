@@ -40,7 +40,7 @@ class UserTripPickerRecyclerViewAdapter(
         val firestoreViewModel = FirestoreViewModel()
         holder.binding.textViewTripNamePicker.text = currentTrip.tripName
         holder.binding.imageButtonAddToTrip.setOnClickListener {
-            firestoreViewModel.addPlaceToTrip(currentPlace, currentTrip)
+            firestoreViewModel.addPlaceToTrip(currentPlace, currentTrip, holder.itemView.context)
             Toast.makeText(
                 dialog.context,
                 "Place added to ${currentTrip.tripName}",
@@ -50,7 +50,7 @@ class UserTripPickerRecyclerViewAdapter(
             dialog.dismiss()
         }
         holder.binding.cardViewTripPicker.setOnClickListener {
-            firestoreViewModel.addPlaceToTrip(currentPlace, currentTrip)
+            firestoreViewModel.addPlaceToTrip(currentPlace, currentTrip, holder.itemView.context)
             Toast.makeText(
                 dialog.context,
                 "Place added to ${currentTrip.tripName}",

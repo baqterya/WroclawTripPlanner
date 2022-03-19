@@ -1,7 +1,9 @@
 package com.baqterya.wroclawtripplanner.viewmodel
 
+import android.content.Context
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.view.iterator
@@ -441,7 +443,11 @@ class FirestoreViewModel {
     /**
      * Adds a place to a trip.
      */
-    fun addPlaceToTrip(currentPlace: Place, currentTrip: Trip) {
+    fun addPlaceToTrip(currentPlace: Place, currentTrip: Trip, context: Context) {
+        if (currentTrip.tripPlaceIdList.size == 10) {
+            Toast.makeText(context, "A trip can only have up to 10 places", Toast.LENGTH_SHORT).show()
+            return
+        }
         if (currentPlace.placeId !in currentTrip.tripPlaceIdList) {
             db.collection("trips").document(currentTrip.tripId!!)
                 .update("tripPlaceIdList", FieldValue.arrayUnion(currentPlace.placeId!!))
