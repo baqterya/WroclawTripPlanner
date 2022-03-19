@@ -17,6 +17,7 @@ import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -361,7 +362,8 @@ class FirestoreViewModel {
         if (user != null) {
             val userTripsQuery = db.collection("trips")
                 .whereEqualTo("tripIsPrivate", false)
-                .orderBy("tripLikes")
+                .orderBy("tripLikes", Query.Direction.DESCENDING)
+                .limit(100)
                 .orderBy("tripName")
             options = FirestoreRecyclerOptions.Builder<Trip>()
                 .setQuery(userTripsQuery, Trip::class.java)
