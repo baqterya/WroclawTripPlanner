@@ -1,0 +1,187 @@
+\newpage
+    \subsection{Integracja z Firebase}
+    Tworzenie aplikacji korzystającej z funkcji oferowanych przez Firebase należy rozpocząć od utworzenia nowego projektu w witrynie internetowej Firebase. W trakcie tego procesu wyświetlane są instrukcje
+    przedstawiające kroki, które należy podjąć, aby połączyć aplikację z projektem chmury obliczeniowej. Sprowadza się to przede wszystkim do umieszczenia w folderze zawierającym kod źródłowy, pliku
+    \emph{google-services.json}, automatycznie wygenerowanego w trakcie procesu. Zawiera on w sobie informacje o projekcie oraz klucze API pozwalające na połączenie z chmurą obliczeniową. 
+    W następnej kolejności należy do aplikacji mobilnej dołączyć bilbioteki, na które składa się Firebase SDK for Android. Odbywa się to za pomocą systemu budowania projektów Gradle (patrz Listing~\ref{gradle}).
+
+    \vspace{1cm}
+    \begin{lstlisting}[language=Kotlin, caption=Biblioteki Firebase SDK zaimplementowane w aplikacji, label=gradle]
+//Firebase
+implementation platform('com.google.firebase:firebase-bom:29.0.0')
+implementation 'com.google.firebase:firebase-analytics'
+implementation 'com.google.firebase:firebase-auth-ktx:21.0.2'
+implementation 'com.google.firebase:firebase-firestore-ktx:24.0.2'
+    \end{lstlisting}
+    \vspace{1cm}
+
+        \subsubsection{Implementacja Firebase Authentication}
+        Pierwszą powiązaną z Firebase funkcjonalnością aplikacji, z którą zetknie się nowy użytkownik aplikacji, jest Firebase Authentication, odpowiadające za rejestrację oraz logowanie użytkowników.
+        W aplikacji zaimplementowana została możliwość tworzenia konta za pomocą adresu e-mail oraz logowanie się za pośrednictwem konta na platformie Twitter. Z poziomu SDK dostęp do funkcji autoryzacyjnych
+        otrzymujemy za pomocą obiektu \emph{Firebase.auth}. To na nim wywoływane są metody tworzące nowe konto użytkownika oraz pozwalające na zalogowanie. Na Listingu~\ref{auth} zobaczyć można przykład
+        zastosowania Firebase SDK for Android do utworzenia konta użytkownika za pomocą danych (email, password, oraz username) wprowadzonych przez niego w polach tekstowych oraz metodę pozwalającą
+        na zalogowanie za pomocą konta w serwisie Twitter. Kiedy rejestracja bądź logowanie za pomocą konta Twitter zakończy się pomyślnie, konto użytkownika zostanie zapisane w serwisie autoryzacyjnym
+        Firebase dostępnym za pomocą konsoli Firebase. Dodatkowo dane użytkownika zostaną wraz z jego pseudonimem zapisane w bazie danych Firestore, aby ułatwić komunikację w bazie danych.
+        Hasło użytkownika pozostaje dyskretne nawet dla twórcy aplikacji. Za bezpieczeństwo tajnych danych odpowiadają zabezpieczenia chmury obliczeniowej Google. Twórca projektu, w razie potrzeby
+        może uzyskać zaszyfrowane wersje haseł, np.\' na potrzeby migracji danych na inny serwer.
+
+\newpage
+        \begin{lstlisting}[
+            language=Kotlin, 
+            caption=Utworzenie konta użytkownika za pomocą \emph{Firebase.auth}, 
+            label=auth,
+        ]
+auth = Firebase.auth
+
+/** 
+* stworzenie konta za pomoca email'u i hasla wprowadzonego 
+* przez uzytkownika do pol tekstowych 
+**/
+Firebase.auth.createUserWithEmailAndPassword(email, password)
+
+
+/**
+* kod odpowiedzialny za polaczenie z serwisem Twitter
+* otwiera w oknie aplikacji okno przegladarki, w ktorej
+* uzytkownik zostanie poproszony o autoryzacje za pomoca
+* danych konta Twitter 
+**/
+val provider = OAuthProvider.newBuilder("twitter.com")
+
+val pendingTaskResult = auth.pendingAuthResult
+if (pendingTaskResult == null) {
+    auth.startActivityForSignInWithProvider(
+        requireActivity(), provider.build()
+    )
+}
+        \end{lstlisting}
+        \vspace{1cm}
+
+        \subsubsection{Implementacja Firebase Cloud Firestore}
+        Dostęp do funkcjonalności Cloud Firestore otrzymać można za pomocą obiektu \emph{Firebase.firestore}. Za jego pomocą możemy dokonywać zapytań do bazy danych i otrzymywać odpowiedzi zwrotne.
+        Przykład zaobserwować można w Listingu~\ref{add_place}, który pokazuje, jak za pomocą Firebase SDK wykonujemy proste polecenie dodania nowego miejsca do kolekcji \emph{places}.
+
+        \vspace{1cm}
+        \begin{lstlisting}[
+            language=Kotlin, 
+            caption=Dodanie miejsca do bazy danych za pomocą \emph{Firebase.firestore}, 
+            label=add_place,
+        ]
+db = Firebase.firestore
+
+db.collection("places").add(newPlace)
+        \end{lstlisting}
+        \vspace{1cm}
+
+        Jak zauważyć można na Listingu~\ref{add_place} do bazy danych dodany jest obiekt o nazwie \emph{newPlace}. Jest to obiekt klasy \emph{Place}, który w procesie dodawania do bazy danych konwertowany jest
+        na analogiczny słownik danych, umieszczany w drzewie JSON bazy danych. Każdy typ danych wykorzystany w aplikacji posiada klasę w Kotlinie modelującą jego pola w bazie danych. Na przykładzie 
+        Listingu~\ref{place_class} zaobserwować można jak modelowany, jest obiekt miejsca z poziomu aplikacji.
+
+        \vspace{1cm}
+        \begin{lstlisting}[
+            language=Kotlin, 
+            caption=Klasa danych Miejsca zmodelowana w języku Kotlin, 
+            label=place_class,
+        ]
+/**
+* Data class model of a Place object in the database
+*
+* @property placeFavUsersId: List of users that added 
+* the place to their favourites
+**/
+data class Place(
+    var placeId: String? = null,
+    var placeName: String? = null,
+    var placeGeoHash: String? = null,
+    var placeLatitude: Double? = null,
+    var placeLongitude: Double? = null,
+    var placeDescription: String? = null,
+    var placeOwnerId: String? = null,
+    var placeOwnerName: String? = null,
+    var placeCategories: ArrayList<String> = arrayListOf(),
+    var placeTagList: ArrayList<Tag> = arrayListOf(),
+    var placeFavUsersId: ArrayList<String> = arrayListOf(),
+    var placeLikes: Int = 0,
+    var placeIsPrivate: Boolean = false,
+)
+        \end{lstlisting}
+        \vspace{1cm}
+
+        Powyższa klasa danych zostaje przez Firebase SDK przekonwertowana do formy, którą zaobserwować można na Rysunku~\ref{firestore_screen}. W wypadku kiedy dane z bazy danych muszą zostać wykorzystane
+        w aplikacji, można wykorzystać konwersję w drugą stronę, która możliwa jest za pomocą funkcji \emph{toObject\!()} dostępnej w Firebase SDK.\@ Przykład pozyskania danych z bazy, aby wykorzystać je w
+        aplikacji, zaobserwować można na Listingu~\ref{firebase_get}. Obiekt JSON przekształcany jest tam do analogicznej mu klasy \emph{Place}, aby w przejrzysty sposób uzyskiwać dostęp do danych, tutaj
+        pozycji geograficznej, danego miejsca i umiejscowić jego znacznik na mapie, zatytułowany nazwą miejsca. Klasa Miejsca musi posiadać takie same nazwy pól jak klucze słownika JSON odpowiadającego
+        Miejscu w bazie danych.
+
+\newpage
+        \begin{lstlisting}[
+            language=Kotlin, 
+            caption=Fragment kodu pobierający i wykorzystujący miejsce znajdujące się w bazie danych, 
+            label=firebase_get,
+        ]
+// pobranie miejsca z bazy danych
+db.collection("places").document(placeId).get()
+// dodanie funkcji nasluchujacej sukcesu operacji
+.addOnSuccessListener {
+    // konwersja do obiektu klasy Place
+    val place = it.toObject(Place::class.java)!!
+    // umiejscowienie na mapie pinezki wykorzystujac 
+    // dane pobrane z obiektu klasy Place
+    map.addMarker(
+        MarkerOptions()
+            .title(place.placeName)
+            .position(
+                LatLng(
+                    place.placeLatitude!!, 
+                    place.placeLongitude!!
+                )
+            )
+            .icon(bitmapDescriptorFromVector(
+                    requireContext(), R.drawable.ic_map_pin
+                ))
+    )?.showInfoWindow()
+}
+        \end{lstlisting}
+        \vspace{1cm}
+
+        Jak wspomniane zostało w rozdziale~\ref{struktura} aplikacja oddziela obsługę bazy danych od obsługi interfejsu korzystając ze wzorca projektowego MVVM.\@ W aplikacji utworzona została
+        klasa FirestoreViewModel, która odpowiada za bezpośrednią komunikację z bazą danych, oddzielając ją tym samym od części obsługującej interfejs użytkownika. Dla przykładu w Listingu~\ref{viewmodel}
+        zobaczyć możemy fragment kodu, który pobiera dane wprowadzone przez użytkownika w trakcie tworzenia nowej wycieczki, aby następnie przesłać je do obiektu FirestoreViewModel w celu wpisania wycieczki
+        do bazy danych Firestore.
+
+\newpage
+        \begin{lstlisting}[
+            language=Kotlin, 
+            caption=Fragment kodu obsługujący interfejs użytkownika i komunikujący się z bazą danych za pomocą FirestoreViewModel, 
+            label=viewmodel,
+        ]
+// deklaracja obiektu ViewModel
+val firestoreViewModel = FirestoreViewModel()
+// deklaracja obiektu reprezentujacego nowa wycieczke
+val newTrip = Trip()
+
+// program sprawdza, czy nazwa i opis wycieczki 
+// zostaly wprowadzone przez uzytkownika
+if (inputCheck(tripName) && inputCheck(tripDescription)) {
+    // uzupelnienie pol wycieczki danymi 
+    // wprowadzonymi przez uzytkownika
+    newTrip.tripName = tripName
+    newTrip.tripDescription = tripDescription
+    newTrip.tripIsPrivate = tripIsPrivate.isChecked
+
+    // wywolanie funkcji dodajacej miejsce do bazy danych
+    // z obiektu ViewModel
+    firestoreViewModel.addTripToFirestore(
+        currentPlace.placeId!!, newTrip
+    )
+} else {
+    // wyswietlenie powiadomienia w razie nie uzupelnienia 
+    // przez uzytkownika wszystkich wymaganych parametrow
+    Toast.makeText(
+        context, 
+        "Please fill all fields.", 
+        Toast.LENGTH_SHORT
+    ).show()
+}
+        \end{lstlisting}
+        \vspace{1cm}

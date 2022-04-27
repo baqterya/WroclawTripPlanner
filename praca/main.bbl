@@ -1,0 +1,920 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{DEVHOST}{book}{}
+      \name{author}{4}{}{%
+        {{hash=976aabace39a9c89e637436b42f59505}{%
+           family={Amies},
+           familyi={A\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7e6bc349900bd20ccd70f29484139cfa}{%
+           family={Sluiman},
+           familyi={S\bibinitperiod},
+           given={Harm},
+           giveni={H\bibinitperiod}}}%
+        {{hash=47e840e079d250025fab2e160478cf4d}{%
+           family={Tong},
+           familyi={T\bibinitperiod},
+           given={Qiang\bibnamedelima Guo},
+           giveni={Q\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=a2cf163f00ece3ca28e578d2f7ffeb5b}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Guo\bibnamedelima Ning},
+           giveni={G\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IBM Press}%
+      }
+      \strng{namehash}{a420836cf5f66660d9a669acba238f5d}
+      \strng{fullhash}{beef94e16843c1bc255fd72f2eb9052a}
+      \strng{bibnamehash}{a420836cf5f66660d9a669acba238f5d}
+      \strng{authorbibnamehash}{a420836cf5f66660d9a669acba238f5d}
+      \strng{authornamehash}{a420836cf5f66660d9a669acba238f5d}
+      \strng{authorfullhash}{beef94e16843c1bc255fd72f2eb9052a}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Developing and Hosting Applications on the Cloud}
+      \field{year}{2012}
+    \endentry
+    \entry{STEAM}{online}{}
+      \name{author}{1}{}{%
+        {{hash=19191a1f1e36b834c6132ff82f781b8d}{%
+           family={Corporation},
+           familyi={C\bibinitperiod},
+           given={Valve},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{19191a1f1e36b834c6132ff82f781b8d}
+      \strng{fullhash}{19191a1f1e36b834c6132ff82f781b8d}
+      \strng{bibnamehash}{19191a1f1e36b834c6132ff82f781b8d}
+      \strng{authorbibnamehash}{19191a1f1e36b834c6132ff82f781b8d}
+      \strng{authornamehash}{19191a1f1e36b834c6132ff82f781b8d}
+      \strng{authorfullhash}{19191a1f1e36b834c6132ff82f781b8d}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Browse Steam Your Way, Introducing Steam Tags, A Powerful New Way to Shop For Games}
+      \field{urlday}{11}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://store.steampowered.com/tag/
+      \endverb
+      \verb{url}
+      \verb https://store.steampowered.com/tag/
+      \endverb
+    \endentry
+    \entry{DBSYS}{book}{}
+      \name{author}{6}{}{%
+        {{hash=2aa5f6ab291b9f80effa86ebe0385f18}{%
+           family={Garcia-Molina},
+           familyi={G\bibinithyphendelim M\bibinitperiod}}}%
+        {{hash=da43b312e05ed88483dd4c56cabf86dc}{%
+           family={Hector},
+           familyi={H\bibinitperiod},
+           given={Hector},
+           giveni={H\bibinitperiod}}}%
+        {{hash=971b8fe10079be074ae504250396a1f5}{%
+           family={Ullman},
+           familyi={U\bibinitperiod}}}%
+        {{hash=60b22acfbd296a88dc0bcabfdd5b429d}{%
+           family={D},
+           familyi={D\bibinitperiod},
+           given={Jeffrey},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2ea7293d63fb9d4f4ee61bd70b7b12ec}{%
+           family={Widom},
+           familyi={W\bibinitperiod}}}%
+        {{hash=e1f6a14cd07069692017b53a8ae881f6}{%
+           family={Jennifer},
+           familyi={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{04437128bfa1ccb0275047773e68f1ad}
+      \strng{fullhash}{349bd9a15ab899080e8c76efd9499951}
+      \strng{bibnamehash}{04437128bfa1ccb0275047773e68f1ad}
+      \strng{authorbibnamehash}{04437128bfa1ccb0275047773e68f1ad}
+      \strng{authornamehash}{04437128bfa1ccb0275047773e68f1ad}
+      \strng{authorfullhash}{349bd9a15ab899080e8c76efd9499951}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{01}
+      \field{title}{Database Systems: The Complete Book}
+      \field{year}{2002}
+    \endentry
+    \entry{RYNEK}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=4ea1c7a03145e34f136dbd4eb67edd07}{%
+           family={Ilski},
+           familyi={I\bibinitperiod},
+           given={Sławek},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ea1c7a03145e34f136dbd4eb67edd07}
+      \strng{fullhash}{4ea1c7a03145e34f136dbd4eb67edd07}
+      \strng{bibnamehash}{4ea1c7a03145e34f136dbd4eb67edd07}
+      \strng{authorbibnamehash}{4ea1c7a03145e34f136dbd4eb67edd07}
+      \strng{authornamehash}{4ea1c7a03145e34f136dbd4eb67edd07}
+      \strng{authorfullhash}{4ea1c7a03145e34f136dbd4eb67edd07}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{27}
+      \field{month}{7}
+      \field{note}{(term. wiz. 16.04.2022)}
+      \field{title}{Wrocław — Rynek — Panorama z kościoła p.w. św. Elżbiety}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://web.archive.org/web/20161024173922/http://www.panoramio.com/photo/76098529
+      \endverb
+      \verb{url}
+      \verb https://web.archive.org/web/20161024173922/http://www.panoramio.com/photo/76098529
+      \endverb
+    \endentry
+    \entry{ANDROID_KT}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Android's Kotlin-first approach}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/kotlin/first
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/kotlin/first
+      \endverb
+    \endentry
+    \entry{CHIPS_GL}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Chips, guidelines}
+      \field{urlday}{13}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://m3.material.io/components/chips/guidelines
+      \endverb
+      \verb{url}
+      \verb https://m3.material.io/components/chips/guidelines
+      \endverb
+    \endentry
+    \entry{CHIPS}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{3}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Chips, overview}
+      \field{urlday}{13}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://m3.material.io/components/chips/overview
+      \endverb
+      \verb{url}
+      \verb https://m3.material.io/components/chips/overview
+      \endverb
+    \endentry
+    \entry{FIRESTORE_DOCS}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{4}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Dokumentacja Cloud Firestore}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://firebase.google.com/docs/firestore
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/docs/firestore
+      \endverb
+    \endentry
+    \entry{VIEW}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{5}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Dokumentacja klasy View}
+      \field{urlday}{13}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/reference/android/view/View
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/reference/android/view/View
+      \endverb
+    \endentry
+    \entry{ROUTES}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{6}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Elementy składowe obiektu DirectionsResult}
+      \field{urlday}{15}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developers.google.com/maps/documentation/javascript/directions#Routes
+      \endverb
+      \verb{url}
+      \verb https://developers.google.com/maps/documentation/javascript/directions#Routes
+      \endverb
+    \endentry
+    \entry{GEOHASH}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{7}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Geo queries}
+      \field{urlday}{11}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://firebase.google.com/docs/firestore/solutions/geoqueries
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/docs/firestore/solutions/geoqueries
+      \endverb
+    \endentry
+    \entry{FIREBASE_AUTH}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{8}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Google Firebase Authentication}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://firebase.google.com/products/auth
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/products/auth
+      \endverb
+    \endentry
+    \entry{FIREBASE_BUILD}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{9}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Google Firebase Build Products}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://firebase.google.com/products-build
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/products-build
+      \endverb
+    \endentry
+    \entry{FIREBASE_FIRESTORE}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{10}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Google Firebase Cloud Firestore}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://firebase.google.com/products/firestore
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/products/firestore
+      \endverb
+    \endentry
+    \entry{FIRESTORE_IDX}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{11}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Indeksowanie in Cloud Firestore}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://firebase.google.com/docs/firestore/query-data/indexing
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/docs/firestore/query-data/indexing
+      \endverb
+    \endentry
+    \entry{THEME}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{12}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Material Theme Builder}
+      \field{urlday}{13}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://material-foundation.github.io/material-theme-builder/#/custom
+      \endverb
+      \verb{url}
+      \verb https://material-foundation.github.io/material-theme-builder/#/custom
+      \endverb
+    \endentry
+    \entry{MEET_AS}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{13}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Meet Android Studio}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/studio/intro
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/studio/intro
+      \endverb
+    \endentry
+    \entry{GCP_PRODUCTS}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{14}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Produkty Google Cloud}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://cloud.google.com/products
+      \endverb
+      \verb{url}
+      \verb https://cloud.google.com/products
+      \endverb
+    \endentry
+    \entry{MAPS_API}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{15}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Produkty Google Maps Platform}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://mapsplatform.google.com/maps-products/
+      \endverb
+      \verb{url}
+      \verb https://mapsplatform.google.com/maps-products/
+      \endverb
+    \endentry
+    \entry{GCP_OVERVIEW}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{16}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Przegląd Google Cloud}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://cloud.google.com/docs/overview
+      \endverb
+      \verb{url}
+      \verb https://cloud.google.com/docs/overview
+      \endverb
+    \endentry
+    \entry{FIRESTORE_SCALE}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{17}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Skalowanie w Cloud Firestore}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://cloud.google.com/architecture/building-scalable-apps-with-cloud-firestore
+      \endverb
+      \verb{url}
+      \verb https://cloud.google.com/architecture/building-scalable-apps-with-cloud-firestore
+      \endverb
+    \endentry
+    \entry{JETPACK}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{18}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Strona główna Android Jetpack}
+      \field{urlday}{13}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/jetpack
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/jetpack
+      \endverb
+    \endentry
+    \entry{FIREBASE_MAIN}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{19}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Strona główna Google Firebase}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://firebase.google.com/
+      \endverb
+      \verb{url}
+      \verb https://firebase.google.com/
+      \endverb
+    \endentry
+    \entry{MAPS}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{20}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Strona główna Google Maps Platform}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://mapsplatform.google.com/
+      \endverb
+      \verb{url}
+      \verb https://mapsplatform.google.com/
+      \endverb
+    \endentry
+    \entry{LIFECYCLE}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{21}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Activity Lifecycle}
+      \field{urlday}{13}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://developer.android.com/guide/components/activities/activity-lifecycle
+      \endverb
+      \verb{url}
+      \verb https://developer.android.com/guide/components/activities/activity-lifecycle
+      \endverb
+    \endentry
+    \entry{VOLLEY}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a24f3d27740e9bfc1f8f7d628643f81d}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={Google},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{fullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{bibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorbibnamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authornamehash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \strng{authorfullhash}{a24f3d27740e9bfc1f8f7d628643f81d}
+      \field{extraname}{22}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Volley}
+      \field{urlday}{15}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://google.github.io/volley/
+      \endverb
+      \verb{url}
+      \verb https://google.github.io/volley/
+      \endverb
+    \endentry
+    \entry{KT_MAIN}{online}{}
+      \name{author}{1}{}{%
+        {{hash=ac00a381c73649bcdcdbfb0a1807bc57}{%
+           family={s.r.o.},
+           familyi={s\bibinitperiod},
+           given={JetBrains},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{ac00a381c73649bcdcdbfb0a1807bc57}
+      \strng{fullhash}{ac00a381c73649bcdcdbfb0a1807bc57}
+      \strng{bibnamehash}{ac00a381c73649bcdcdbfb0a1807bc57}
+      \strng{authorbibnamehash}{ac00a381c73649bcdcdbfb0a1807bc57}
+      \strng{authornamehash}{ac00a381c73649bcdcdbfb0a1807bc57}
+      \strng{authorfullhash}{ac00a381c73649bcdcdbfb0a1807bc57}
+      \field{sortinit}{s}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Strona główna języka Kotlin}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://kotlinlang.org/
+      \endverb
+      \verb{url}
+      \verb https://kotlinlang.org/
+      \endverb
+    \endentry
+    \entry{OS_SHARE}{online}{}
+      \name{author}{1}{}{%
+        {{hash=62182ca58a739daa8ddd8a48b7b19abb}{%
+           family={Statista},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{62182ca58a739daa8ddd8a48b7b19abb}
+      \strng{fullhash}{62182ca58a739daa8ddd8a48b7b19abb}
+      \strng{bibnamehash}{62182ca58a739daa8ddd8a48b7b19abb}
+      \strng{authorbibnamehash}{62182ca58a739daa8ddd8a48b7b19abb}
+      \strng{authornamehash}{62182ca58a739daa8ddd8a48b7b19abb}
+      \strng{authorfullhash}{62182ca58a739daa8ddd8a48b7b19abb}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Mobile operating systems' market share worldwide from January 2012 to January 2022}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.statista.com/statistics/272698/global-market-share-held-by-mobile-operating-systems-since-2009/
+      \endverb
+      \verb{url}
+      \verb https://www.statista.com/statistics/272698/global-market-share-held-by-mobile-operating-systems-since-2009/
+      \endverb
+    \endentry
+    \entry{OHA}{online}{}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labeltitlesource}{title}
+      \field{title}{Strona główna Open Handset Alliance}
+      \field{urlday}{7}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.openhandsetalliance.com/index.html
+      \endverb
+      \verb{url}
+      \verb https://www.openhandsetalliance.com/index.html
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
