@@ -3,29 +3,29 @@
 \contentsline {section}{\numberline {2}Struktura aplikacji}{7}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Chmura obliczeniowa Google}{8}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}Firebase}{9}{subsubsection.2.1.1}%
-\contentsline {subsubsection}{\numberline {2.1.2}Firebase Authentication}{9}{subsubsection.2.1.2}%
-\contentsline {subsubsection}{\numberline {2.1.3}Firebase Cloud Firestore}{10}{subsubsection.2.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.4}Google Maps Platform}{12}{subsubsection.2.1.4}%
+\contentsline {paragraph}{\numberline {2.1.1.1}Firebase Authentication}{9}{paragraph.2.1.1.1}%
+\contentsline {paragraph}{\numberline {2.1.1.2}Firebase Cloud Firestore}{10}{paragraph.2.1.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.2}Google Maps Platform}{11}{subsubsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.2}Aplikacja mobilna}{13}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Kotlin i Android Studio}{13}{subsubsection.2.2.1}%
-\contentsline {subsubsection}{\numberline {2.2.2}Model danych}{14}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2}Model danych}{13}{subsubsection.2.2.2}%
 \contentsline {section}{\numberline {3}Implementacja}{16}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Interfejs użytkownika}{16}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Integracja z Firebase}{19}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Implementacja Firebase Authentication}{19}{subsubsection.3.2.1}%
 \contentsline {subsubsection}{\numberline {3.2.2}Implementacja Firebase Cloud Firestore}{20}{subsubsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.3}Integracja z Google Maps Platform}{23}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Implementacja Maps SDK for Android}{23}{subsubsection.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.2}Implementacja Directions API}{24}{subsubsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.1}Integracja z Maps SDK for Android}{23}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Integracja z Directions API}{24}{subsubsection.3.3.2}%
 \contentsline {section}{\numberline {4}Prezentacja aplikacji}{27}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Ekrany autoryzacji użytkownika}{27}{subsection.4.1}%
 \contentsline {subsubsection}{\numberline {4.1.1}Ekran powitalny}{27}{subsubsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.2}Ekran rejestracji}{28}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2}Ekran rejestracji}{27}{subsubsection.4.1.2}%
 \contentsline {subsubsection}{\numberline {4.1.3}Ekran logowania za pomocą konta Twitter}{28}{subsubsection.4.1.3}%
 \contentsline {subsection}{\numberline {4.2}Ekrany główne}{30}{subsection.4.2}%
 \contentsline {subsubsection}{\numberline {4.2.1}Ekran mapy}{30}{subsubsection.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.2}Ekran ustawień}{35}{subsubsection.4.2.2}%
-\contentsline {subsubsection}{\numberline {4.2.3}Listy ulubionych miejsc i wycieczek}{36}{subsubsection.4.2.3}%
-\contentsline {subsubsection}{\numberline {4.2.4}Listy miejsc i wycieczek użytkownika}{39}{subsubsection.4.2.4}%
-\contentsline {subsubsection}{\numberline {4.2.5}Lista najpopularniejszych wycieczek}{41}{subsubsection.4.2.5}%
-\contentsline {section}{\numberline {5}Podsumowanie}{43}{section.5}%
+\contentsline {subsubsection}{\numberline {4.2.2}Ekran ustawień}{34}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Listy ulubionych miejsc i wycieczek}{35}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Listy miejsc i wycieczek użytkownika}{38}{subsubsection.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.5}Lista najpopularniejszych wycieczek}{40}{subsubsection.4.2.5}%
+\contentsline {section}{\numberline {5}Podsumowanie}{42}{section.5}%

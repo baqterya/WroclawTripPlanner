@@ -1,19 +1,19 @@
 \subsection{Integracja z Google Maps Platform}
 
-Głównym elementem aplikacji jest zastosowanie w niej funkcji oferowanych przez Google Maps Platform. Jak wspomniane zostało w rozdziale~\ref{google_cloud}, tworzenie projektu w Firebase
+Wyróżniającą cechą aplikacji jest zastosowanie w niej funkcji oferowanych przez Google Maps Platform. Jak wspomniane zostało w~rozdziale~\ref{google_cloud}, tworzenie projektu w Firebase
 jest jednoznaczne z utworzeniem projektu w Google Cloud Platform. Dzięki temu w konsoli Google Cloud można skorzystać z produktu APIs and Services, aby do projektu aplikacji Android dodać
-Maps SDK for Android oraz Directions API.\@ Następnie, wygenerowany w Google Cloud Console klucz API należy dodać do aplikacji Android. Zapewnia to połączenie z usługami Google Maps Platform.
+Maps SDK for Android oraz Directions API. Następnie wygenerowany w Google Cloud Console klucz API należy dodać do aplikacji Android. Zapewnia to połączenie z usługami Google Maps Platform.
 
-    \subsubsection{Implementacja Maps SDK for Android}
-    Google Maps SDK for Android zawiera w sobie podstawowe funkcjonalności związane z wyświetlaniem dynamicznej mapy i interakcji z nią. Głównym ekranem aplikacji jest ekran wyświetlający mapę.
+    \subsubsection{Integracja z Maps SDK for Android}
+    Google Maps SDK for Android zawiera w sobie podstawowe funkcjonalności związane z wyświetlaniem dynamicznej mapy i interakcją z nią. Głównym ekranem aplikacji jest ekran wyświetlający mapę.
     Implementuje on interfejs programistyczny \emph{OnMapReadyCallback}, który umożliwia wprowadzenie do aplikacji metody nasłuchującej momentu, w którym mapa będzie gotowa do wyświetlenia.
-    To właśnie tam konfigurowane są ustawienia mapy i wywoływana jest funkcja znajdująca lokację urządzenia użytkownika. Na Listingu~\ref{map_callback} zaobserwować można proces konfiguracji
-    ustawień mapy. W procesie wyszukiwania miejsc na mapie wyświetlone zostają pinezki oznaczające konkretne miejsca. Za pomocą funkcjonalności zaoferowanej przez Maps SDK możliwe jest 
-    elastyczne dostosowanie sposobu wyświetlania obiektów na mapie. Proces wyświetlania na mapie pinezki reprezentującej konkretne miejsce można zaobserwować w Listingu~\ref{firebase_get}. \\
+    To właśnie tam konfigurowane są ustawienia mapy i wywoływana jest funkcja znajdująca lokalizację urządzenia użytkownika. Na Listingu~\ref{map_callback} zaobserwować można proces konfiguracji
+    ustawień mapy. W procesie wyszukiwania miejsc na mapie wyświetlone zostają pinezki oznaczające konkretne miejsca. Za pomocą funkcjonalności oferowanej przez Maps SDK możliwe jest 
+    elastyczne dostosowanie sposobu wyświetlania obiektów na mapie. Proces wyświetlania na mapie pinezki reprezentującej konkretne miejsce można zaobserwować na Listingu~\ref{firebase_get}. 
 
     Aby aplikacja mogła wykorzystywać w swoim działaniu informacje o położeniu urządzenia użytkownika, musi on udzielić aplikacji odpowiednich uprawnień.
 
-    \vspace{1cm}
+    \vspace{0.5cm}
     \begin{lstlisting}[
         language=Kotlin, 
         caption=Konfiguracja ustawień mapy w funkcji \emph{OnMapReadyCallback}, 
@@ -47,15 +47,15 @@ map.setMaxZoomPreference(MAX_ZOOM)
 }
     \end{lstlisting}
 
-    \subsubsection{Implementacja Directions API}
-    W przeciwieństwie do API wyświetlającego samą mapę Directions API nie posiada biblioteki dedykowanej dla tworzenia aplikacji na system Android. Oznacza to, że należy skorzystać z innej metody
-    wysyłania zapytań to API.\@ W aplikacji została wykorzystana biblioteka Volley. Jest to tworzona przez Google biblioteka przeznaczona do wykonywania zapytań HTTP i łączenia z różnego rodzaju usługami
+    \subsubsection{Integracja z Directions API}
+    W przeciwieństwie do API wyświetlającego samą mapę, Directions API nie posiada biblioteki dedykowanej dla aplikacji na system Android. Oznacza to, że należy skorzystać z innej metody
+    wysyłania zapytań to API. W aplikacji została wykorzystana biblioteka Volley. Jest to tworzona przez Google biblioteka przeznaczona do wykonywania zapytań HTTP i łączenia z różnego rodzaju usługami
     sieciowymi~\cite{VOLLEY}. Directions API wykorzystane jest w aplikacji w celu rysowania trasy do wybranego przez użytkownika miejsca lub aby narysować trasę wycieczki, przechodzącą przez wszystkie
     zawarte w niej miejsca. Za pomocą Volley wysyłane jest zapytanie do Directions API, a następnie po otrzymaniu odpowiedzi w postaci drzewa JSON wydobywane są instrukcje potrzebne do narysowania
-    wytyczonej ścieżki na widzianej przez użytkownika mapie. Przykładową funkcję wysyłającą zapytanie do API i rysującą ścieżkę prowadzącą z lokacji użytkownika do wybranego miejsca zobaczyć można
+    wytyczonej ścieżki na widzianej przez użytkownika mapie. Przykładową funkcję wysyłającą zapytanie do API i rysującą ścieżkę prowadzącą z lokalizacji użytkownika do wybranego miejsca zobaczyć można
     na Listingu~\ref{draw_path}. Directions API wysyła odpowiedź w formie drzewa JSON zawierającego dokładne instrukcje podróży od startu do celu. W zapytaniu można sprecyzować także przystanki,
-    przez które przechodzić ma trasa, co zastosowane zostało w przypadku rysowania trasy Wycieczki. Odpowiedź z Directions API składa się z hierarchii elementów: trasy (ang.\@ routes), najwyższy element,
-    reprezentuje trasę pomiędzy początkiem a celem, odcinki (ang.\@ legs), trasa pomiędzy przystankami trasy, kroki (ang.\@ steps), najniższe elementy trasy, zawierają konkretne, dokładne instrukcje 
+    przez które przechodzić ma trasa, co zastosowane zostało w przypadku rysowania trasy Wycieczki. Odpowiedź z Directions API składa się z hierarchii elementów: trasy (ang.\@ \emph{routes}), najwyższy element,
+    reprezentuje trasę pomiędzy początkiem a celem, odcinki (ang.\@ \emph{legs}), trasa pomiędzy przystankami trasy, kroki (ang.\@ \emph{steps}), najniższe elementy trasy, zawierają konkretne, dokładne instrukcje 
     kierujące~\cite{ROUTES}.
 
 \newpage
@@ -118,5 +118,5 @@ val directionsRequest = object : StringRequest(
 val requestQueue = Volley.newRequestQueue(requireContext())
 requestQueue.add(directionsRequest)
 }
-    \end{lstlisting}
-    \vspace{1cm}
+\end{lstlisting}
+  %  \vspace{1cm}

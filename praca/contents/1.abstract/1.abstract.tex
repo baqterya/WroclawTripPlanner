@@ -5,24 +5,27 @@
     \end{flushleft}
 
     \vspace{1cm}
-        W niniejszej pracy dyplomowej przedstawiony zostanie proces tworzenia aplikacji mobilnej na system operacyjny Android, napisanej w języku Kotlin, na przykładzie
-        aplikacji mobilnej dającej użytkownikom możliwość zapisu miejsc na mapie Wrocławia oraz planowania wycieczek wykorzystując zapisane lokacje.
-        Użytkownik może zapisywać miejsca i wycieczki jako prywatne lub publiczne, które wyświetlą się na mapie innych użytkowników. \\ \\
-        Celami projektu były:
+        W niniejszej pracy dyplomowej przedstawiam proces tworzenia w języku Kotlin aplikacji mobilnej na system operacyjny Android, na przykładzie
+        aplikacji mobilnej dającej użytkownikom możliwość zapisu miejsc na mapie Wrocławia oraz planowania wycieczek z wykorzystaniem uprzednio zapisanych lokalizacji.
+        Użytkownik może zapisywać miejsca i wycieczki jako prywatne (widoczne tylko dla niego) lub publiczne (wyświetlane na mapach innych użytkowników). \\ 
+        
+        
+        \noindent Zgodnie z założeniami, aplikacja ma umożliwić jej użytkownikom:
         \begin{itemize}
-            \item Wykrywanie pozycji użytkownika na mapie Wrocławia.
-            \item Pozwolenie użytkownikowi na dodanie Miejsca posiadającego nazwę, opis oraz należącego do kategorii.
-            \item Pozwolenie użytkownikowi na tworzenie Wycieczek składających się z maksymalnie dziesięciu Miejsc.
-            \item Pozwolenie użytkownikowi na dodawanie Etykiet do wszystkich publicznych Miejsc. 
-            \item Funkcja rysowania na mapie ścieżek prowadzących do miejsc oraz obrazujących trasy wycieczek. \\
+            \item wyświetlanie swojej pozycji na mapie Wrocławia (tzw.\ lokalizacja);
+            \item dodawanie Miejsc, którym można przypisać nazwę, opis oraz kategorię;
+            \item tworzenie Wycieczek składających się z maksymalnie dziesięciu Miejsc;
+            \item dodawanie Etykiet do wszystkich Miejsc publicznych; 
+            \item rysowanie na mapie ścieżek prowadzących do Miejsc oraz obrazowanie trasy wycieczek. 
         \end{itemize}
 
-        Aplikacja ma służyć jako narzędzie społecznościowe pozwalające użytkownikom na dzielenie się ciekawymi miejscami oraz zapisywanie planów wycieczek.
-        Użytkownicy mogą zapisywać interesujące ich miejsca oraz wycieczki do list „Ulubionych”. Do każdego miejsca użytkownik może wytyczyć ścieżkę, a każda
-        wycieczka ma możliwość rysowania trasy przechodzącej przez wszystkie jej miejsca w kolejności zadanej przez użytkownika. \\
+        Aplikacja ma służyć jako narzędzie społecznościowe umożliwiające użytkownikom informowanie innych o ciekawych miejscach oraz tworzenie planów wycieczek.
+        Użytkownicy mogą dodawać interesujące ich miejsca oraz wycieczki do list ,,Ulubionych''. 
+        Użytkownik może wytyczyć ścieżkę do każdego Miejsca, a każdej
+        Wycieczce towarzyszy możliwość wyświetlenia na mapie Wrocławia trasy przechodzącej przez wszystkie jej Miejsca w kolejności zadanej przez użytkownika. 
 
-        Aplikacja przechowuje dane użytkowników, ich miejsc oraz wycieczek w chmurze obliczeniowej Google Cloud za pośrednictwem platformy Firebase.
-        Komunikacja z bazą danych zachodzi za pomocą bibliotek i API tworzonych przez firmę Google z myślą o aplikacjach mobilnych i webowych. \\ 
+        Do przechowywania dane o użytkownikach, zdefiniowanych przez nich Miejscach oraz Wycieczkach w chmurze obliczeniowej Google Cloud moja aplikacja wykorzystuje platformę Firebase.
+        Komunikacja z bazą danych zachodzi za pomocą bibliotek i API tworzonych przez firmę Google z myślą o aplikacjach mobilnych i webowych.
 
         Interfejs użytkownika zaprojektowany został z użyciem stworzonego przez Google stylu graficznego i języka projektowego Material Design.
 

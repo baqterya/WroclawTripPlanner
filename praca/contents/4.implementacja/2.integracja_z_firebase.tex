@@ -1,11 +1,11 @@
 \newpage
     \subsection{Integracja z Firebase}
     Tworzenie aplikacji korzystającej z funkcji oferowanych przez Firebase należy rozpocząć od utworzenia nowego projektu w witrynie internetowej Firebase. W trakcie tego procesu wyświetlane są instrukcje
-    przedstawiające kroki, które należy podjąć, aby połączyć aplikację z projektem chmury obliczeniowej. Sprowadza się to przede wszystkim do umieszczenia w folderze zawierającym kod źródłowy, pliku
-    \emph{google-services.json}, automatycznie wygenerowanego w trakcie procesu. Zawiera on w sobie informacje o projekcie oraz klucze API pozwalające na połączenie z chmurą obliczeniową. 
-    W następnej kolejności należy do aplikacji mobilnej dołączyć bilbioteki, na które składa się Firebase SDK for Android. Odbywa się to za pomocą systemu budowania projektów Gradle (patrz Listing~\ref{gradle}).
+    przedstawiające kroki, które należy podjąć, aby połączyć aplikację z projektem chmury obliczeniowej. Sprowadza się to przede wszystkim do umieszczenia (w folderze zawierającym kod źródłowy aplikacji) pliku
+    \texttt{google-services.json}, automatycznie wygenerowanego w trakcie procesu. Przechowuje  on informacje o projekcie oraz klucze API pozwalające na połączenie z chmurą obliczeniową. 
+    W następnej kolejności należy do aplikacji mobilnej dołączyć biblioteki, na które składa się m.in. Firebase SDK for Android. Odbywa się to za pomocą systemu budowania projektów Gradle (Listing~\ref{gradle}).
 
-    \vspace{1cm}
+    \vspace{0.5cm}
     \begin{lstlisting}[language=Kotlin, caption=Biblioteki Firebase SDK zaimplementowane w aplikacji, label=gradle]
 //Firebase
 implementation platform('com.google.firebase:firebase-bom:29.0.0')
@@ -13,17 +13,17 @@ implementation 'com.google.firebase:firebase-analytics'
 implementation 'com.google.firebase:firebase-auth-ktx:21.0.2'
 implementation 'com.google.firebase:firebase-firestore-ktx:24.0.2'
     \end{lstlisting}
-    \vspace{1cm}
+    \vspace{0.5cm}
 
         \subsubsection{Implementacja Firebase Authentication}
-        Pierwszą powiązaną z Firebase funkcjonalnością aplikacji, z którą zetknie się nowy użytkownik aplikacji, jest Firebase Authentication, odpowiadające za rejestrację oraz logowanie użytkowników.
+        Pierwszą powiązaną z Firebase funkcjonalnością aplikacji, z którą zetknie się nowy użytkownik aplikacji, jest moduł Firebase Authentication, który odpowiada za rejestrację oraz logowanie użytkowników.
         W aplikacji zaimplementowana została możliwość tworzenia konta za pomocą adresu e-mail oraz logowanie się za pośrednictwem konta na platformie Twitter. Z poziomu SDK dostęp do funkcji autoryzacyjnych
-        otrzymujemy za pomocą obiektu \emph{Firebase.auth}. To na nim wywoływane są metody tworzące nowe konto użytkownika oraz pozwalające na zalogowanie. Na Listingu~\ref{auth} zobaczyć można przykład
+        otrzymujemy za pomocą obiektu \texttt{Firebase.auth}. To na nim wywoływane są metody tworzące nowe konto użytkownika oraz pozwalające na zalogowanie. Na Listingu~\ref{auth} zobaczyć można przykład
         zastosowania Firebase SDK for Android do utworzenia konta użytkownika za pomocą danych (email, password, oraz username) wprowadzonych przez niego w polach tekstowych oraz metodę pozwalającą
         na zalogowanie za pomocą konta w serwisie Twitter. Kiedy rejestracja bądź logowanie za pomocą konta Twitter zakończy się pomyślnie, konto użytkownika zostanie zapisane w serwisie autoryzacyjnym
         Firebase dostępnym za pomocą konsoli Firebase. Dodatkowo dane użytkownika zostaną wraz z jego pseudonimem zapisane w bazie danych Firestore, aby ułatwić komunikację w bazie danych.
-        Hasło użytkownika pozostaje dyskretne nawet dla twórcy aplikacji. Za bezpieczeństwo tajnych danych odpowiadają zabezpieczenia chmury obliczeniowej Google. Twórca projektu, w razie potrzeby
-        może uzyskać zaszyfrowane wersje haseł, np.\' na potrzeby migracji danych na inny serwer.
+        Hasło użytkownika jest niedostępne nawet dla twórcy aplikacji. Za  tajność tych danych odpowiadają zabezpieczenia chmury obliczeniowej Google. Twórca projektu, w razie potrzeby,
+        może uzyskać zaszyfrowane wersje haseł, np.\ na potrzeby migracji danych na inny serwer.
 
 \newpage
         \begin{lstlisting}[
@@ -55,7 +55,7 @@ if (pendingTaskResult == null) {
     )
 }
         \end{lstlisting}
-        \vspace{1cm}
+        \vspace{0.5cm}
 
         \subsubsection{Implementacja Firebase Cloud Firestore}
         Dostęp do funkcjonalności Cloud Firestore otrzymać można za pomocą obiektu \emph{Firebase.firestore}. Za jego pomocą możemy dokonywać zapytań do bazy danych i otrzymywać odpowiedzi zwrotne.
@@ -73,11 +73,11 @@ db.collection("places").add(newPlace)
         \end{lstlisting}
         \vspace{1cm}
 
-        Jak zauważyć można na Listingu~\ref{add_place} do bazy danych dodany jest obiekt o nazwie \emph{newPlace}. Jest to obiekt klasy \emph{Place}, który w procesie dodawania do bazy danych konwertowany jest
+        Jak można zauważyć na Listingu~\ref{add_place}, do bazy danych dodany jest obiekt o nazwie \texttt{newPlace}. Jest to obiekt klasy \texttt{Place}, który w procesie dodawania do bazy danych konwertowany jest
         na analogiczny słownik danych, umieszczany w drzewie JSON bazy danych. Każdy typ danych wykorzystany w aplikacji posiada klasę w Kotlinie modelującą jego pola w bazie danych. Na przykładzie 
-        Listingu~\ref{place_class} zaobserwować można jak modelowany, jest obiekt miejsca z poziomu aplikacji.
+        Listingu~\ref{place_class} zaobserwować można, jak modelowany jest obiekt Miejsca z poziomu aplikacji.
 
-        \vspace{1cm}
+        \vspace{0.5cm}
         \begin{lstlisting}[
             language=Kotlin, 
             caption=Klasa danych Miejsca zmodelowana w języku Kotlin, 
@@ -105,12 +105,12 @@ data class Place(
     var placeIsPrivate: Boolean = false,
 )
         \end{lstlisting}
-        \vspace{1cm}
+        \vspace{0.5cm}
 
-        Powyższa klasa danych zostaje przez Firebase SDK przekonwertowana do formy, którą zaobserwować można na Rysunku~\ref{firestore_screen}. W wypadku kiedy dane z bazy danych muszą zostać wykorzystane
-        w aplikacji, można wykorzystać konwersję w drugą stronę, która możliwa jest za pomocą funkcji \emph{toObject\!()} dostępnej w Firebase SDK.\@ Przykład pozyskania danych z bazy, aby wykorzystać je w
-        aplikacji, zaobserwować można na Listingu~\ref{firebase_get}. Obiekt JSON przekształcany jest tam do analogicznej mu klasy \emph{Place}, aby w przejrzysty sposób uzyskiwać dostęp do danych, tutaj
-        pozycji geograficznej, danego miejsca i umiejscowić jego znacznik na mapie, zatytułowany nazwą miejsca. Klasa Miejsca musi posiadać takie same nazwy pól jak klucze słownika JSON odpowiadającego
+        Powyższa klasa danych jest konwertowana przez Firebase SDK do postaci, którą zaobserwować można na Rysunku~\ref{firestore_screen}. W wypadku kiedy dane z bazy danych muszą zostać wykorzystane
+        w aplikacji, można wykorzystać konwersję w drugą stronę, która możliwa jest za pomocą funkcji \texttt{toObject()} dostępnej w Firebase SDK. Przykład pozyskania danych z bazy, aby wykorzystać je w
+        aplikacji, zaobserwować można na Listingu~\ref{firebase_get}. Obiekt JSON przekształcany jest tam do analogicznej mu klasy \texttt{Place}, aby w przejrzysty sposób uzyskiwać dostęp do danych, tutaj
+        pozycji geograficznej, danego miejsca i~umiejscowić jego znacznik na mapie, zatytułowany nazwą miejsca. Klasa Miejsca musi posiadać takie same nazwy pól jak klucze słownika JSON odpowiadającego
         Miejscu w bazie danych.
 
 \newpage
@@ -142,11 +142,11 @@ db.collection("places").document(placeId).get()
     )?.showInfoWindow()
 }
         \end{lstlisting}
-        \vspace{1cm}
+        \vspace{0.5cm}
 
-        Jak wspomniane zostało w rozdziale~\ref{struktura} aplikacja oddziela obsługę bazy danych od obsługi interfejsu korzystając ze wzorca projektowego MVVM.\@ W aplikacji utworzona została
-        klasa FirestoreViewModel, która odpowiada za bezpośrednią komunikację z bazą danych, oddzielając ją tym samym od części obsługującej interfejs użytkownika. Dla przykładu w Listingu~\ref{viewmodel}
-        zobaczyć możemy fragment kodu, który pobiera dane wprowadzone przez użytkownika w trakcie tworzenia nowej wycieczki, aby następnie przesłać je do obiektu FirestoreViewModel w celu wpisania wycieczki
+        Jak wspomniane zostało w rozdziale~\ref{struktura}, aplikacja oddziela obsługę bazy danych od obsługi interfejsu za pomocą ze wzorca projektowego MVVM. W aplikacji utworzona została
+        klasa \texttt{FirestoreViewModel}, która odpowiada za bezpośrednią komunikację z~bazą danych, oddzielając ją tym samym od części obsługującej interfejs użytkownika. Na Listingu~\ref{viewmodel}
+        zobaczyć możemy fragment kodu, który pobiera dane wprowadzone przez użytkownika w trakcie tworzenia nowej wycieczki, aby następnie przesłać je do obiektu \texttt{FirestoreViewModel} w celu wpisania wycieczki
         do bazy danych Firestore.
 
 \newpage
